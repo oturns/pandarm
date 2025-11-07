@@ -776,9 +776,6 @@ class Network:
         if category not in self.poi_category_names:
             assert 0, "Need to call set_pois for this category"
 
-        if num_pois > self.max_pois:
-            assert 0, "Asking for more POIs than set in init_pois"
-
         imp_num = self._imp_name_to_num(imp_name)
 
         dists, poi_ids = self.net.find_all_nearest_pois(
