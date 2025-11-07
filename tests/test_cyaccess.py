@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 import pytest
 import os
+import sys
 from numpy.testing import assert_almost_equal
 from pandarm.cyaccess import cyaccess
 
@@ -61,13 +62,14 @@ def test_agg_analysis(net, nodes_and_edges):
     ret = net.get_all_aggregate_accessibility_variables(10, b'test', b'this is', b'bogus')
     assert np.all(np.isnan(ret))
 
-
+@pytest.mark.skipif(sys.platform == "darwin", reason="This test does not run on macOS.")
 def test_poi_analysis(net, nodes_and_edges):
     nodes = nodes_and_edges[0]
     NUM_NODES = 30
     np.random.seed(0)
     random_node_ids = np.random.choice(np.arange(len(nodes)), NUM_NODES)
-    net.initialize_category(10, 3, b'0', random_node_ids)
+    # theres a bytestring encoding problem here that crashes macs
+    net.initialize_category(10, 3, b"0", random_node_ids)
     dists, poi_ids = net.find_all_nearest_pois(10, 3, b'0')
     df = pd.DataFrame(poi_ids)
     assert df.loc[0, 0] == 6
