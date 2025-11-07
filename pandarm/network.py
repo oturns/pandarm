@@ -645,9 +645,9 @@ class Network:
 
     def set_pois(
         self,
-        category=None,
-        maxdist=None,
-        maxitems=None,
+        category,
+        maxdist,
+        maxitems,
         x_col=None,
         y_col=None,
         mapping_distance=None,

@@ -359,9 +359,9 @@ def test_pois_pandana3(second_sample_osm):
     x, y = random_x_y(second_sample_osm, ssize)
 
     # make sure POI searches work on second graph
-    net2.set_pois(category="restaurants", x_col=x, y_col=y)
+    net2.set_pois(category="restaurants", maxdist=2000, maxitems=10, x_col=x, y_col=y)
 
-    net2.nearest_pois(2000, "restaurants", num_pois=10)
+    net2.nearest_pois(2000, "restaurants", maxdist=2000, maxitems=10, num_pois=10)
 
 
 def test_pois_pandana3_pos_args(second_sample_osm):
@@ -372,9 +372,9 @@ def test_pois_pandana3_pos_args(second_sample_osm):
     x, y = random_x_y(second_sample_osm, ssize)
 
     # make sure poi searches work on second graph
-    net2.set_pois("restaurants", x, y)
+    net2.set_pois("restaurants", maxdist=2000, maxitems=10, x, y)
 
-    net2.nearest_pois(2000, "restaurants", num_pois=10)
+    net2.nearest_pois(2000, "restaurants",  num_pois=10)
 
 
 # test items are sorted
