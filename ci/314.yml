@@ -8,6 +8,7 @@ dependencies:
   - requests >=2.0
   - scikit-learn >=0.18
   - pytables >=3.1
+  - geopandas >=1.1
   - cxx-compiler  # platform-appropriate compiler w/ OpenMP
 
   # testing, etc
