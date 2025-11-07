@@ -21,7 +21,7 @@ license-files = ["LICENSE"]
 requires-python = ">=3.10"
 
 [tool.setuptools.packages.find]
-include = ["pandarm", "src"]
+include = ["pandarm*", "src*"]
 exclude = ["*.tests", "*.tests.*", "tests.*", "tests"]
 
 [project.optional-dependencies]
