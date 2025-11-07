@@ -8,6 +8,7 @@ from .cyaccess import cyaccess
 from .loaders import pandash5 as ph5
 import warnings
 
+
 class Network:
     """
     Create the transportation network in the city.  Typical data would be
@@ -684,24 +685,6 @@ class Network:
         Nothing
 
         """
-        # condition to check if missing arguments for keyword arguments using set_pois() from v0.3
-        if maxitems is None:
-            print("Reading parameters from init_pois()")
-            maxitems = self.max_pois
-
-        # condition to check for positional arguments in set_pois() from v0.3
-        elif isinstance(maxitems, type(pd.Series())):
-            y_col = maxitems
-            maxitems = self.max_pois
-
-        if maxdist is None:
-            print("Reading parameters from init_pois()")
-            maxdist = self.max_dist
-
-        elif isinstance(maxdist, type(pd.Series())):
-            x_col = maxdist
-            maxdist = self.max_dist
-
         if category not in self.poi_category_names:
             self.poi_category_names.append(category)
 
