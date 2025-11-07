@@ -10,3 +10,12 @@ dependencies:
   - pytables >=3.1
   - geopandas >=1.1
   - cxx-compiler  # platform-appropriate compiler w/ OpenMP
+  
+  # testing, etc
+  - codecov
+  - pytest
+  - pytest-mpl
+  - pytest-cov
+  - pytest-xdist
+  - twine
+

@@ -67,12 +67,12 @@
 
        - name: run tests
          run: |
-           pytest segregation \
+           pytest pandarm \
            -v \
            -r a \
            -n auto \
            --color yes \
-           --cov segregation \
+           --cov pandarm \
            --cov-append \
            --cov-report term-missing \
            --cov-report xml
@@ -82,7 +82,7 @@
          with:
            token: ${{ secrets.CODECOV_TOKEN }}
            file: ./coverage.xml
-           name: segregation-codecov
+           name: panradm-codecov
 
        - name: Generate and publish the report
          if: |
