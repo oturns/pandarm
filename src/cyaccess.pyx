@@ -1,4 +1,4 @@
-#cython: language_level=3
+#cython: language_level=3str
 
 cimport cython
 from libcpp cimport bool
@@ -18,20 +18,20 @@ np.import_array()
 
 cdef extern from "accessibility.h" namespace "MTC::accessibility":
     cdef cppclass Accessibility:
-        Accessibility(int32_t, vector[vector[long]], vector[vector[double]], bool) except +
+        Accessibility(int64_t, vector[vector[long]], vector[vector[double]], bool) except +
         vector[string] aggregations
         vector[string] decays
-        void initializeCategory(double, int32_t, string, vector[long])
+        void initializeCategory(double, int64_t, string, vector[long])
         pair[vector[vector[double]], vector[vector[int32_t]]] findAllNearestPOIs(
-            float, int32_t, string, int32_t)
+            float, int64_t, string, int64_t)
         void initializeAccVar(string, vector[long], vector[double])
         vector[double] getAllAggregateAccessibilityVariables(
-            float, string, string, string, int32_t)
-        vector[int32_t] Route(int32_t, int32_t, int32_t)
-        vector[vector[int32_t]] Routes(vector[long], vector[long], int32_t)
-        double Distance(int32_t, int32_t, int32_t)
-        vector[double] Distances(vector[long], vector[long], int32_t)
-        vector[vector[pair[long, float]]] Range(vector[long], float, int32_t, vector[long])
+            float, string, string, string, int64_t)
+        vector[int32_t] Route(int64_t, int64_t, int64_t)
+        vector[vector[int32_t]] Routes(vector[long], vector[long], int64_t)
+        double Distance(int64_t, int64_t, int64_t)
+        vector[double] Distances(vector[long], vector[long], int64_t)
+        vector[vector[pair[long, float]]] Range(vector[long], float, int64_t, vector[long])
         void precomputeRangeQueries(double)
 
 
@@ -51,7 +51,7 @@ cdef np.ndarray[double, ndim = 2] convert_2D_vector_to_array_dbl(
     return arr
 
 
-cdef np.ndarray[int, ndim = 2] convert_2D_vector_to_array_int(
+cdef np.ndarray[int64_t, ndim = 2] convert_2D_vector_to_array_int(
         vector[vector[int32_t]] vec):
     cdef np.ndarray arr = np.empty_like(vec, dtype=np.int64)
     for i in range(arr.shape[0]):
