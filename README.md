@@ -27,6 +27,16 @@ pip install -e .
 
 This will install all necessary package dependencies, including the platform-appropriate compiler, then build the C++ extension and install the package in editable mode
 
+### Why this fork?
+
+Apart from bringing compatibility with numpy>=2 and the rest of the pydata stack, I have a few feature goals to merge into the codebase that make things easier to do, given today's toolset. When the original `pandana` was written 10 years ago, geopandas was fairly immature, and `osmnx` was not yet written; both of these make life much easier. 
+
+- download OSM networks from `osmnx` instead of `OSMNet` (the former is more performant and easier to work with)
+- store network geometries using geopandas
+  - allow geopandas-based plotting
+  - allow reprojecting node x/y coordinates (particularly important for snapping destinations to the network)
+- move isochrone polygons [from geosnap](https://oturns.github.io/geosnap-guide/isochrone_example.html)
+
 ### Acknowledgments
 
 The original pandana package from which this fork was derived was created by [Fletcher Foti](https://github.com/fscottfoti), with subsequent contributions from [Matt Davis](https://github.com/jiffyclub), [Federico Fernandez](https://github.com/federicofernandez), [Sam Maurer](https://github.com/smmaurer), and others. The package relies on contraction hierarchy code from [Dennis Luxen](https://github.com/DennisOSRM) and his [OSRM project](https://github.com/DennisOSRM/Project-OSRM).
@@ -39,6 +49,9 @@ A [paper on Pandana](http://onlinepubs.trb.org/onlinepubs/conferences/2012/4thIT
 
 ### Related packages
 
+Note the original pandana is still available but can only be used with older versions of numpy. Alternatively, Fletcher has recently released a *pure Python* library, `pandana2`, which calculates network-based aggregations, albeit at a bit of a performance cost, though it (currently at least) lacks routing and shortest-path functionality.
+
 - [OSMnet](https://github.com/udst/osmnet)
 - [UrbanAccess](https://github.com/udst/urbanaccess)
+- [pandana](https://github.com/udst/pandana)
 - [pandana2](https://github.com/mapcraftlabs/pandana2)

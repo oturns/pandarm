@@ -1,4 +1,4 @@
-from __future__ import division, print_function
+import warnings
 
 import numpy as np
 import pandas as pd
@@ -6,7 +6,6 @@ from sklearn.neighbors import KDTree
 
 from .cyaccess import cyaccess
 from .loaders import pandash5 as ph5
-import warnings
 
 
 class Network:
@@ -696,7 +695,9 @@ class Network:
 
         node_idx = self._node_indexes(node_ids)
 
-        self.net.initialize_category(maxdist, maxitems, category.encode("utf-8"), node_idx.values)
+        self.net.initialize_category(
+            maxdist, maxitems, category.encode(encoding="utf-8"), node_idx.values
+        )
 
     def nearest_pois(
         self,
