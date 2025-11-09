@@ -1,4 +1,4 @@
-name: Build-wheels
+name: Build-wheels and publish to PyPI
 
 # This workflow builds "wheels", which are the binary package installers hosted on PyPI.
 # GitHub Actions is super helpful here because each one needs to be compiled in its own
@@ -35,6 +35,11 @@ jobs:
       with:
         name: wheels
         path: dist/*-manylinux*.whl
+    - name: Publish distribution 📦 to PyPI
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        user: __token__
+        password: ${{ secrets.PYPI_PASSWORD }}
 
   build:
     runs-on: ${{ matrix.os }}
@@ -56,7 +61,7 @@ jobs:
     - name: Set up environment
       run: |
         conda config --append channels conda-forge
-        conda install build clang llvm-openmp
+        conda install build cxx_compiler clang llvm-openmp
     - name: Build wheel
       run: |
         python -m build --sdist --wheel
