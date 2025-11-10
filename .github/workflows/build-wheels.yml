@@ -61,7 +61,7 @@ jobs:
     - name: Set up environment
       run: |
         conda config --append channels conda-forge
-        conda install build cxx_compiler clang llvm-openmp
+        conda install build cxx-compiler clang llvm-openmp
     - name: Build wheel
       run: |
         python -m build --sdist --wheel
