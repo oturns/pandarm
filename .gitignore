@@ -64,3 +64,6 @@ logs
 
 # Example data
 examples/data
+
+# macOS
+.DS_Store
