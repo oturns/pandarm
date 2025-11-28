@@ -70,7 +70,7 @@
            pytest tests \
            -v \
            -r a \
-           -n auto \
+           -n 0 \
            --color yes \
            --cov pandarm \
            --cov-append \
