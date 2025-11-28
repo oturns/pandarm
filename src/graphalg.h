@@ -5,6 +5,7 @@
 #include <utility>
 #include "shared.h"
 #include "contraction_hierarchies/src/libch.h"
+#include <cstdint>
 
 typedef unsigned int NodeID;
 
@@ -22,7 +23,7 @@ class Graphalg {
  public:
     Graphalg(
         int numnodes,
-        vector< vector<long> > edges, vector<double> edgeweights,
+        vector< vector<int64_t> > edges, vector<double> edgeweights,
         bool twoway);
 
     std::vector<NodeID> Route(int src, int tgt, int threadNum = 0);

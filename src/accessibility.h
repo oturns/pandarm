@@ -8,6 +8,7 @@
 #include <map>
 #include "shared.h"
 #include "graphalg.h"
+#include <cstdint>
 
 namespace MTC {
 namespace accessibility {
@@ -20,20 +21,20 @@ using std::map;
 class Accessibility {
  public:
     Accessibility(
-        int numnodes,
-        vector< vector<long> > edges,
+        int64_t numnodes,
+        vector< vector<int64_t> > edges,
         vector< vector<double> >  edgeweights,
         bool twoway);
 
     // initialize the category number with POIs at the node_id locations
-    void initializeCategory(const double maxdist, const int maxitems, string category, vector<long> node_idx);
+    void initializeCategory(const double maxdist, const int64_t maxitems, string category, vector<int64_t> node_idx);
 
     // find the nearest pois for all nodes in the network
-    pair<vector<vector<double>>, vector<vector<int>>>
+    pair<vector<vector<double>>, vector<vector<int64_t>>>
     findAllNearestPOIs(float maxradius, unsigned maxnumber,
-                       string category, int graphno = 0);
+                       string category, int64_t graphno = 0);
 
-    void initializeAccVar(string category, vector<long> node_idx,
+    void initializeAccVar(string category, vector<int64_t> node_idx,
                           vector<double> values);
 
     // computes the accessibility for every node in the network
@@ -43,25 +44,25 @@ class Accessibility {
         string index,
         string aggtyp,
         string decay,
-        int graphno = 0);
+        int64_t graphno = 0);
 
     // get nodes with a range for a specific list of source nodes
-    vector<vector<pair<long, float>>> Range(vector<long> srcnodes, float radius, 
-                                            int graphno, vector<long> ext_ids);
+    vector<vector<pair<int64_t, float>>> Range(vector<int64_t> srcnodes, float radius, 
+                                            int64_t graphno, vector<int64_t> ext_ids);
 
     // shortest path between two points
-    vector<int> Route(int src, int tgt, int graphno = 0);
+    vector<int64_t> Route(int64_t src, int64_t tgt, int64_t graphno = 0);
 
     // shortest path between list of origins and destinations
-    vector<vector<int>> Routes(vector<long> sources, vector<long> targets,  
-                               int graphno = 0);
+    vector<vector<int64_t>> Routes(vector<int64_t> sources, vector<int64_t> targets,  
+                               int64_t graphno = 0);
 
     // shortest path distance between two points
-    double Distance(int src, int tgt, int graphno = 0);
+    double Distance(int64_t src, int64_t tgt, int64_t graphno = 0);
     
     // shortest path distances between list of origins and destinations
-    vector<double> Distances(vector<long> sources, vector<long> targets,  
-                             int graphno = 0);
+    vector<double> Distances(vector<int64_t> sources, vector<int64_t> targets,  
+                             int64_t graphno = 0);
 
     // precompute the range queries and reuse them
     void precomputeRangeQueries(float radius);
@@ -74,7 +75,7 @@ class Accessibility {
 
  private:
     double maxdist;
-    int maxitems;
+    int64_t maxitems;
 
     // a vector of graphs - all these graphs share the same nodes, and
     // thus it shares the same accessibility_vars_t as well -
@@ -100,23 +101,23 @@ class Accessibility {
     float dmsradius;
     vector<vector<DistanceVec> > dms;
 
-    int numnodes;
+    int64_t numnodes;
 
     void addGraphalg(MTC::accessibility::Graphalg *g);
 
-    vector<pair<double, int>>
-    findNearestPOIs(int srcnode, float maxradius, unsigned maxnumber,
-                    string cat, int graphno = 0);
+    vector<pair<double, int64_t>>
+    findNearestPOIs(int64_t srcnode, float maxradius, unsigned maxnumber,
+                    string cat, int64_t graphno = 0);
 
     // aggregate a variable within a radius
     double
     aggregateAccessibilityVariable(
-        int srcnode,
+        int64_t srcnode,
         float radius,
         accessibility_vars_t &vars,
         string aggtyp,
         string gravity_func,
-        int graphno = 0);
+        int64_t graphno = 0);
 
     double
     quantileAccessibilityVariable(

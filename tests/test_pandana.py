@@ -165,8 +165,8 @@ def test_agg_variables(sample_osm):
     for type in net.aggregations:
         for decay in net.decays:
             for distance in [5, 10, 20]:
-                t = type.decode(encoding="UTF-8")
-                d = decay.decode(encoding="UTF-8")
+                t = type
+                d = decay
                 s = net.aggregate(distance, type=t, decay=d)
                 assert s.describe()["std"] > 0
 
@@ -177,8 +177,8 @@ def test_agg_variables(sample_osm):
     for type in net.aggregations:
         for decay in net.decays:
             for distance in [5, 10, 20]:
-                t = type.decode(encoding="UTF-8")
-                d = decay.decode(encoding="UTF-8")
+                t = type
+                d = decay
                 s = net.aggregate(distance, type=t, decay=d)
                 if t != "std":
                     assert s.describe()["std"] > 0
@@ -199,8 +199,8 @@ def test_non_float_node_values(sample_osm):
     for type in net.aggregations:
         for decay in net.decays:
             for distance in [5, 10, 20]:
-                t = type.decode(encoding="UTF-8")
-                d = decay.decode(encoding="UTF-8")
+                t = type
+                d = decay
                 s = net.aggregate(distance, type=t, decay=d)
                 assert s.describe()["std"] > 0
 

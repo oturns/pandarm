@@ -5,6 +5,7 @@
 #include <unordered_map>
 #include <utility>
 #include "graphalg.h"
+#include <cstdint>
 
 namespace MTC {
 namespace accessibility {
@@ -14,15 +15,15 @@ using std::vector;
 using std::pair;
 using std::make_pair;
 
-typedef std::pair<double, int> distance_node_pair;
+typedef std::pair<double, int64_t> distance_node_pair;
 bool distance_node_pair_comparator(const distance_node_pair& l,
                                    const distance_node_pair& r)
     { return l.first < r.first; }
 
 
 Accessibility::Accessibility(
-        int numnodes,
-        vector< vector<long>> edges,
+        int64_t numnodes,
+        vector< vector<int64_t>> edges,
         vector< vector<double>>  edgeweights,
         bool twoway) {
 
@@ -42,7 +43,7 @@ Accessibility::Accessibility(
     this->decays.push_back("linear");
     this->decays.push_back("flat");
 
-    for (int i = 0 ; i < edgeweights.size() ; i++) {
+    for (int64_t i = 0 ; i < edgeweights.size() ; i++) {
         this->addGraphalg(new Graphalg(numnodes, edges, edgeweights[i],
                           twoway));
     }
@@ -61,15 +62,15 @@ void Accessibility::addGraphalg(MTC::accessibility::Graphalg *g) {
 void
 Accessibility::precomputeRangeQueries(float radius) {
     dms.resize(ga.size());
-    for (int i = 0 ; i < ga.size() ; i++) {
+    for (int64_t i = 0 ; i < ga.size() ; i++) {
         dms[i].resize(numnodes);
     }
 
     #pragma omp parallel
     {
     #pragma omp for schedule(guided)
-    for (int i = 0 ; i < numnodes ; i++) {
-        for (int j = 0 ; j < ga.size() ; j++) {
+    for (int64_t i = 0 ; i < numnodes ; i++) {
+        for (int64_t j = 0 ; j < ga.size() ; j++) {
             ga[j]->Range(
                 i,
                 radius,
@@ -82,27 +83,27 @@ Accessibility::precomputeRangeQueries(float radius) {
 }
 
 
-vector<vector<pair<long, float>>>
-Accessibility::Range(vector<long> srcnodes, float radius, int graphno, 
-                     vector<long> ext_ids) {
+vector<vector<pair<int64_t, float>>>
+Accessibility::Range(vector<int64_t> srcnodes, float radius, int64_t graphno, 
+                     vector<int64_t> ext_ids) {
 
     // Set up a mapping between the external node ids and internal ones
-    std::unordered_map<long, int> int_ids(ext_ids.size());
-    for (int i = 0; i < ext_ids.size(); i++) {
-        int_ids.insert(pair<long, int>(ext_ids[i], i));
+    std::unordered_map<int64_t, int64_t> int_ids(ext_ids.size());
+    for (int64_t i = 0; i < ext_ids.size(); i++) {
+        int_ids.insert(pair<int64_t, int64_t>(ext_ids[i], i));
     }
     
     // use cached results if available
     vector<DistanceVec> dists(srcnodes.size());
     if (dmsradius > 0 && radius <= dmsradius) {
-        for (int i = 0; i < srcnodes.size(); i++) {
+        for (int64_t i = 0; i < srcnodes.size(); i++) {
             dists[i] = dms[graphno][int_ids[srcnodes[i]]];
         }
     }
     else {
         #pragma omp parallel
         #pragma omp for schedule(guided)
-        for (int i = 0; i < srcnodes.size(); i++) {
+        for (int64_t i = 0; i < srcnodes.size(); i++) {
             ga[graphno]->Range(int_ids[srcnodes[i]], radius,
                 omp_get_thread_num(), dists[i]);
         }
@@ -112,10 +113,10 @@ Accessibility::Range(vector<long> srcnodes, float radius, int graphno,
     // todo: check that performing an aggregation creates cache
 
     // Convert back to external node ids
-    vector<vector<pair<long, float>>> output(dists.size());
-    for (int i = 0; i < dists.size(); i++) {
+    vector<vector<pair<int64_t, float>>> output(dists.size());
+    for (int64_t i = 0; i < dists.size(); i++) {
         output[i].resize(dists[i].size());
-        for (int j = 0; j < dists[i].size(); j++) {
+        for (int64_t j = 0; j < dists[i].size(); j++) {
             output[i][j] = std::make_pair(ext_ids[dists[i][j].first], 
                                           dists[i][j].second);
         }
@@ -124,45 +125,45 @@ Accessibility::Range(vector<long> srcnodes, float radius, int graphno,
 }
 
 
-vector<int>
-Accessibility::Route(int src, int tgt, int graphno) {
+vector<int64_t>
+Accessibility::Route(int64_t src, int64_t tgt, int64_t graphno) {
     vector<NodeID> ret = this->ga[graphno]->Route(src, tgt);
-    return vector<int> (ret.begin(), ret.end());
+    return vector<int64_t> (ret.begin(), ret.end());
 }
 
 
-vector<vector<int>>
-Accessibility::Routes(vector<long> sources, vector<long> targets, int graphno) {
+vector<vector<int64_t>>
+Accessibility::Routes(vector<int64_t> sources, vector<int64_t> targets, int64_t graphno) {
 
-    int n = std::min(sources.size(), targets.size()); // in case lists don't match
-    vector<vector<int>> routes(n);
+    int64_t n = std::min(sources.size(), targets.size()); // in case lists don't match
+    vector<vector<int64_t>> routes(n);
 
     #pragma omp parallel
     #pragma omp for schedule(guided)
-    for (int i = 0 ; i < n ; i++) {
+    for (int64_t i = 0 ; i < n ; i++) {
         vector<NodeID> ret = this->ga[graphno]->Route(sources[i], targets[i], 
             omp_get_thread_num());
-        routes[i] = vector<int> (ret.begin(), ret.end());
+        routes[i] = vector<int64_t> (ret.begin(), ret.end());
     }
     return routes;
 }
 
 
 double
-Accessibility::Distance(int src, int tgt, int graphno) {
+Accessibility::Distance(int64_t src, int64_t tgt, int64_t graphno) {
     return this->ga[graphno]->Distance(src, tgt);
 }
 
 
 vector<double>
-Accessibility::Distances(vector<long> sources, vector<long> targets, int graphno) {                       
+Accessibility::Distances(vector<int64_t> sources, vector<int64_t> targets, int64_t graphno) {                       
     
-    int n = std::min(sources.size(), targets.size()); // in case lists don't match
+    int64_t n = std::min(sources.size(), targets.size()); // in case lists don't match
     vector<double> distances(n);
     
     #pragma omp parallel
     #pragma omp for schedule(guided)
-    for (int i = 0 ; i < n ; i++) {
+    for (int64_t i = 0 ; i < n ; i++) {
         distances[i] = this->ga[graphno]->Distance(
             sources[i], 
             targets[i], 
@@ -179,8 +180,8 @@ POI QUERIES
 */
 
 
-void Accessibility::initializeCategory(const double maxdist, const int maxitems,
-                                       string category, vector<long> node_idx)
+void Accessibility::initializeCategory(const double maxdist, const int64_t maxitems,
+                                       string category, vector<int64_t> node_idx)
 {
     accessibility_vars_t av;
     av.resize(this->numnodes);
@@ -189,11 +190,11 @@ void Accessibility::initializeCategory(const double maxdist, const int maxitems,
     this->maxitems = maxitems;
 
     // initialize for all subgraphs
-    for (int i = 0 ; i < ga.size() ; i++) {
+    for (int64_t i = 0 ; i < ga.size() ; i++) {
         ga[i]->initPOIIndex(category, this->maxdist, this->maxitems);
         // initialize for each node
-        for (int j = 0 ; j < node_idx.size() ; j++) {
-            int node_id = node_idx[j];
+        for (int64_t j = 0 ; j < node_idx.size() ; j++) {
+            int64_t node_id = node_idx[j];
 
             ga[i]->addPOIToIndex(category, node_id);
             assert(node_id << av.size());
@@ -208,9 +209,9 @@ void Accessibility::initializeCategory(const double maxdist, const int maxitems,
    return the nodeidx where the poi was found rather than
    the distances - you can call this twice - once for the
    distances and then again for the node idx */
-vector<pair<double, int>>
-Accessibility::findNearestPOIs(int srcnode, float maxradius, unsigned number,
-                               string cat, int gno)
+vector<pair<double, int64_t>>
+Accessibility::findNearestPOIs(int64_t srcnode, float maxradius, unsigned number,
+                               string cat, int64_t gno)
 {
     DistanceMap distancesmap = ga[gno]->NearestPOI(cat, srcnode,
         maxradius, number, omp_get_thread_num());
@@ -228,10 +229,10 @@ Accessibility::findNearestPOIs(int srcnode, float maxradius, unsigned number,
     for (DistanceMap::const_iterator itDist = distancesmap.begin();
        itDist != distancesmap.end();
        ++itDist) {
-      int nodeid = itDist->first;
+      int64_t nodeid = itDist->first;
       double distance = itDist->second;
 
-      for (int i = 0 ; i < vars[nodeid].size() ; i++) {
+      for (int64_t i = 0 ; i < vars[nodeid].size() ; i++) {
           distance_node_pairs.push_back(
              make_pair(distance, vars[nodeid][i]));
       }
@@ -245,25 +246,25 @@ Accessibility::findNearestPOIs(int srcnode, float maxradius, unsigned number,
 
 
 /* the return_nodeds param is described above */
-pair<vector<vector<double>>, vector<vector<int>>>
+pair<vector<vector<double>>, vector<vector<int64_t>>>
 Accessibility::findAllNearestPOIs(float maxradius, unsigned num_of_pois,
-                                  string category,int gno)
+                                  string category,int64_t gno)
 {
     vector<vector<double>>
         dists(numnodes, vector<double> (num_of_pois));
 
-    vector<vector<int>>
-        poi_ids(numnodes, vector<int> (num_of_pois));
+    vector<vector<int64_t>>
+        poi_ids(numnodes, vector<int64_t> (num_of_pois));
 
     #pragma omp parallel for
-    for (int i = 0 ; i < numnodes ; i++) {
-        vector<pair<double, int>> d = findNearestPOIs(
+    for (int64_t i = 0 ; i < numnodes ; i++) {
+        vector<pair<double, int64_t>> d = findNearestPOIs(
             i,
             maxradius,
             num_of_pois,
             category,
             gno);
-        for (int j = 0 ; j < num_of_pois ; j++) {
+        for (int64_t j = 0 ; j < num_of_pois ; j++) {
             if (j < d.size()) {
                 dists[i][j] = d[j].first;
                 poi_ids[i][j] = d[j].second;
@@ -286,12 +287,12 @@ AGGREGATION/ACCESSIBILITY QUERIES
 
 void Accessibility::initializeAccVar(
     string category,
-    vector<long> node_idx,
+    vector<int64_t> node_idx,
     vector<double> values) {
     accessibility_vars_t av;
     av.resize(this->numnodes);
-    for (int i = 0 ; i < node_idx.size() ; i++) {
-        int node_id = node_idx[i];
+    for (int64_t i = 0 ; i < node_idx.size() ; i++) {
+        int64_t node_id = node_idx[i];
         double val = values[i];
 
         assert(node_id < av.size());
@@ -307,7 +308,7 @@ Accessibility::getAllAggregateAccessibilityVariables(
     string category,
     string aggtyp,
     string decay,
-    int graphno) {
+    int64_t graphno) {
     if (accessibilityVars.find(category) == accessibilityVars.end() ||
         std::find(aggregations.begin(), aggregations.end(), aggtyp)
             == aggregations.end() ||
@@ -321,7 +322,7 @@ Accessibility::getAllAggregateAccessibilityVariables(
     #pragma omp parallel
     {
     #pragma omp for schedule(guided)
-    for (int i = 0 ; i < numnodes ; i++) {
+    for (int64_t i = 0 ; i < numnodes ; i++) {
         scores[i] = aggregateAccessibilityVariable(
             i,
             radius,
@@ -343,10 +344,10 @@ Accessibility::quantileAccessibilityVariable(
     float radius) {
 
     // first iterate through nodes in order to get count of items
-    int cnt = 0;
+    int64_t cnt = 0;
 
-    for (int i = 0 ; i < distances.size() ; i++) {
-        int nodeid = distances[i].first;
+    for (int64_t i = 0 ; i < distances.size() ; i++) {
+        int64_t nodeid = distances[i].first;
         double distance = distances[i].second;
 
         if (distance > radius) continue;
@@ -359,20 +360,20 @@ Accessibility::quantileAccessibilityVariable(
     vector<float> vals(cnt);
 
     // make a second pass to put items in a single array for sorting
-    for (int i = 0, cnt = 0 ; i < distances.size() ; i++) {
-        int nodeid = distances[i].first;
+    for (int64_t i = 0, cnt = 0 ; i < distances.size() ; i++) {
+        int64_t nodeid = distances[i].first;
         double distance = distances[i].second;
 
         if (distance > radius) continue;
 
         // and then iterate through all items at the node
-        for (int j = 0 ; j < vars[nodeid].size() ; j++)
+        for (int64_t j = 0 ; j < vars[nodeid].size() ; j++)
             vals[cnt++] = vars[nodeid][j];
     }
 
     std::sort(vals.begin(), vals.end());
 
-    int ind = static_cast<int>(vals.size() * quantile);
+    int64_t ind = static_cast<int64_t>(vals.size() * quantile);
 
     if (quantile <= 0.0) ind = 0;
     if (quantile >= 1.0) ind = vals.size()-1;
@@ -383,12 +384,12 @@ Accessibility::quantileAccessibilityVariable(
 
 double
 Accessibility::aggregateAccessibilityVariable(
-    int srcnode,
+    int64_t srcnode,
     float radius,
     accessibility_vars_t &vars,
     string aggtyp,
     string decay,
-    int gno) {
+    int64_t gno) {
     // I don't know if this is the best way to do this but I
     // I don't want to copy memory in the precompute case - sometimes
     // I need a reference and sometimes not
@@ -425,7 +426,7 @@ Accessibility::aggregateAccessibilityVariable(
 
     if (aggtyp == "std") decay = "flat";
 
-    int cnt = 0;
+    int64_t cnt = 0;
     double sum = 0.0;
     double sumsq = 0.0;
 
@@ -441,14 +442,14 @@ Accessibility::aggregateAccessibilityVariable(
         sum_function = [](const double &distance, const float &radius, const float &var)
                         { return var; };
 
-    for (int i = 0 ; i < distances.size() ; i++) {
-        int nodeid = distances[i].first;
+    for (int64_t i = 0 ; i < distances.size() ; i++) {
+        int64_t nodeid = distances[i].first;
         double distance = distances[i].second;
 
         // this can now happen since we're precomputing
         if (distance > radius) continue;
 
-        for (int j = 0 ; j < vars[nodeid].size() ; j++) {
+        for (int64_t j = 0 ; j < vars[nodeid].size() ; j++) {
             cnt++;  // count items
             sum += sum_function(distance, radius, vars[nodeid][j]);
 

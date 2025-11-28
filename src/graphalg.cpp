@@ -1,10 +1,11 @@
 #include "graphalg.h"
 #include <math.h>
+#include <cstdint>
 
 namespace MTC {
 namespace accessibility {
 Graphalg::Graphalg(
-        int numnodes, vector< vector<long> > edges, vector<double> edgeweights,
+        int numnodes, vector< vector<int64_t> > edges, vector<double> edgeweights,
         bool twoway) {
     this->numnodes = numnodes;
 

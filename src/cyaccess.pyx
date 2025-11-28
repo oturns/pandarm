@@ -1,62 +1,81 @@
 #cython: language_level=3
+#cython: boundscheck=False
+#cython: wraparound=False
+#cython: c_string_type=unicode, c_string_encoding=utf8
 
 cimport cython
 from libcpp cimport bool
 from libcpp.vector cimport vector
 from libcpp.string cimport string
 from libcpp.pair cimport pair
-from libc.stdint cimport int32_t, int64_t
+from libc.stdint cimport int64_t
 
 import numpy as np
 cimport numpy as np
 np.import_array()
 
-# resources
-# http://cython.readthedocs.io/en/latest/src/userguide/wrapping_CPlusPlus.html
-# http://www.birving.com/blog/2014/05/13/passing-numpy-arrays-between-python-and/
-
 
 cdef extern from "accessibility.h" namespace "MTC::accessibility":
     cdef cppclass Accessibility:
-        Accessibility(int64_t, vector[vector[long]], vector[vector[double]], bool) except +
+        Accessibility(int64_t, vector[vector[int64_t]], vector[vector[double]], bool) except +
         vector[string] aggregations
         vector[string] decays
-        void initializeCategory(double, int64_t, string, vector[long])
-        pair[vector[vector[double]], vector[vector[int32_t]]] findAllNearestPOIs(
+        void initializeCategory(double, int64_t, string, vector[int64_t])
+        pair[vector[vector[double]], vector[vector[int64_t]]] findAllNearestPOIs(
             float, int64_t, string, int64_t)
-        void initializeAccVar(string, vector[long], vector[double])
+        void initializeAccVar(string, vector[int64_t], vector[double])
         vector[double] getAllAggregateAccessibilityVariables(
             float, string, string, string, int64_t)
-        vector[int32_t] Route(int64_t, int64_t, int64_t)
-        vector[vector[int32_t]] Routes(vector[long], vector[long], int64_t)
+        vector[int64_t] Route(int64_t, int64_t, int64_t)
+        vector[vector[int64_t]] Routes(vector[int64_t], vector[int64_t], int64_t)
         double Distance(int64_t, int64_t, int64_t)
-        vector[double] Distances(vector[long], vector[long], int64_t)
-        vector[vector[pair[long, float]]] Range(vector[long], float, int64_t, vector[long])
+        vector[double] Distances(vector[int64_t], vector[int64_t], int64_t)
+        vector[vector[pair[int64_t, float]]] Range(vector[int64_t], float, int64_t, vector[int64_t])
         void precomputeRangeQueries(double)
 
 
 cdef np.ndarray[double] convert_vector_to_array_dbl(vector[double] vec):
-    cdef np.ndarray arr = np.zeros(len(vec), dtype="double")
-    for i in range(len(vec)):
+    cdef int n = vec.size()
+    cdef np.ndarray[double] arr = np.zeros(n, dtype=np.float64)
+    cdef int i
+    for i in range(n):
         arr[i] = vec[i]
     return arr
 
 
-cdef np.ndarray[double, ndim = 2] convert_2D_vector_to_array_dbl(
+cdef np.ndarray[double, ndim=2] convert_2D_vector_to_array_dbl(
         vector[vector[double]] vec):
-    cdef np.ndarray arr = np.empty_like(vec, dtype="double")
-    for i in range(arr.shape[0]):
-        for j in range(arr.shape[1]):
-            arr[i][j] = vec[i][j]
+    if vec.size() == 0:
+        return np.empty((0, 0), dtype=np.float64)
+    
+    cdef int rows = vec.size()
+    cdef int cols = vec[0].size() if rows > 0 else 0
+    cdef np.ndarray[double, ndim=2] arr = np.empty((rows, cols), dtype=np.float64)
+    
+    cdef int i, j
+    for i in range(rows):
+        if vec[i].size() != cols:
+            raise ValueError(f"Inconsistent row sizes: expected {cols}, got {vec[i].size()} at row {i}")
+        for j in range(cols):
+            arr[i, j] = vec[i][j]
     return arr
 
 
-cdef np.ndarray[int64_t, ndim = 2] convert_2D_vector_to_array_int(
-        vector[vector[int32_t]] vec):
-    cdef np.ndarray arr = np.empty_like(vec, dtype=np.int64)
-    for i in range(arr.shape[0]):
-        for j in range(arr.shape[1]):
-            arr[i][j] = vec[i][j]
+cdef np.ndarray[int64_t, ndim=2] convert_2D_vector_to_array_int(
+        vector[vector[int64_t]] vec):
+    if vec.size() == 0:
+        return np.empty((0, 0), dtype=np.int64)
+    
+    cdef int rows = vec.size()
+    cdef int cols = vec[0].size() if rows > 0 else 0
+    cdef np.ndarray[int64_t, ndim=2] arr = np.empty((rows, cols), dtype=np.int64)
+    
+    cdef int i, j
+    for i in range(rows):
+        if vec[i].size() != cols:
+            raise ValueError(f"Inconsistent row sizes: expected {cols}, got {vec[i].size()} at row {i}")
+        for j in range(cols):
+            arr[i, j] = <int64_t>vec[i][j]
     return arr
 
 
@@ -79,13 +98,13 @@ cdef class cyaccess:
         twoway: whether the edges should all be two-way or whether they
             are directed from the first to the second node
         """
-        # you're right, neither the node ids nor the location xys are used in here
-        # anymore - I'm hesitant to out-and-out remove it as we might still use
-        # it for something someday
         self.access = new Accessibility(len(node_ids), edges, edge_weights, twoway)
+        if self.access == NULL:
+            raise MemoryError("Failed to allocate Accessibility object")
 
     def __dealloc__(self):
-        del self.access
+        if self.access != NULL:
+            del self.access
 
     def initialize_category(
         self,
@@ -102,6 +121,7 @@ cdef class cyaccess:
         category - the category name
         node_ids - an array of nodeids which are locations where this poi occurs
         """
+        
         self.access.initializeCategory(maxdist, maxitems, category, node_ids)
 
     def find_all_nearest_pois(
@@ -200,7 +220,7 @@ cdef class cyaccess:
     def precompute_range(self, double radius):
         self.access.precomputeRangeQueries(radius)
 
-    def nodes_in_range(self, vector[long] srcnodes, float radius, int64_t impno, 
+    def nodes_in_range(self, vector[int64_t] srcnodes, float radius, int64_t impno, 
             np.ndarray[int64_t] ext_ids):
         """
         srcnodes - node ids of origins

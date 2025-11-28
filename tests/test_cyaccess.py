@@ -34,9 +34,9 @@ def net(nodes_and_edges):
     edges["to"] = node_locations.loc[edges["to"]].values
 
     net = cyaccess(
-        nodes.index.values.astype(np.int64),
+        nodes.index.values.astype(np.int_),
         nodes.values,
-        edges.values.astype(np.int64),
+        edges.values.astype(np.int_),
         edge_weights.transpose().values,
         True
     )
@@ -50,6 +50,7 @@ def test_agg_analysis(net, nodes_and_edges):
     nodes = nodes_and_edges[0]
     NUM_NODES = 30
     np.random.seed(0)
+    print(nodes)
     random_node_ids = np.random.choice(np.arange(len(nodes)), NUM_NODES)
     random_vals = np.random.random(NUM_NODES) * 100
     net.initialize_access_var(b'test', random_node_ids, random_vals)
@@ -62,12 +63,13 @@ def test_agg_analysis(net, nodes_and_edges):
     ret = net.get_all_aggregate_accessibility_variables(10, b'test', b'this is', b'bogus')
     assert np.all(np.isnan(ret))
 
-@pytest.mark.skipif(sys.platform == "darwin", reason="This test does not run on macOS.")
+#@pytest.mark.skipif(sys.platform == "darwin", reason="This test does not run on macOS.")
 def test_poi_analysis(net, nodes_and_edges):
     nodes = nodes_and_edges[0]
     NUM_NODES = 30
     np.random.seed(0)
     random_node_ids = np.random.choice(np.arange(len(nodes)), NUM_NODES)
+    print(random_node_ids)
     # theres a bytestring encoding problem here that crashes macs
     net.initialize_category(10, 3, b"0", random_node_ids)
     dists, poi_ids = net.find_all_nearest_pois(10, 3, b'0')
