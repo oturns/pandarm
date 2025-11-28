@@ -78,11 +78,11 @@
            --cov-report xml
 
        - name: codecov
-         uses: codecov/codecov-action@v3
+         uses: codecov/codecov-action@v5
          with:
            token: ${{ secrets.CODECOV_TOKEN }}
            file: ./coverage.xml
-           name: panradm-codecov
+           name: pandarm-codecov
 
        - name: Generate and publish the report
          if: |
