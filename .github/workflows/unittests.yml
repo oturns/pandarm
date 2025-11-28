@@ -67,7 +67,7 @@
 
        - name: run tests
          run: |
-           coverage run --source=pandarm -m pytest tests \
+           pytest tests \
            -v \
            -r a \
            -n 0 \
