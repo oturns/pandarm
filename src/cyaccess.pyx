@@ -109,7 +109,7 @@ cdef class cyaccess:
     def initialize_category(
         self,
         double maxdist,
-        int maxitems,
+        int64_t maxitems,
         string category,
         np.ndarray[int64_t] node_ids
     ):
