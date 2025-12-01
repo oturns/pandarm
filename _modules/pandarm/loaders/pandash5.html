@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pandarm.loaders.pandash5 &#8212; pandarm v0.0.4.dev1+gc432ba547 Manual</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css?v=9afac83c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+    <script src="../../../_static/documentation_options.js?v=1efef532"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../../../_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../../../_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="../../../_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../../_static/bootstrap-sphinx.js"></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../index.html">
+          pandarm</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.0.4.dev1+gc432ba547</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../../../installation.html">Installation</a></li>
+                <li><a href="../../../introduction.html">Introduction</a></li>
+                <li><a href="../../../network.html">Network API</a></li>
+                <li><a href="../../../loaders.html">Saving Networks</a></li>
+                <li><a href="../../../example_notebook.html">Tutorial</a></li>
+                <li><a href="../../../utilities.html">Utilities</a></li>
+                <li><a href="../../../references.html">References</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#standard-installation">Standard installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#compiling-from-source-code">Compiling from source code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#advanced-compilation-tips">Advanced compilation tips</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#multithreading">Multithreading</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../introduction.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../introduction.html#general-workflow">General workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorial.html#create-the-network">Create the network</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorial.html#nearest-queries">Nearest queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorial.html#aggregation-queries">Aggregation queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorial.html#display-the-results">Display the results</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../network.html">Network API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../network.html#module-pandarm.network">API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../loaders.html">Loaders</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../loaders.html#pandas-hdf5">Pandas HDF5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../loaders.html#pandas-hdf5-api">Pandas HDF5 API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../utilities.html">Utilities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../utilities.html#pandarm.utils.reindex"><code class="docutils literal notranslate"><span class="pre">reindex()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"></ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <h1>Source code for pandarm.loaders.pandash5</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">shapely.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">from_wkb</span><span class="p">,</span> <span class="n">to_wkb</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">remove_nodes</span><span class="p">(</span><span class="n">network</span><span class="p">,</span> <span class="n">rm_nodes</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create DataFrames of nodes and edges that do not include specified nodes.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    network : pandarm.Network</span>
+<span class="sd">    rm_nodes : array_like</span>
+<span class="sd">        A list, array, Index, or Series of node IDs that should *not*</span>
+<span class="sd">        be saved as part of the Network.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    nodes, edges : pandas.DataFrame</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">rm_nodes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">rm_nodes</span><span class="p">)</span>
+    <span class="n">ndf</span> <span class="o">=</span> <span class="n">network</span><span class="o">.</span><span class="n">nodes_df</span>
+    <span class="n">edf</span> <span class="o">=</span> <span class="n">network</span><span class="o">.</span><span class="n">edges_df</span>
+
+    <span class="n">nodes_to_keep</span> <span class="o">=</span> <span class="o">~</span><span class="n">ndf</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">rm_nodes</span><span class="p">)</span>
+    <span class="n">edges_to_keep</span> <span class="o">=</span> <span class="o">~</span><span class="p">(</span><span class="n">edf</span><span class="p">[</span><span class="s2">&quot;from&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">rm_nodes</span><span class="p">)</span> <span class="o">|</span> <span class="n">edf</span><span class="p">[</span><span class="s2">&quot;to&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">rm_nodes</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">ndf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">nodes_to_keep</span><span class="p">],</span> <span class="n">edf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">edges_to_keep</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="network_to_pandas_hdf5">
+<a class="viewcode-back" href="../../../loaders.html#pandarm.loaders.pandash5.network_to_pandas_hdf5">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">network_to_pandas_hdf5</span><span class="p">(</span><span class="n">network</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">rm_nodes</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Save a Network&#39;s data to a Pandas HDFStore.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    network : pandarm.Network</span>
+<span class="sd">    filename : str</span>
+<span class="sd">    rm_nodes : array_like</span>
+<span class="sd">        A list, array, Index, or Series of node IDs that should *not*</span>
+<span class="sd">        be saved as part of the Network.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">rm_nodes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">nodes</span><span class="p">,</span> <span class="n">edges</span> <span class="o">=</span> <span class="n">remove_nodes</span><span class="p">(</span><span class="n">network</span><span class="p">,</span> <span class="n">rm_nodes</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">nodes</span><span class="p">,</span> <span class="n">edges</span> <span class="o">=</span> <span class="n">network</span><span class="o">.</span><span class="n">nodes_df</span><span class="p">,</span> <span class="n">network</span><span class="o">.</span><span class="n">edges_df</span>
+
+    <span class="k">with</span> <span class="n">pd</span><span class="o">.</span><span class="n">HDFStore</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">store</span><span class="p">:</span>
+        <span class="n">store</span><span class="p">[</span><span class="s2">&quot;nodes&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s2">&quot;geometry&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">edges</span><span class="p">,</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">):</span>
+            <span class="n">edges</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">edges</span><span class="p">[</span><span class="n">edges</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">to_wkb</span><span class="p">)</span>
+        <span class="n">store</span><span class="p">[</span><span class="s2">&quot;edges&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">edges</span>
+        <span class="n">store</span><span class="p">[</span><span class="s2">&quot;two_way&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">network</span><span class="o">.</span><span class="n">_twoway</span><span class="p">])</span>
+        <span class="n">store</span><span class="p">[</span><span class="s2">&quot;impedance_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">network</span><span class="o">.</span><span class="n">impedance_names</span><span class="p">)</span>
+        <span class="n">store</span><span class="p">[</span><span class="s2">&quot;crs&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">network</span><span class="o">.</span><span class="n">crs</span><span class="p">])</span></div>
+
+
+
+<div class="viewcode-block" id="network_from_pandas_hdf5">
+<a class="viewcode-back" href="../../../loaders.html#pandarm.loaders.pandash5.network_from_pandas_hdf5">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">network_from_pandas_hdf5</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Build a Network from data in a Pandas HDFStore.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    cls : class</span>
+<span class="sd">        Class to instantiate, usually pandana.Network.</span>
+<span class="sd">    filename : str</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    network : pandarm.Network</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="n">pd</span><span class="o">.</span><span class="n">HDFStore</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">store</span><span class="p">:</span>
+        <span class="n">nodes</span> <span class="o">=</span> <span class="n">store</span><span class="p">[</span><span class="s2">&quot;nodes&quot;</span><span class="p">]</span>
+        <span class="n">edges</span> <span class="o">=</span> <span class="n">store</span><span class="p">[</span><span class="s2">&quot;edges&quot;</span><span class="p">]</span>
+        <span class="n">crs</span> <span class="o">=</span> <span class="n">store</span><span class="p">[</span><span class="s1">&#39;crs&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;crs&#39;</span> <span class="ow">in</span> <span class="n">store</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="s2">&quot;geometry&quot;</span> <span class="ow">in</span> <span class="n">edges</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+            <span class="n">edges</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoSeries</span><span class="p">(</span><span class="n">edges</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">from_wkb</span><span class="p">),</span> <span class="n">crs</span><span class="o">=</span><span class="n">crs</span><span class="p">)</span>
+            <span class="n">edge_geom</span> <span class="o">=</span> <span class="s2">&quot;geometry&quot;</span>
+        <span class="n">two_way</span> <span class="o">=</span> <span class="n">store</span><span class="p">[</span><span class="s2">&quot;two_way&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">imp_names</span> <span class="o">=</span> <span class="n">store</span><span class="p">[</span><span class="s2">&quot;impedance_names&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+        <span class="n">edge_geom</span> <span class="o">=</span> <span class="n">edges</span><span class="o">.</span><span class="n">geometry</span> <span class="k">if</span> <span class="s1">&#39;geometry&#39;</span> <span class="ow">in</span> <span class="n">edges</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span> <span class="k">else</span> <span class="kc">None</span>
+        
+
+    <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+        <span class="n">nodes</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">],</span>
+        <span class="n">nodes</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">],</span>
+        <span class="n">edges</span><span class="p">[</span><span class="s2">&quot;from&quot;</span><span class="p">],</span>
+        <span class="n">edges</span><span class="p">[</span><span class="s2">&quot;to&quot;</span><span class="p">],</span>
+        <span class="n">edges</span><span class="p">[</span><span class="n">imp_names</span><span class="p">],</span>
+        <span class="n">twoway</span><span class="o">=</span><span class="n">two_way</span><span class="p">,</span>
+        <span class="n">edge_geom</span><span class="o">=</span><span class="n">edge_geom</span><span class="p">,</span>
+        <span class="n">crs</span><span class="o">=</span><span class="n">crs</span><span class="p">,</span>
+    <span class="p">)</span></div>
+
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+      
+    </p>
+    <p>
+        &copy; Copyright 2025, pandarm developers.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

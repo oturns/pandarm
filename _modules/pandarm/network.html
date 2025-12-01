@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pandarm.network &#8212; pandarm v0.0.4.dev1+gc432ba547 Manual</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=9afac83c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <script src="../../_static/documentation_options.js?v=1efef532"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../../_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="../../_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html">
+          pandarm</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.0.4.dev1+gc432ba547</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../../installation.html">Installation</a></li>
+                <li><a href="../../introduction.html">Introduction</a></li>
+                <li><a href="../../network.html">Network API</a></li>
+                <li><a href="../../loaders.html">Saving Networks</a></li>
+                <li><a href="../../example_notebook.html">Tutorial</a></li>
+                <li><a href="../../utilities.html">Utilities</a></li>
+                <li><a href="../../references.html">References</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#standard-installation">Standard installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#compiling-from-source-code">Compiling from source code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#advanced-compilation-tips">Advanced compilation tips</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#multithreading">Multithreading</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html#general-workflow">General workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial.html#create-the-network">Create the network</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial.html#nearest-queries">Nearest queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial.html#aggregation-queries">Aggregation queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial.html#display-the-results">Display the results</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../network.html">Network API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../network.html#module-pandarm.network">API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../loaders.html">Loaders</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../loaders.html#pandas-hdf5">Pandas HDF5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../loaders.html#pandas-hdf5-api">Pandas HDF5 API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../utilities.html">Utilities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../utilities.html#pandarm.utils.reindex"><code class="docutils literal notranslate"><span class="pre">reindex()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"></ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <h1>Source code for pandarm.network</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.neighbors</span><span class="w"> </span><span class="kn">import</span> <span class="n">KDTree</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.cyaccess</span><span class="w"> </span><span class="kn">import</span> <span class="n">cyaccess</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.loaders</span><span class="w"> </span><span class="kn">import</span> <span class="n">pandash5</span> <span class="k">as</span> <span class="n">ph5</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.loaders.osm</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_network_from_gdf</span> <span class="k">as</span> <span class="n">_net_from_gdf</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.loaders.osm</span><span class="w"> </span><span class="kn">import</span> <span class="n">project_network</span> <span class="k">as</span> <span class="n">_project_network</span>
+
+
+<div class="viewcode-block" id="Network">
+<a class="viewcode-back" href="../../network.html#pandarm.network.Network">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Network</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create the transportation network in the city.  Typical data would be</span>
+<span class="sd">    distance based from OpenStreetMap or travel time from GTFS transit data.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    node_x : pandas.Series, float</span>
+<span class="sd">        Defines the x attribute for nodes in the network (e.g. longitude)</span>
+<span class="sd">    node_y : pandas.Series, float</span>
+<span class="sd">        Defines the y attribute for nodes in the network (e.g. latitude)</span>
+<span class="sd">        This param and the one above should have the *same* index which</span>
+<span class="sd">        should be the node_ids that are referred to in the edges below.</span>
+<span class="sd">    edge_from : pandas.Series, int</span>
+<span class="sd">        Defines the node ID that begins an edge - should refer to the index</span>
+<span class="sd">        of the two series objects above</span>
+<span class="sd">    edge_to : pandas.Series, int</span>
+<span class="sd">        Defines the node ID that ends an edge - should refer to the index</span>
+<span class="sd">        of the two series objects above</span>
+<span class="sd">    edge_weights : pandas.DataFrame, all numerics</span>
+<span class="sd">        Specifies one or more *impedances* on the network which define the</span>
+<span class="sd">        distances between nodes.  Multiple impedances can be used to</span>
+<span class="sd">        capture travel times at different times of day, for instance</span>
+<span class="sd">    twoway : boolean, optional</span>
+<span class="sd">        Whether the edges in this network are two way edges or one way (</span>
+<span class="sd">        where the one direction is directed from the from node to the to</span>
+<span class="sd">        node). If twoway = True, it is assumed that the from and to ID in the</span>
+<span class="sd">        edge table occurs once and that travel can occur in both directions</span>
+<span class="sd">        on the single edge record. Pandarm will internally flip and append</span>
+<span class="sd">        the from and to IDs to the original edges to create a two direction</span>
+<span class="sd">        network. If twoway = False, it is assumed that travel can only occur</span>
+<span class="sd">        in the explicit direction indicated by the from and to ID in the edge</span>
+<span class="sd">        table.</span>
+<span class="sd">    edge_geom : bool | gpd.GeometryArray | gpd.GeoSeries, default is None</span>
+<span class="sd">        Array-like (typically a GeoSeries) of geometries representing the</span>
+<span class="sd">        geometric shape of each </span>
+<span class="sd">    crs : str | pyproj.CRS, default is None</span>
+<span class="sd">        coordinate system in which node x and y coordinates (and edge_geom, if</span>
+<span class="sd">        provided) are stored. If None, it is assumed the coordinates are</span>
+<span class="sd">        geographic (i.e. WGS84, EPSG:4326)</span>
+<span class="sd">        </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">node_x</span><span class="p">,</span>
+        <span class="n">node_y</span><span class="p">,</span>
+        <span class="n">edge_from</span><span class="p">,</span>
+        <span class="n">edge_to</span><span class="p">,</span>
+        <span class="n">edge_weights</span><span class="p">,</span>
+        <span class="n">twoway</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">edge_geom</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">crs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="k">if</span> <span class="n">crs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                    <span class="s2">&quot;No CRS was passed to geometry input; assuming geographic coordinates&quot;</span>
+                <span class="p">)</span>
+            <span class="n">crs</span> <span class="o">=</span> <span class="mi">4326</span>
+        <span class="n">nodes_df</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span>
+            <span class="p">{</span><span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="n">node_x</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="n">node_y</span><span class="p">},</span>
+            <span class="n">geometry</span><span class="o">=</span><span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span><span class="n">node_x</span><span class="p">,</span> <span class="n">node_y</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">crs</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="n">edges_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;from&quot;</span><span class="p">:</span> <span class="n">edge_from</span><span class="p">,</span> <span class="s2">&quot;to&quot;</span><span class="p">:</span> <span class="n">edge_to</span><span class="p">})</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">edge_weights</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">edge_geom</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">edges_df</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">edges_df</span><span class="p">,</span> <span class="n">geometry</span><span class="o">=</span><span class="n">edge_geom</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">crs</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">nodes_df</span> <span class="o">=</span> <span class="n">nodes_df</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edges_df</span> <span class="o">=</span> <span class="n">edges_df</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">crs</span><span class="o">=</span> <span class="n">crs</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">impedance_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">edge_weights</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">variable_names</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">poi_category_names</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">poi_category_indexes</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_pois</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="c1"># this maps IDs to indexes which are used internally</span>
+        <span class="c1"># this is a constant source of headaches, but all node identifiers</span>
+        <span class="c1"># in the c extension are actually indexes ordered from 0 to numnodes-1</span>
+        <span class="c1"># node IDs are thus translated back and forth in the python layer,</span>
+        <span class="c1"># which allows non-integer node IDs as well</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">node_idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nodes_df</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">nodes_df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+        <span class="n">edges</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
+            <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_node_indexes</span><span class="p">(</span><span class="n">edges_df</span><span class="p">[</span><span class="s2">&quot;from&quot;</span><span class="p">]),</span> <span class="bp">self</span><span class="o">.</span><span class="n">_node_indexes</span><span class="p">(</span><span class="n">edges_df</span><span class="p">[</span><span class="s2">&quot;to&quot;</span><span class="p">])],</span>
+            <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">net</span> <span class="o">=</span> <span class="n">cyaccess</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">node_idx</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+            <span class="n">nodes_df</span><span class="p">[[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;double&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+            <span class="n">edges</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+            <span class="n">edges_df</span><span class="p">[</span><span class="n">edge_weights</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;double&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+            <span class="n">twoway</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_twoway</span> <span class="o">=</span> <span class="n">twoway</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">kdtree</span> <span class="o">=</span> <span class="n">KDTree</span><span class="p">(</span><span class="n">nodes_df</span><span class="p">[[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Network.from_gdf">
+<a class="viewcode-back" href="../../network.html#pandarm.network.Network.from_gdf">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_gdf</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span> <span class="n">gdf</span><span class="p">,</span> <span class="n">network_type</span><span class="o">=</span><span class="s2">&quot;walk&quot;</span><span class="p">,</span> <span class="n">twoway</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">add_travel_times</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default_speeds</span><span class="o">=</span><span class="kc">None</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a pandana.Network object from a geodataframe (via OSMnx graph).</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        gdf : geopandas.GeoDataFrame</span>
+<span class="sd">            dataframe covering the study area of interest; Note the first step is to take</span>
+<span class="sd">            the unary union of this dataframe, which is expensive, so large dataframes may</span>
+<span class="sd">            be time-consuming. The network will inherit the CRS from this dataframe</span>
+<span class="sd">        network_type : str, {&quot;all_private&quot;, &quot;all&quot;, &quot;bike&quot;, &quot;drive&quot;, &quot;drive_service&quot;, &quot;walk&quot;}</span>
+<span class="sd">            the type of network to collect from OSM (passed to `osmnx.graph_from_polygon`)</span>
+<span class="sd">            by default &quot;walk&quot;</span>
+<span class="sd">        twoway : bool, optional</span>
+<span class="sd">            Whether to treat the pandana.Network as directed or undirected. For a directed network,</span>
+<span class="sd">            use `twoway=False` (which is the default). For an undirected network (e.g. a</span>
+<span class="sd">            walk network) where travel can flow in both directions, the network is more</span>
+<span class="sd">            efficient when twoway=True but forces the impedance to be equal in both</span>
+<span class="sd">            directions. This has implications for auto or multimodal</span>
+<span class="sd">            networks where impedance is generally different depending on travel direction.</span>
+<span class="sd">        add_travel_times : bool, default=False</span>
+<span class="sd">            whether to use posted travel times from OSM as the impedance measure (rather</span>
+<span class="sd">            than network-distance). Speeds are based on max posted drive speeds, see</span>
+<span class="sd">            &lt;https://osmnx.readthedocs.io/en/stable/internals-reference.html#osmnx-speed-module&gt;</span>
+<span class="sd">            for more information.</span>
+<span class="sd">        default_speeds : dict, optional</span>
+<span class="sd">            default speeds passed assumed when no data available on the OSM edge. Defaults</span>
+<span class="sd">            to  {&quot;residential&quot;: 35, &quot;secondary&quot;: 50, &quot;tertiary&quot;: 60}. Only considered if</span>
+<span class="sd">            add_travel_times is True</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pandana.Network</span>
+<span class="sd">            a pandana.Network object with node coordinates stored in the same system as the</span>
+<span class="sd">            input geodataframe. If add_travel_times is True, the network impedance</span>
+<span class="sd">            is travel time measured in seconds (assuming automobile travel speeds); else</span>
+<span class="sd">            the impedance is travel distance measured in meters</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        ImportError</span>
+<span class="sd">            requires `osmnx`, raises if module not available</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">_net_from_gdf</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">gdf</span><span class="p">,</span> <span class="n">network_type</span><span class="p">,</span> <span class="n">twoway</span><span class="p">,</span> <span class="n">add_travel_times</span><span class="p">,</span> <span class="n">default_speeds</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Network.to_crs">
+<a class="viewcode-back" href="../../network.html#pandarm.network.Network.to_crs">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_crs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_crs</span><span class="p">,</span> <span class="n">input_crs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reproject a pandana.Network object into another coordinate system.</span>
+
+<span class="sd">        Note this function does affect the weight/impedance of any network edges, but</span>
+<span class="sd">        reprojects the x and y coordinates of the nodes (e.g. for precise snapping)</span>
+<span class="sd">        between nodes and projected origin/destination data</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        network : pandana.Network</span>
+<span class="sd">            an instantiated pandana Network object</span>
+<span class="sd">        input_crs : int, optional</span>
+<span class="sd">            the coordinate system used in the Network.node_df dataframe. Typically</span>
+<span class="sd">            these data are collected in Lon/Lat, so the default 4326. If None, but</span>
+<span class="sd">            there is a geometry column present in the Network, input CRS is inferred</span>
+<span class="sd">        output_crs : int, str, or pyproj.crs.CRS, required</span>
+<span class="sd">            EPSG code or pyproj.crs.CRS object of the output coordinate system</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pandana.Network</span>
+<span class="sd">            an initialized pandana.Network with &#39;x&#39; and y&#39; values represented</span>
+<span class="sd">            by coordinates in the specified CRS</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">input_crs</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes_df</span><span class="p">,</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">):</span>
+            <span class="n">input_crs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes_df</span><span class="o">.</span><span class="n">crs</span>
+        <span class="k">return</span> <span class="n">_project_network</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_crs</span><span class="p">,</span> <span class="n">input_crs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Network.from_hdf5">
+<a class="viewcode-back" href="../../network.html#pandarm.network.Network.from_hdf5">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_hdf5</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Load a previously saved Network from a Pandas HDF5 file.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        filename : str</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        network : pandarm.Network</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">ph5</span><span class="o">.</span><span class="n">network_from_pandas_hdf5</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Network.save_hdf5">
+<a class="viewcode-back" href="../../network.html#pandarm.network.Network.save_hdf5">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">save_hdf5</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">rm_nodes</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Save network data to a Pandas HDF5 file.</span>
+
+<span class="sd">        Only the nodes and edges of the actual network are saved,</span>
+<span class="sd">        points-of-interest and data attached to nodes are not saved.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        filename : str</span>
+<span class="sd">        rm_nodes : array_like</span>
+<span class="sd">            A list, array, Index, or Series of node IDs that should *not*</span>
+<span class="sd">            be saved as part of the Network.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ph5</span><span class="o">.</span><span class="n">network_to_pandas_hdf5</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">rm_nodes</span><span class="p">)</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_node_indexes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_ids</span><span class="p">):</span>
+        <span class="c1"># for some reason, merge is must faster than .loc</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+            <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;node_ids&quot;</span><span class="p">:</span> <span class="n">node_ids</span><span class="p">}),</span>
+            <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;node_idx&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_idx</span><span class="p">}),</span>
+            <span class="n">left_on</span><span class="o">=</span><span class="s2">&quot;node_ids&quot;</span><span class="p">,</span>
+            <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">node_idx</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">aggregations</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">get_available_aggregations</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">decays</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">get_available_decays</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">node_ids</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The node IDs which will be used as the index of many return series</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_idx</span><span class="o">.</span><span class="n">index</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">bbox</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The bounding box for nodes in this network [xmin, ymin, xmax, ymax]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nodes_df</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nodes_df</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nodes_df</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nodes_df</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+        <span class="p">]</span>
+
+<div class="viewcode-block" id="Network.shortest_path">
+<a class="viewcode-back" href="../../network.html#pandarm.network.Network.shortest_path">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">shortest_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_a</span><span class="p">,</span> <span class="n">node_b</span><span class="p">,</span> <span class="n">imp_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the shortest path between two node IDs in the network. Must</span>
+<span class="sd">        provide an impedance name if more than one is available.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        node_a : int</span>
+<span class="sd">            Source node ID</span>
+<span class="sd">        node_b : int</span>
+<span class="sd">            Destination node ID</span>
+<span class="sd">        imp_name : string, optional</span>
+<span class="sd">            The impedance name to use for the shortest path</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        path : np.ndarray</span>
+<span class="sd">            Nodes that are traversed in the shortest path</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># map to internal node indexes</span>
+        <span class="n">node_idx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_node_indexes</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">node_a</span><span class="p">,</span> <span class="n">node_b</span><span class="p">]))</span>
+        <span class="n">node_a</span> <span class="o">=</span> <span class="n">node_idx</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">node_b</span> <span class="o">=</span> <span class="n">node_idx</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="n">imp_num</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_imp_name_to_num</span><span class="p">(</span><span class="n">imp_name</span><span class="p">)</span>
+
+        <span class="n">path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">shortest_path</span><span class="p">(</span><span class="n">node_a</span><span class="p">,</span> <span class="n">node_b</span><span class="p">,</span> <span class="n">imp_num</span><span class="p">)</span>
+
+        <span class="c1"># map back to external node IDs</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_ids</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">path</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="Network.shortest_paths">
+<a class="viewcode-back" href="../../network.html#pandarm.network.Network.shortest_paths">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">shortest_paths</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nodes_a</span><span class="p">,</span> <span class="n">nodes_b</span><span class="p">,</span> <span class="n">imp_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Vectorized calculation of shortest paths. Accepts a list of origins</span>
+<span class="sd">        and list of destinations and returns a corresponding list of</span>
+<span class="sd">        shortest path routes. Must provide an impedance name if more than</span>
+<span class="sd">        one is available.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        nodes_a : list-like of ints</span>
+<span class="sd">            Source node IDs</span>
+<span class="sd">        nodes_b : list-like of ints</span>
+<span class="sd">            Corresponding destination node IDs</span>
+<span class="sd">        imp_name : string</span>
+<span class="sd">            The impedance name to use for the shortest path</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        paths : list of np.ndarray</span>
+<span class="sd">            Nodes traversed in each shortest path</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">nodes_a</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nodes_b</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;Origin and destination counts don&#39;t match: </span><span class="si">{}</span><span class="s2">, </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="nb">len</span><span class="p">(</span><span class="n">nodes_a</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">nodes_b</span><span class="p">)</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+
+        <span class="c1"># map to internal node indexes</span>
+        <span class="n">nodes_a_idx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_node_indexes</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">nodes_a</span><span class="p">))</span><span class="o">.</span><span class="n">values</span>
+        <span class="n">nodes_b_idx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_node_indexes</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">nodes_b</span><span class="p">))</span><span class="o">.</span><span class="n">values</span>
+
+        <span class="n">imp_num</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_imp_name_to_num</span><span class="p">(</span><span class="n">imp_name</span><span class="p">)</span>
+
+        <span class="n">paths</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">shortest_paths</span><span class="p">(</span><span class="n">nodes_a_idx</span><span class="p">,</span> <span class="n">nodes_b_idx</span><span class="p">,</span> <span class="n">imp_num</span><span class="p">)</span>
+
+        <span class="c1"># map back to external node ids</span>
+        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">node_ids</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">paths</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="Network.shortest_path_length">
+<a class="viewcode-back" href="../../network.html#pandarm.network.Network.shortest_path_length">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">shortest_path_length</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_a</span><span class="p">,</span> <span class="n">node_b</span><span class="p">,</span> <span class="n">imp_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the length of the shortest path between two node IDs in the</span>
+<span class="sd">        network. Must provide an impedance name if more than one is</span>
+<span class="sd">        available.</span>
+
+<span class="sd">        If you have a large number of paths to calculate, don&#39;t use this</span>
+<span class="sd">        function! Use the vectorized one instead.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        node_a : int</span>
+<span class="sd">            Source node ID</span>
+<span class="sd">        node_b : int</span>
+<span class="sd">            Destination node ID</span>
+<span class="sd">        imp_name : string</span>
+<span class="sd">            The impedance name to use for the shortest path</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        length : float</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># map to internal node indexes</span>
+        <span class="n">node_idx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_node_indexes</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">node_a</span><span class="p">,</span> <span class="n">node_b</span><span class="p">]))</span>
+        <span class="n">node_a</span> <span class="o">=</span> <span class="n">node_idx</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">node_b</span> <span class="o">=</span> <span class="n">node_idx</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="n">imp_num</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_imp_name_to_num</span><span class="p">(</span><span class="n">imp_name</span><span class="p">)</span>
+
+        <span class="nb">len</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">shortest_path_distance</span><span class="p">(</span><span class="n">node_a</span><span class="p">,</span> <span class="n">node_b</span><span class="p">,</span> <span class="n">imp_num</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">len</span> <span class="o">==</span> <span class="mf">4294967.295</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="s2">&quot;Unsigned integer: shortest path distance is trying to be calculated between</span><span class="se">\</span>
+<span class="s2">                external </span><span class="si">%s</span><span class="s2"> and </span><span class="si">%s</span><span class="s2"> unconntected nodes&quot;</span>
+                <span class="o">%</span> <span class="p">(</span><span class="n">node_a</span><span class="p">,</span> <span class="n">node_b</span><span class="p">)</span>
+            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="nb">len</span></div>
+
+
+<div class="viewcode-block" id="Network.shortest_path_lengths">
+<a class="viewcode-back" href="../../network.html#pandarm.network.Network.shortest_path_lengths">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">shortest_path_lengths</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nodes_a</span><span class="p">,</span> <span class="n">nodes_b</span><span class="p">,</span> <span class="n">imp_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Vectorized calculation of shortest path lengths. Accepts a list of</span>
+<span class="sd">        origins and list of destinations and returns a corresponding list</span>
+<span class="sd">        of shortest path lengths. Must provide an impedance name if more</span>
+<span class="sd">        than one is available.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        nodes_a : list-like of ints</span>
+<span class="sd">            Source node IDs</span>
+<span class="sd">        nodes_b : list-like of ints</span>
+<span class="sd">            Corresponding destination node IDs</span>
+<span class="sd">        imp_name : string</span>
+<span class="sd">            The impedance name to use for the shortest path</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        lengths : list of floats</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">nodes_a</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nodes_b</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;Origin and destination counts don&#39;t match: </span><span class="si">{}</span><span class="s2">, </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="nb">len</span><span class="p">(</span><span class="n">nodes_a</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">nodes_b</span><span class="p">)</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+
+        <span class="c1"># map to internal node indexes</span>
+        <span class="n">nodes_a_idx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_node_indexes</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">nodes_a</span><span class="p">))</span><span class="o">.</span><span class="n">values</span>
+        <span class="n">nodes_b_idx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_node_indexes</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">nodes_b</span><span class="p">))</span><span class="o">.</span><span class="n">values</span>
+
+        <span class="n">imp_num</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_imp_name_to_num</span><span class="p">(</span><span class="n">imp_name</span><span class="p">)</span>
+
+        <span class="n">lens</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">shortest_path_distances</span><span class="p">(</span><span class="n">nodes_a_idx</span><span class="p">,</span> <span class="n">nodes_b_idx</span><span class="p">,</span> <span class="n">imp_num</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="mf">4294967.295</span> <span class="ow">in</span> <span class="n">lens</span><span class="p">:</span>
+            <span class="n">unconnected_idx</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lens</span><span class="p">)</span> <span class="k">if</span> <span class="n">v</span> <span class="o">==</span> <span class="mf">4294967.295</span><span class="p">]</span>
+            <span class="n">unconnected_nodes</span> <span class="o">=</span> <span class="p">[(</span><span class="n">nodes_a</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">nodes_b</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">unconnected_idx</span><span class="p">]</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="s2">&quot;Unsigned integer: shortest path distance is trying to be calculated </span><span class="se">\</span>
+<span class="s2">                between the following external unconnected nodes: </span><span class="si">%s</span><span class="s2">&quot;</span>
+                <span class="o">%</span> <span class="p">(</span><span class="n">unconnected_nodes</span><span class="p">)</span>
+            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">lens</span></div>
+
+
+<div class="viewcode-block" id="Network.set">
+<a class="viewcode-back" href="../../network.html#pandarm.network.Network.set">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_ids</span><span class="p">,</span> <span class="n">variable</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;tmp&quot;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Characterize urban space with a variable that is related to nodes in</span>
+<span class="sd">        the network.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        node_ids : pandas.Series, int</span>
+<span class="sd">            A series of node_ids which are usually computed using</span>
+<span class="sd">            get_node_ids on this object.</span>
+<span class="sd">        variable : pandas.Series, numeric, optional</span>
+<span class="sd">            A series which represents some variable defined in urban space.</span>
+<span class="sd">            It could be the location of buildings, or the income of all</span>
+<span class="sd">            households - just about anything can be aggregated using the</span>
+<span class="sd">            network queries provided here and this provides the api to set</span>
+<span class="sd">            the variable at its disaggregate locations.  Note that node_id</span>
+<span class="sd">            and variable should have the same index (although the index is</span>
+<span class="sd">            not actually used).  If variable is not set, then it is assumed</span>
+<span class="sd">            that the variable is all &quot;ones&quot; at the location specified by</span>
+<span class="sd">            node_ids.  This could be, for instance, the location of all</span>
+<span class="sd">            coffee shops which don&#39;t really have a variable to aggregate. The</span>
+<span class="sd">            variable is connected to the closest node in the pandarm network</span>
+<span class="sd">            which assumes no impedance between the location of the variable</span>
+<span class="sd">            and the location of the closest network node.</span>
+<span class="sd">        name : string, optional</span>
+<span class="sd">            Name the variable.  This is optional in the sense that if you don&#39;t</span>
+<span class="sd">            specify it, the default name will be used.  Since the same</span>
+<span class="sd">            default name is used by aggregate on this object, you can</span>
+<span class="sd">            alternate between characterize and aggregate calls without</span>
+<span class="sd">            setting names.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Nothing</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">variable</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">variable</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">node_ids</span><span class="p">)),</span> <span class="n">index</span><span class="o">=</span><span class="n">node_ids</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="n">name</span><span class="p">:</span> <span class="n">variable</span><span class="p">,</span> <span class="s2">&quot;node_idx&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_node_indexes</span><span class="p">(</span><span class="n">node_ids</span><span class="p">)})</span>
+
+        <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span><span class="o">=</span><span class="s2">&quot;any&quot;</span><span class="p">)</span>
+        <span class="n">newl</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">length</span> <span class="o">-</span> <span class="n">newl</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Removed </span><span class="si">%d</span><span class="s2"> rows because they contain missing values&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">length</span> <span class="o">-</span> <span class="n">newl</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">variable_names</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">initialize_access_var</span><span class="p">(</span>
+            <span class="n">name</span><span class="p">,</span>
+            <span class="n">df</span><span class="o">.</span><span class="n">node_idx</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">),</span>
+            <span class="n">df</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;double&quot;</span><span class="p">),</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Network.precompute">
+<a class="viewcode-back" href="../../network.html#pandarm.network.Network.precompute">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">precompute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">distance</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Precomputes the range queries (the reachable nodes within this</span>
+<span class="sd">        maximum distance.  So as long as you use a smaller distance, cached</span>
+<span class="sd">        results will be used.)</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        distance : float</span>
+<span class="sd">            The maximum distance to use. This will usually be a distance unit</span>
+<span class="sd">            in meters however if you have customized the impedance this could</span>
+<span class="sd">            be in other units such as utility or time etc.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Nothing</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">precompute_range</span><span class="p">(</span><span class="n">distance</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Network.nodes_in_range">
+<a class="viewcode-back" href="../../network.html#pandarm.network.Network.nodes_in_range">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">nodes_in_range</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nodes</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">imp_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Computes the range queries (the reachable nodes within this maximum</span>
+<span class="sd">        distance) for each input node.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        nodes : list-like of ints</span>
+<span class="sd">            Source node IDs</span>
+<span class="sd">        radius : float</span>
+<span class="sd">            Maximum distance to use. This will usually be a distance unit in</span>
+<span class="sd">            meters however if you have customized the impedance (using the</span>
+<span class="sd">            imp_name option) this could be in other units such as utility or</span>
+<span class="sd">            time etc.</span>
+<span class="sd">        imp_name : string, optional</span>
+<span class="sd">            The impedance name to use for the aggregation on this network.</span>
+<span class="sd">            Must be one of the impedance names passed in the constructor of</span>
+<span class="sd">            this object.  If not specified, there must be only one impedance</span>
+<span class="sd">            passed in the constructor, which will be used.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        d : pandas.DataFrame</span>
+<span class="sd">            Like nearest_pois, this is a dataframe containing the input node</span>
+<span class="sd">            index, the index of the nearby nodes within the search radius,</span>
+<span class="sd">            and the distance (according to the requested impedance) from the</span>
+<span class="sd">            source to the nearby node.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">imp_num</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_imp_name_to_num</span><span class="p">(</span><span class="n">imp_name</span><span class="p">)</span>
+        <span class="n">imp_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">impedance_names</span><span class="p">[</span><span class="n">imp_num</span><span class="p">]</span>
+        <span class="n">ext_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_idx</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span>
+
+        <span class="n">raw_result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">nodes_in_range</span><span class="p">(</span><span class="n">nodes</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">imp_num</span><span class="p">,</span> <span class="n">ext_ids</span><span class="p">)</span>
+        <span class="n">clean_result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;destination&quot;</span><span class="p">,</span> <span class="n">imp_name</span><span class="p">])</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">ix</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">r</span><span class="p">,</span> <span class="n">ix</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">raw_result</span><span class="p">,</span> <span class="n">nodes</span><span class="p">)</span>
+            <span class="p">]</span>
+        <span class="p">)[[</span><span class="s2">&quot;source&quot;</span><span class="p">,</span> <span class="s2">&quot;destination&quot;</span><span class="p">,</span> <span class="n">imp_name</span><span class="p">]]</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="n">clean_result</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;source&quot;</span><span class="p">,</span> <span class="s2">&quot;destination&quot;</span><span class="p">])</span>
+            <span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> &lt;= </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">imp_name</span><span class="p">,</span> <span class="n">radius</span><span class="p">))</span>
+        <span class="p">)</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_imp_name_to_num</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">imp_name</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">imp_name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">impedance_names</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span>
+                <span class="s2">&quot;must pass impedance name if there are multiple impedances set&quot;</span>
+            <span class="p">)</span>
+            <span class="n">imp_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">impedance_names</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">assert</span> <span class="n">imp_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">impedance_names</span><span class="p">,</span> <span class="s2">&quot;An impedance with that namewas not found&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">impedance_names</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">imp_name</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Network.aggregate">
+<a class="viewcode-back" href="../../network.html#pandarm.network.Network.aggregate">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">aggregate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;sum&quot;</span><span class="p">,</span> <span class="n">decay</span><span class="o">=</span><span class="s2">&quot;linear&quot;</span><span class="p">,</span> <span class="n">imp_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;tmp&quot;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Aggregate information for every source node in the network - this is</span>
+<span class="sd">        really the main purpose of this library.  This allows you to touch</span>
+<span class="sd">        the data specified by calling set and perform some aggregation on it</span>
+<span class="sd">        within the specified distance.  For instance, summing the population</span>
+<span class="sd">        within 1000 meters.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        distance : float</span>
+<span class="sd">            The maximum distance to aggregate data within. &#39;distance&#39; can</span>
+<span class="sd">            represent any impedance unit that you have set as your edge</span>
+<span class="sd">            weight. This will usually be a distance unit in meters however</span>
+<span class="sd">            if you have customized the impedance this could be in other</span>
+<span class="sd">            units such as utility or time etc.</span>
+<span class="sd">        type : string, optional (default &#39;sum&#39;)</span>
+<span class="sd">            The type of aggregation: &#39;mean&#39; (with &#39;ave&#39;, &#39;avg&#39;, &#39;average&#39;</span>
+<span class="sd">            as aliases), &#39;std&#39; (or &#39;stddev&#39;), &#39;sum&#39;, &#39;count&#39;, &#39;min&#39;, &#39;max&#39;,</span>
+<span class="sd">            &#39;med&#39; (or &#39;median&#39;), &#39;25pct&#39;, or &#39;75pct&#39;. (Quantiles are</span>
+<span class="sd">            computed by sorting so may be slower than the others.)</span>
+<span class="sd">        decay : string, optional (default &#39;linear&#39;)</span>
+<span class="sd">            The type of decay to apply, which makes things that are further</span>
+<span class="sd">            away count less in the aggregation: &#39;linear&#39;, &#39;exponential&#39;, or</span>
+<span class="sd">            &#39;flat&#39; (no decay).</span>
+
+<span class="sd">            *Additional notes:* see ``aggregateAccessibilityVariable`` in</span>
+<span class="sd">            accessibility.cpp to read through the code that applies decays.</span>
+<span class="sd">            The exponential decay function is exp(-1*distance/radius)*var.</span>
+<span class="sd">            The decay setting only operates on &#39;sum&#39; and &#39;mean&#39; aggregations.</span>
+<span class="sd">            If you apply decay to a &#39;mean&#39;, the result will NOT be a weighted</span>
+<span class="sd">            average; it will be the mean of the post-decay values. (So for a</span>
+<span class="sd">            &#39;mean&#39; aggregation, you need to explicitly set decay to &#39;flat&#39;</span>
+<span class="sd">            unless you want that.)</span>
+
+<span class="sd">        imp_name : string, optional</span>
+<span class="sd">            The impedance name to use for the aggregation on this network.</span>
+<span class="sd">            Must be one of the impedance names passed in the constructor of</span>
+<span class="sd">            this object.  If not specified, there must be only one impedance</span>
+<span class="sd">            passed in the constructor, which will be used.</span>
+<span class="sd">        name : string, optional</span>
+<span class="sd">            The variable to aggregate.  This variable will have been created</span>
+<span class="sd">            and named by a call to ``set``.  If not specified, the default</span>
+<span class="sd">            variable name will be used so that the most recent call to set</span>
+<span class="sd">            without giving a name will be the variable used.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        agg : pandas.Series</span>
+<span class="sd">            Returns a Pandas Series for every origin node in the network,</span>
+<span class="sd">            with the index which is the same as the node_ids passed to the</span>
+<span class="sd">            init method and the values are the aggregations for each source</span>
+<span class="sd">            node in the network.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">imp_num</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_imp_name_to_num</span><span class="p">(</span><span class="n">imp_name</span><span class="p">)</span>
+        <span class="nb">type</span> <span class="o">=</span> <span class="nb">type</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+        <span class="c1"># Resolve aliases</span>
+        <span class="k">if</span> <span class="nb">type</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;ave&quot;</span><span class="p">,</span> <span class="s2">&quot;avg&quot;</span><span class="p">,</span> <span class="s2">&quot;average&quot;</span><span class="p">]:</span>
+            <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;mean&quot;</span>
+
+        <span class="k">if</span> <span class="nb">type</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;stddev&quot;</span><span class="p">]:</span>
+            <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;std&quot;</span>
+
+        <span class="k">if</span> <span class="nb">type</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;med&quot;</span><span class="p">]:</span>
+            <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;median&quot;</span>
+
+        <span class="k">assert</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">variable_names</span><span class="p">,</span> <span class="s2">&quot;A variable with that name has not yet been initialized&quot;</span>
+
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">get_all_aggregate_accessibility_variables</span><span class="p">(</span>
+            <span class="n">distance</span><span class="p">,</span>
+            <span class="n">name</span><span class="p">,</span>
+            <span class="nb">type</span><span class="p">,</span>
+            <span class="n">decay</span><span class="p">,</span>
+            <span class="n">imp_num</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">node_ids</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Network.get_node_ids">
+<a class="viewcode-back" href="../../network.html#pandarm.network.Network.get_node_ids">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_node_ids</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_col</span><span class="p">,</span> <span class="n">y_col</span><span class="p">,</span> <span class="n">mapping_distance</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Assign node_ids to data specified by x_col and y_col.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        x_col : pandas.Series (float)</span>
+<span class="sd">            A Pandas Series where values specify the x (e.g. longitude)</span>
+<span class="sd">            location of dataset.</span>
+<span class="sd">        y_col : pandas.Series (float)</span>
+<span class="sd">            A Pandas Series where values specify the y (e.g. latitude)</span>
+<span class="sd">            location of dataset.  x_col and y_col should use the same index.</span>
+<span class="sd">        mapping_distance : float, optional</span>
+<span class="sd">            The maximum distance that will be considered a match between the</span>
+<span class="sd">            x, y data and the nearest node in the network.  This will usually</span>
+<span class="sd">            be a distance unit in meters however if you have customized the</span>
+<span class="sd">            impedance this could be in other units such as utility or time</span>
+<span class="sd">            etc. If not specified, every x, y coordinate will be mapped to</span>
+<span class="sd">            the nearest node.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        node_ids : pandas.Series (int)</span>
+<span class="sd">            Returns a Pandas Series of node_ids for each x, y in the</span>
+<span class="sd">            input data. The index is the same as the indexes of the</span>
+<span class="sd">            x, y input data, and the values are the mapped node_ids.</span>
+<span class="sd">            If mapping distance is not passed and if there are no nans in the</span>
+<span class="sd">            x, y data, this will be the same length as the x, y data.</span>
+<span class="sd">            If the mapping is imperfect, this function returns all the</span>
+<span class="sd">            input x, y&#39;s that were successfully mapped to node_ids.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">xys</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="n">x_col</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="n">y_col</span><span class="p">})</span>
+
+        <span class="n">distances</span><span class="p">,</span> <span class="n">indexes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kdtree</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">xys</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+        <span class="n">indexes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">indexes</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">distances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">distances</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="n">node_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">indexes</span><span class="p">]</span><span class="o">.</span><span class="n">index</span>
+
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;node_id&quot;</span><span class="p">:</span> <span class="n">node_ids</span><span class="p">,</span> <span class="s2">&quot;distance&quot;</span><span class="p">:</span> <span class="n">distances</span><span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="n">xys</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">mapping_distance</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">distance</span> <span class="o">&lt;=</span> <span class="n">mapping_distance</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">node_id</span></div>
+
+
+<div class="viewcode-block" id="Network.plot">
+<a class="viewcode-back" href="../../network.html#pandarm.network.Network.plot">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">data</span><span class="p">,</span>
+        <span class="n">bbox</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">plot_type</span><span class="o">=</span><span class="s2">&quot;scatter&quot;</span><span class="p">,</span>
+        <span class="n">fig_kwargs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">plot_kwargs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">cbar_kwargs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Plot an array of data on a map using Matplotlib, automatically matching</span>
+<span class="sd">        the data to the pandarm network node positions. Keyword arguments are</span>
+<span class="sd">        passed to the plotting routine.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        data : pandas.Series</span>
+<span class="sd">            Numeric data with the same length and index as the nodes</span>
+<span class="sd">            in the network.</span>
+<span class="sd">        bbox : tuple, optional</span>
+<span class="sd">            (lat_min, lng_min, lat_max, lng_max)</span>
+<span class="sd">        plot_type : {&#39;hexbin&#39;, &#39;scatter&#39;}, optional</span>
+<span class="sd">        fig_kwargs : dict, optional</span>
+<span class="sd">            Keyword arguments that will be passed to matplotlib.pyplot.subplots.</span>
+<span class="sd">            Use this to specify things like figure size or background color.</span>
+<span class="sd">        plot_kwargs : dict, optional</span>
+<span class="sd">            Keyword arguments that will be passed to the matplotlib plotting</span>
+<span class="sd">            command. Use this to control plot styles and color maps.</span>
+<span class="sd">        cbar_kwargs : dict, optional</span>
+<span class="sd">            Keyword arguments that will be passed to matplotlib.pyplot.colorbar.</span>
+<span class="sd">            Use this to control color bar location and label.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        fig : matplotlib.Figure</span>
+<span class="sd">        ax : matplotlib.Axes</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="ne">ModuleNotFoundError</span>  <span class="c1"># Python 3.6+</span>
+        <span class="k">except</span> <span class="ne">NameError</span><span class="p">:</span>
+            <span class="ne">ModuleNotFoundError</span> <span class="o">=</span> <span class="ne">ImportError</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span>
+            <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+        <span class="k">except</span> <span class="p">(</span><span class="ne">ModuleNotFoundError</span><span class="p">,</span> <span class="ne">RuntimeError</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ModuleNotFoundError</span><span class="p">(</span><span class="s2">&quot;pandarm&#39;s network.plot() requires Matplotlib&quot;</span><span class="p">)</span>
+
+        <span class="n">fig_kwargs</span> <span class="o">=</span> <span class="n">fig_kwargs</span> <span class="ow">or</span> <span class="p">{</span><span class="s2">&quot;figsize&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">)}</span>
+        <span class="n">plot_kwargs</span> <span class="o">=</span> <span class="n">plot_kwargs</span> <span class="ow">or</span> <span class="p">{</span><span class="s2">&quot;cmap&quot;</span><span class="p">:</span> <span class="s2">&quot;hot_r&quot;</span><span class="p">,</span> <span class="s2">&quot;s&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+        <span class="n">cbar_kwargs</span> <span class="o">=</span> <span class="n">cbar_kwargs</span> <span class="ow">or</span> <span class="p">{}</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">bbox</span><span class="p">:</span>
+            <span class="n">bbox</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">nodes_df</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">nodes_df</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">nodes_df</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">nodes_df</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+            <span class="p">)</span>
+
+        <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="o">**</span><span class="n">fig_kwargs</span><span class="p">)</span>
+
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes_df</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes_df</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">plot_type</span> <span class="o">==</span> <span class="s2">&quot;scatter&quot;</span><span class="p">:</span>
+            <span class="n">plot</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="o">**</span><span class="n">plot_kwargs</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">plot_type</span> <span class="o">==</span> <span class="s2">&quot;hexbin&quot;</span><span class="p">:</span>
+            <span class="n">plot</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hexbin</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="o">**</span><span class="n">plot_kwargs</span><span class="p">)</span>
+
+        <span class="n">colorbar</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">plot</span><span class="p">,</span> <span class="o">**</span><span class="n">cbar_kwargs</span><span class="p">)</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span></div>
+
+
+<div class="viewcode-block" id="Network.set_pois">
+<a class="viewcode-back" href="../../network.html#pandarm.network.Network.set_pois">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_pois</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">category</span><span class="p">,</span>
+        <span class="n">maxdist</span><span class="p">,</span>
+        <span class="n">maxitems</span><span class="p">,</span>
+        <span class="n">x_col</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">y_col</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">mapping_distance</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set the location of all the points of interest (POIs) of this category.</span>
+<span class="sd">         The POIs are connected to the closest node in the pandarm network</span>
+<span class="sd">         which assumes no impedance between the location of the variable and</span>
+<span class="sd">         the location of the closest network node.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        category : string</span>
+<span class="sd">            The name of the category for this set of POIs</span>
+<span class="sd">        maxdist : float</span>
+<span class="sd">            The maximum distance that will later be used in</span>
+<span class="sd">            find_all_nearest_pois()</span>
+<span class="sd">        maxitems : int</span>
+<span class="sd">            The maximum number of items that will later be requested</span>
+<span class="sd">            in find_all_nearest_pois()</span>
+<span class="sd">        x_col : pandas.Series (float)</span>
+<span class="sd">            The x location (longitude) of POIs in this category</span>
+<span class="sd">        y_col : pandas.Series (float)</span>
+<span class="sd">            The y location (latitude) of POIs in this category</span>
+<span class="sd">        mapping_distance : float, optional</span>
+<span class="sd">            The maximum distance that will be considered a match between the</span>
+<span class="sd">            POIs and the nearest node in the network.  This will usually</span>
+<span class="sd">            be a distance unit in meters however if you have customized the</span>
+<span class="sd">            impedance this could be in other units such as utility or time</span>
+<span class="sd">            etc. If not specified, every POI will be mapped to</span>
+<span class="sd">            the nearest node.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Nothing</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">category</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">poi_category_names</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">poi_category_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">category</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_pois</span><span class="p">[</span><span class="n">category</span><span class="p">]</span> <span class="o">=</span> <span class="n">maxitems</span>
+
+        <span class="n">node_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_node_ids</span><span class="p">(</span><span class="n">x_col</span><span class="p">,</span> <span class="n">y_col</span><span class="p">,</span> <span class="n">mapping_distance</span><span class="o">=</span><span class="n">mapping_distance</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">poi_category_indexes</span><span class="p">[</span><span class="n">category</span><span class="p">]</span> <span class="o">=</span> <span class="n">node_ids</span><span class="o">.</span><span class="n">index</span>
+
+        <span class="n">node_idx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_node_indexes</span><span class="p">(</span><span class="n">node_ids</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">initialize_category</span><span class="p">(</span><span class="n">maxdist</span><span class="p">,</span> <span class="n">maxitems</span><span class="p">,</span> <span class="n">category</span><span class="p">,</span> <span class="n">node_idx</span><span class="o">.</span><span class="n">values</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Network.nearest_pois">
+<a class="viewcode-back" href="../../network.html#pandarm.network.Network.nearest_pois">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">nearest_pois</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">distance</span><span class="p">,</span>
+        <span class="n">category</span><span class="p">,</span>
+        <span class="n">num_pois</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">max_distance</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">imp_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">include_poi_ids</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Find the distance to the nearest points of interest (POI)s from each</span>
+<span class="sd">        source node.  The bigger values in this case mean less accessibility.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        distance : float</span>
+<span class="sd">            The maximum distance to look for POIs. This will usually be a</span>
+<span class="sd">            distance unit in meters however if you have customized the</span>
+<span class="sd">            impedance this could be in other units such as utility or time</span>
+<span class="sd">            etc.</span>
+<span class="sd">        category : string</span>
+<span class="sd">            The name of the category of POI to look for</span>
+<span class="sd">        num_pois : int</span>
+<span class="sd">            The number of POIs to look for, this also sets the number of</span>
+<span class="sd">            columns in the DataFrame that gets returned</span>
+<span class="sd">        max_distance : float, optional</span>
+<span class="sd">            The value to set the distance to if there is no POI within the</span>
+<span class="sd">            specified distance - if not specified, gets set to distance. This</span>
+<span class="sd">            will usually be a distance unit in meters however if you have</span>
+<span class="sd">            customized the impedance this could be in other units such as</span>
+<span class="sd">            utility or time etc.</span>
+<span class="sd">        imp_name : string, optional</span>
+<span class="sd">            The impedance name to use for the aggregation on this network.</span>
+<span class="sd">            Must be one of the impedance names passed in the constructor of</span>
+<span class="sd">            this object.  If not specified, there must be only one impedance</span>
+<span class="sd">            passed in the constructor, which will be used.</span>
+<span class="sd">        include_poi_ids : bool, optional</span>
+<span class="sd">            If this flag is set to true, the call will add columns to the</span>
+<span class="sd">            return DataFrame - instead of just returning the distance for</span>
+<span class="sd">            the nth POI, it will also return the id of that POI.  The names</span>
+<span class="sd">            of the columns with the POI IDs will be poi1, poi2, etc - it</span>
+<span class="sd">            will take roughly twice as long to include these IDs as to not</span>
+<span class="sd">            include them</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        d : pandas.DataFrame</span>
+<span class="sd">            Like aggregate, this series has an index of all the node ids for</span>
+<span class="sd">            the network.  Unlike aggregate, this method returns a dataframe</span>
+<span class="sd">            with the number of columns equal to the distances to the Nth</span>
+<span class="sd">            closest POI.  For instance, if you ask for the 10 closest poi to</span>
+<span class="sd">            each node, column d[1] wil be the distance to the 1st closest POI</span>
+<span class="sd">            of that category while column d[2] will be the distance to the 2nd</span>
+<span class="sd">            closest POI, and so on.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">max_distance</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">max_distance</span> <span class="o">=</span> <span class="n">distance</span>
+
+        <span class="k">if</span> <span class="n">category</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">poi_category_names</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Need to call set_pois for this category&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">num_pois</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_pois</span><span class="p">[</span><span class="n">category</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;The maximum number of POIs for </span><span class="si">{</span><span class="n">category</span><span class="si">}</span><span class="s2"> is </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">max_pois</span><span class="p">[</span><span class="n">category</span><span class="p">]</span><span class="si">}</span><span class="s2">.&quot;</span>
+                <span class="o">+</span> <span class="s2">&quot;If you need more, then increase the maxitems in another call to `set_pois`&quot;</span>
+            <span class="p">)</span>
+
+        <span class="n">imp_num</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_imp_name_to_num</span><span class="p">(</span><span class="n">imp_name</span><span class="p">)</span>
+
+        <span class="n">dists</span><span class="p">,</span> <span class="n">poi_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">find_all_nearest_pois</span><span class="p">(</span><span class="n">distance</span><span class="p">,</span> <span class="n">num_pois</span><span class="p">,</span> <span class="n">category</span><span class="p">,</span> <span class="n">imp_num</span><span class="p">)</span>
+        <span class="n">dists</span><span class="p">[</span><span class="n">dists</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">max_distance</span>
+
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">dists</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">node_ids</span><span class="p">)</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_pois</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">include_poi_ids</span><span class="p">:</span>
+            <span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">poi_ids</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">node_ids</span><span class="p">)</span>
+            <span class="n">df2</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;poi</span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_pois</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
+            <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df2</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+                <span class="c1"># if this is still all working according to plan at this point</span>
+                <span class="c1"># the great magic trick is now to turn the integer position of</span>
+                <span class="c1"># the poi, which is painstakingly returned from the c++ code,</span>
+                <span class="c1"># and turn it into the actual index that was used when it was</span>
+                <span class="c1"># initialized as a pandas.Series - this really is pandas-like</span>
+                <span class="c1"># thinking.  it&#39;s complicated on the inside, but quite</span>
+                <span class="c1"># intuitive to the user I think</span>
+                <span class="n">s</span> <span class="o">=</span> <span class="n">df2</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
+                <span class="n">df2</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">poi_category_indexes</span><span class="p">[</span><span class="n">category</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">s</span><span class="p">]</span>
+                <span class="n">df2</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">s</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+            <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df</span><span class="p">,</span> <span class="n">df2</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">df</span></div>
+
+
+<div class="viewcode-block" id="Network.low_connectivity_nodes">
+<a class="viewcode-back" href="../../network.html#pandarm.network.Network.low_connectivity_nodes">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">low_connectivity_nodes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">impedance</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">imp_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Identify nodes that are connected to fewer than some threshold</span>
+<span class="sd">        of other nodes within a given distance.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        impedance : float</span>
+<span class="sd">            Distance within which to search for other connected nodes. This</span>
+<span class="sd">            will usually be a distance unit in meters however if you have</span>
+<span class="sd">            customized the impedance this could be in other units such as</span>
+<span class="sd">            utility or time etc.</span>
+<span class="sd">        count : int</span>
+<span class="sd">            Threshold for connectivity. If a node is connected to fewer</span>
+<span class="sd">            than this many nodes within `impedance` it will be identified</span>
+<span class="sd">            as &quot;low connectivity&quot;.</span>
+<span class="sd">        imp_name : string, optional</span>
+<span class="sd">            The impedance name to use for the aggregation on this network.</span>
+<span class="sd">            Must be one of the impedance names passed in the constructor of</span>
+<span class="sd">            this object.  If not specified, there must be only one impedance</span>
+<span class="sd">            passed in the constructor, which will be used.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        node_ids : array</span>
+<span class="sd">            List of &quot;low connectivity&quot; node IDs.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># set a counter variable on all nodes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">node_ids</span><span class="o">.</span><span class="n">to_series</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;counter&quot;</span><span class="p">)</span>
+
+        <span class="c1"># count nodes within impedance range</span>
+        <span class="n">agg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">impedance</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;count&quot;</span><span class="p">,</span> <span class="n">imp_name</span><span class="o">=</span><span class="n">imp_name</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;counter&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">agg</span><span class="p">[</span><span class="n">agg</span> <span class="o">&lt;</span> <span class="n">count</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+      
+    </p>
+    <p>
+        &copy; Copyright 2025, pandarm developers.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

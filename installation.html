@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Installation &#8212; pandarm v0.0.4.dev1+gc432ba547 Manual</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css?v=9afac83c" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+    <script src="_static/documentation_options.js?v=1efef532"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Getting started" href="introduction.html" />
+    <link rel="prev" title="Pandarm" href="index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          pandarm</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.0.4.dev1+gc432ba547</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="#">Installation</a></li>
+                <li><a href="introduction.html">Introduction</a></li>
+                <li><a href="network.html">Network API</a></li>
+                <li><a href="loaders.html">Saving Networks</a></li>
+                <li><a href="example_notebook.html">Tutorial</a></li>
+                <li><a href="utilities.html">Utilities</a></li>
+                <li><a href="references.html">References</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#standard-installation">Standard installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#compiling-from-source-code">Compiling from source code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#advanced-compilation-tips">Advanced compilation tips</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#multithreading">Multithreading</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#general-workflow">General workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#create-the-network">Create the network</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#nearest-queries">Nearest queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#aggregation-queries">Aggregation queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#display-the-results">Display the results</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="network.html">Network API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="network.html#module-pandarm.network">API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="loaders.html">Loaders</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="loaders.html#pandas-hdf5">Pandas HDF5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loaders.html#pandas-hdf5-api">Pandas HDF5 API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="utilities.html">Utilities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="utilities.html#pandarm.utils.reindex"><code class="docutils literal notranslate"><span class="pre">reindex()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Installation</a><ul>
+<li><a class="reference internal" href="#standard-installation">Standard installation</a></li>
+<li><a class="reference internal" href="#compiling-from-source-code">Compiling from source code</a></li>
+<li><a class="reference internal" href="#advanced-compilation-tips">Advanced compilation tips</a></li>
+<li><a class="reference internal" href="#multithreading">Multithreading</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h1>
+<p>pandarm is a Python package that includes a C++ extension for numerical operations.</p>
+<section id="standard-installation">
+<h2>Standard installation<a class="headerlink" href="#standard-installation" title="Link to this heading">¶</a></h2>
+<p>You can install pandarm using Pip:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pandarm</span>
+</pre></div>
+</div>
+<p>Or Conda:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="n">pandarm</span> <span class="o">--</span><span class="n">channel</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span>
+</pre></div>
+</div>
+</section>
+<section id="compiling-from-source-code">
+<h2>Compiling from source code<a class="headerlink" href="#compiling-from-source-code" title="Link to this heading">¶</a></h2>
+<p>You may want to compile pandarm locally if you’re modifying the source code or need to use a version that’s missing binary installers for your platform.</p>
+<p>Mac users should start by running <code class="docutils literal notranslate"><span class="pre">xcode-select</span> <span class="pre">--install</span></code> to make sure you have Apple’s Xcode command line tools, which are needed behind the scenes. Windows users will need the <a class="reference external" href="https://visualstudio.microsoft.com/visual-cpp-build-tools/">Microsoft Visual C++ Build Tools</a>.</p>
+<p>pandarm’s build-time requirements are <code class="docutils literal notranslate"><span class="pre">cython</span></code>, <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, and a C++ compiler that supports the C++11 standard. Additionally, the compiler needs to support OpenMP to allow pandarm to use multithreading.</p>
+<p>The smoothest route is to get the compilers from Conda Forge. The necessary dependencies are listed in the <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file. Running pandarm’s setup script will trigger compilation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">env</span> <span class="n">create</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="o">.</span> <span class="o">-</span><span class="n">e</span>
+</pre></div>
+</div>
+<p>You’ll see a lot of status messages go by, but hopefully no errors.</p>
+<p>MacOS 10.14 (but not newer versions) often needs additional header files installed. If you see a compilation error like <code class="docutils literal notranslate"><span class="pre">'wchar.h'</span> <span class="pre">file</span> <span class="pre">not</span> <span class="pre">found</span></code> in MacOS 10.14, you can resolve it by running this command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">open</span> <span class="o">/</span><span class="n">Library</span><span class="o">/</span><span class="n">Developer</span><span class="o">/</span><span class="n">CommandLineTools</span><span class="o">/</span><span class="n">Packages</span><span class="o">/</span><span class="n">macOS_SDK_headers_for_macOS_10</span><span class="mf">.14</span><span class="o">.</span><span class="n">pkg</span>
+</pre></div>
+</div>
+</section>
+<section id="advanced-compilation-tips">
+<h2>Advanced compilation tips<a class="headerlink" href="#advanced-compilation-tips" title="Link to this heading">¶</a></h2>
+<p>If you prefer not to use Conda, you can skip the <code class="docutils literal notranslate"><span class="pre">clang</span></code> and <code class="docutils literal notranslate"><span class="pre">llvm-openmp</span></code> packages. Compilation will likely work fine with your system’s built-in toolchain.</p>
+<p>The default C++ compiler on Macs doesn’t support OpenMP, though, meaning that pandarm won’t be able to use multithreading.</p>
+<p>You can set the <code class="docutils literal notranslate"><span class="pre">CC</span></code> environment variable to specify a compiler of your choice. See writeup in <a class="reference external" href="https://github.com/UDST/pandarm/pull/137">PR #137</a> for discussion of this. If you need to make additional modifications, you can edit the compilation script in your local copy of <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>.</p>
+</section>
+<section id="multithreading">
+<h2>Multithreading<a class="headerlink" href="#multithreading" title="Link to this heading">¶</a></h2>
+<p>You can check how many threads pandarm is able to use on your machine by running the <code class="docutils literal notranslate"><span class="pre">examples/simple_example.py</span></code> script.</p>
+</section>
+</section>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+<div id="sourcelink">
+  <a href="_sources/installation.rst.txt"
+     rel="nofollow">Source</a>
+</div>
+      
+    </p>
+    <p>
+        &copy; Copyright 2025, pandarm developers.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

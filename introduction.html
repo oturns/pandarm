@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Getting started &#8212; pandarm v0.0.4.dev1+gc432ba547 Manual</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css?v=9afac83c" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+    <script src="_static/documentation_options.js?v=1efef532"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tutorial" href="tutorial.html" />
+    <link rel="prev" title="Installation" href="installation.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          pandarm</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.0.4.dev1+gc432ba547</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="installation.html">Installation</a></li>
+                <li><a href="#">Introduction</a></li>
+                <li><a href="network.html">Network API</a></li>
+                <li><a href="loaders.html">Saving Networks</a></li>
+                <li><a href="example_notebook.html">Tutorial</a></li>
+                <li><a href="utilities.html">Utilities</a></li>
+                <li><a href="references.html">References</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#standard-installation">Standard installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#compiling-from-source-code">Compiling from source code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#advanced-compilation-tips">Advanced compilation tips</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#multithreading">Multithreading</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#general-workflow">General workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#create-the-network">Create the network</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#nearest-queries">Nearest queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#aggregation-queries">Aggregation queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#display-the-results">Display the results</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="network.html">Network API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="network.html#module-pandarm.network">API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="loaders.html">Loaders</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="loaders.html#pandas-hdf5">Pandas HDF5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loaders.html#pandas-hdf5-api">Pandas HDF5 API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="utilities.html">Utilities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="utilities.html#pandarm.utils.reindex"><code class="docutils literal notranslate"><span class="pre">reindex()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Getting started</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#general-workflow">General workflow</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <section id="getting-started">
+<h1>Getting started<a class="headerlink" href="#getting-started" title="Link to this heading">¶</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This guide was last updated in 2017 and may not be current. The best place
+to start is with the pandarm <a class="reference external" href="https://github.com/oturns/pandarm/tree/master/examples/exampe-notebook.ipynb">demo notebook</a>.</p>
+</div>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
+<p>In this case, a picture is worth a thousand words. The image below shows the
+distance to the 2nd nearest restaurant (rendered by matplotlib). With only a few lines of code, you can grab a network from OpenStreetMap, take the restaurants that users of OpenStreetMap have recorded, and in about half a second of compute time you can get back a Pandas Series of node_ids and computed values of various measures of access to destinations on the street network.</p>
+<img alt="_images/distance_to_restaurants.png" src="_images/distance_to_restaurants.png" />
+<p>Beyond simple access to destination queries, this library also implements more general aggregations along the street network (or any network). For a given region, this produces hundreds of thousands of overlapping buffer queries (still performed in less than a second) that can be used to characterize the local neighborhood around each street intersection. The result can then be mapped, or assigned to parcel and building records, or used in statistical models. This is in stark contrast to the arbitrary non-overlapping geographies ubiquitous in GIS. Although there are advantages to the GIS approach,
+we think network queries are a more accurate representation of how people
+interact with their environment.</p>
+</section>
+<section id="general-workflow">
+<h2>General workflow<a class="headerlink" href="#general-workflow" title="Link to this heading">¶</a></h2>
+<p>Accessibility as defined here is the ability to reach other specified locations
+in the city, and this framework is first and foremost designed to
+compute accessibility-to-destination queries of various kinds.</p>
+<p>In practice, this framework is a bit more flexible than that.  This
+framework can generally aggregate data along the transportation network in a way
+that creates a smooth surface over the entire city or region for the variable
+of interest.</p>
+<p>There are a few general steps that are typically followed in measuring a
+variable using network queries.</p>
+<ul>
+<li><p><strong>Create and preprocess the network</strong></p>
+<p>Networks are completely abstract in that they have nodes, edges, and one or
+more impedances associated with each edge.  Impedances can be time or distance
+or a composite index of some kind, but there is a single number associated
+with each edge to define the difficulty of getting between the associated
+nodes.  (If you pass multiple impedances for each edge,
+a different instance of the underlying data structures is created for each
+network, but these are simply accessed by name for users of the API.)  A great
+use case for multiple impedances is congested travel times that vary by time
+of day.  Pedestrian, auto, and local street networks have all been used in
+this framework successfully.</p>
+</li>
+<li><p><strong>Assign a variable to the network</strong></p>
+<p>Next, create using Pandas the variable of interest to you.  In some cases it’s
+discrete - like the number of coffee shops, in other cases it’s continuous
+like the income of households.  But you must have observations of some
+kind tied to x-y coordinates in the city.  These x-y coordinates are then
+assigned a location in the network, usually by doing a nearest neighbor on
+all the intersections in the network - i.e. each variable is abstracted to
+exist at one of the nodes of the network.</p>
+<p>If this is a problem - for instance a large parcel in the city - it might be
+necessary to  split up the object to many nearby nodes, which is an extra step
+but fits within the same
+framework.  Other more flexible ways of assigning the variable to the
+network can be added in the future.</p>
+</li>
+<li><p><strong>Perform the aggregation</strong></p>
+<p>The main use case of pandarm is to perform an aggregation along the network
+- i.e. a buffer query.  The api is designed to perform the aggregations for
+all nodes in the network at the same time in a multi-threaded fashion
+(using an underlying C library).  Most walking-scale accessibility queries
+can be performed in well under a second, even for hundreds of thousands of
+nodes.</p>
+<p>To perform an aggregation, pass a maximum distance to aggregate,
+an aggregation type (sum, mean, stddev), and a decay (flat, linear,
+exponential).  Decays can be applied to
+the variable so that items further away have less of an impact on the node
+for which the query is being performed.</p>
+<p>Thus the aggregation is performed for the whole network - in the Bay Area this
+is 226K nodes - and a buffer query up to the <em>horizon</em> distance,
+typically 500 meters to about 8000 meters, or 45 minutes travel time, is
+performed for each node.</p>
+<p><em>Find nearest</em> queries are also available, which is technically not an
+aggregation, but is easily performed with a very similar workflow.</p>
+</li>
+<li><p><strong>Display, or reuse in other analysis</strong></p>
+<p>Once the computation has been performed, a DataFrame is constructed
+that has the x, y location of nodes and a z value or many z values which is
+the result of computations in the above workflow.  This data is of the form
+x, y, z and can be displayed with many visualization techniques,
+and a <code class="docutils literal notranslate"><span class="pre">plot</span></code> method is available for the network to display directly in
+matplotlib.</p>
+<p>The framework can thus be used to map urban outcomes - e.g. access to health
+care, or urban predictive variables - e.g. average income in the local area,
+or simply for data exploration</p>
+</li>
+</ul>
+</section>
+</section>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+<div id="sourcelink">
+  <a href="_sources/introduction.rst.txt"
+     rel="nofollow">Source</a>
+</div>
+      
+    </p>
+    <p>
+        &copy; Copyright 2025, pandarm developers.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
