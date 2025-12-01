@@ -4,7 +4,7 @@ Tutorial
 .. note::
     This tutorial was last updated in 2017 and may not be current. The best place
     to start is with the pandarm `demo notebook 
-    <https://github.com/UDST/pandarm/tree/master/examples/pandarm-demo.ipynb>`_.
+    <https://github.com/oturns/pandarm/tree/master/examples/example-notebook.ipynb>`_.
 
 At this point it is probably helpful to make concrete the topics discussed in
 the introduction by giving code sample.  There is also an IPython Notebook

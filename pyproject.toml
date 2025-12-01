@@ -8,6 +8,9 @@ requires = ["wheel", "setuptools >=40.8", "setuptools_scm[toml]>=6.2", "cython >
 [project]
 name = "pandarm"
 dynamic = ["version"]
+description = "The Pandas Routing Machine"
+readme = "README.md"
+keywords = ["routing, network analysis, accessibility, shortest paths, isochrone"]
 dependencies = [
         "numpy >=2",
         "pandas >=2",
@@ -21,6 +24,11 @@ classifiers = [
 ]
 license-files = ["LICENSE"]
 requires-python = ">=3.10"
+
+[project.urls]
+Home = "https://github.com/oturns/pandarm/"
+Repository = "https://github.com/oturns/pandarm"
+
 
 [tool.setuptools.packages.find]
 include = ["pandarm", "pandarm.*", "src*"]

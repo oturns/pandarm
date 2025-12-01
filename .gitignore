@@ -67,3 +67,6 @@ examples/data
 
 # macOS
 .DS_Store
+
+# this is moved each build using the makefile
+docs/example_notebook.ipynb

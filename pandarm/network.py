@@ -44,7 +44,14 @@ class Network:
         network. If twoway = False, it is assumed that travel can only occur
         in the explicit direction indicated by the from and to ID in the edge
         table.
-
+    edge_geom : bool | gpd.GeometryArray | gpd.GeoSeries, default is None
+        Array-like (typically a GeoSeries) of geometries representing the
+        geometric shape of each 
+    crs : str | pyproj.CRS, default is None
+        coordinate system in which node x and y coordinates (and edge_geom, if
+        provided) are stored. If None, it is assumed the coordinates are
+        geographic (i.e. WGS84, EPSG:4326)
+        
     """
 
     def __init__(

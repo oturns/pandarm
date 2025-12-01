@@ -3,8 +3,8 @@ Getting started
 
 .. note::
     This guide was last updated in 2017 and may not be current. The best place
-    to start is with the Pandana `demo notebook 
-    <https://github.com/UDST/pandana/tree/master/examples/Pandana-demo.ipynb>`_.
+    to start is with the pandarm `demo notebook 
+    <https://github.com/oturns/pandarm/tree/master/examples/exampe-notebook.ipynb>`_.
 
 Introduction
 ~~~~~~~~~~~~
@@ -14,11 +14,10 @@ distance to the 2nd nearest restaurant (rendered by matplotlib). With only a few
 
 .. image:: img/distance_to_restaurants.png
 
-Beyond simple access to destination queries, this library also implements more general aggregations along the street network (or any network). For a given region, this produces hundreds of thousands of overlapping buffer queries (still performed in less than a second) that can be used to characterize the local neighborhood around each street intersection. The result can then be mapped, or assigned to parcel and building records, or used in statistical models as we commonly do with UrbanSim. This is in stark contrast to the arbitrary non-overlapping geographies ubiquitous in GIS. Although there are advantages to the GIS approach,
+Beyond simple access to destination queries, this library also implements more general aggregations along the street network (or any network). For a given region, this produces hundreds of thousands of overlapping buffer queries (still performed in less than a second) that can be used to characterize the local neighborhood around each street intersection. The result can then be mapped, or assigned to parcel and building records, or used in statistical models. This is in stark contrast to the arbitrary non-overlapping geographies ubiquitous in GIS. Although there are advantages to the GIS approach,
 we think network queries are a more accurate representation of how people
 interact with their environment.
 
-We look forward to creative uses of a general library like this - please let us know when you think you have a great use case by tweeting us at ``@urbansim`` or post on the UrbanSim `forum`_.
 
 General workflow
 ~~~~~~~~~~~~~~~~
@@ -66,7 +65,7 @@ variable using network queries.
 
 * **Perform the aggregation**
 
-  The main use case of Pandana is to perform an aggregation along the network
+  The main use case of pandarm is to perform an aggregation along the network
   - i.e. a buffer query.  The api is designed to perform the aggregations for
   all nodes in the network at the same time in a multi-threaded fashion
   (using an underlying C library).  Most walking-scale accessibility queries
@@ -98,4 +97,4 @@ variable using network queries.
 
   The framework can thus be used to map urban outcomes - e.g. access to health
   care, or urban predictive variables - e.g. average income in the local area,
-  or simply for data exploratio
+  or simply for data exploration
