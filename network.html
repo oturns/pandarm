@@ -5,13 +5,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Network API &#8212; pandarm v0.0.5.dev5+g0a3a8d87b Manual</title>
+    <title>Network API &#8212; pandarm v0.0.5.dev7+g4efc2d818 Manual</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css?v=9afac83c" />
     <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
-    <script src="_static/documentation_options.js?v=e3772e1e"></script>
-    <script src="_static/doctools.js?v=9bcbadda"></script>
-    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/documentation_options.js?v=eccc9a0d"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -39,7 +39,7 @@
         </button>
         <a class="navbar-brand" href="index.html">
           pandarm</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.0.5.dev5+g0a3a8d87b</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.0.5.dev7+g4efc2d818</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -171,25 +171,25 @@
 <span id="api"></span><h2>API<a class="headerlink" href="#module-pandarm.network" title="Link to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="pandarm.network.Network">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pandarm.network.</span></span><span class="sig-name descname"><span class="pre">Network</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_from</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_to</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_weights</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">twoway</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_geom</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">crs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pandarm/network.html#Network"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandarm.network.Network" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">pandarm.network.</span></span><span class="sig-name descname"><span class="pre">Network</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_from</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_to</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_weights</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">twoway</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_geom</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">crs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pandarm/network.html#Network"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandarm.network.Network" title="Link to this definition">¶</a></dt>
 <dd><p>Create the transportation network in the city.  Typical data would be
 distance based from OpenStreetMap or travel time from GTFS transit data.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
-<dt><strong>node_x</strong><span class="classifier"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html#pandas.Series" title="(in pandas v2.3.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas.Series</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>Defines the x attribute for nodes in the network (e.g. longitude)</p>
+<dt><strong>node_x</strong><span class="classifier"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html#pandas.Series" title="(in pandas v3.0.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas.Series</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>Defines the x attribute for nodes in the network (e.g. longitude)</p>
 </dd>
-<dt><strong>node_y</strong><span class="classifier"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html#pandas.Series" title="(in pandas v2.3.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas.Series</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>Defines the y attribute for nodes in the network (e.g. latitude)
+<dt><strong>node_y</strong><span class="classifier"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html#pandas.Series" title="(in pandas v3.0.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas.Series</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>Defines the y attribute for nodes in the network (e.g. latitude)
 This param and the one above should have the <em>same</em> index which
 should be the node_ids that are referred to in the edges below.</p>
 </dd>
-<dt><strong>edge_from</strong><span class="classifier"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html#pandas.Series" title="(in pandas v2.3.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas.Series</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a></span></dt><dd><p>Defines the node ID that begins an edge - should refer to the index
+<dt><strong>edge_from</strong><span class="classifier"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html#pandas.Series" title="(in pandas v3.0.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas.Series</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a></span></dt><dd><p>Defines the node ID that begins an edge - should refer to the index
 of the two series objects above</p>
 </dd>
-<dt><strong>edge_to</strong><span class="classifier"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html#pandas.Series" title="(in pandas v2.3.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas.Series</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a></span></dt><dd><p>Defines the node ID that ends an edge - should refer to the index
+<dt><strong>edge_to</strong><span class="classifier"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html#pandas.Series" title="(in pandas v3.0.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas.Series</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a></span></dt><dd><p>Defines the node ID that ends an edge - should refer to the index
 of the two series objects above</p>
 </dd>
-<dt><strong>edge_weights</strong><span class="classifier"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.3.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#all" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">all</span></code></a> <code class="xref py py-obj docutils literal notranslate"><span class="pre">numerics</span></code></span></dt><dd><p>Specifies one or more <em>impedances</em> on the network which define the
+<dt><strong>edge_weights</strong><span class="classifier"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v3.0.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#all" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">all</span></code></a> <code class="xref py py-obj docutils literal notranslate"><span class="pre">numerics</span></code></span></dt><dd><p>Specifies one or more <em>impedances</em> on the network which define the
 distances between nodes.  Multiple impedances can be used to
 capture travel times at different times of day, for instance</p>
 </dd>
@@ -261,7 +261,7 @@ without giving a name will be the variable used.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl>
-<dt><strong>agg</strong><span class="classifier"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html#pandas.Series" title="(in pandas v2.3.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas.Series</span></code></a></span></dt><dd><p>Returns a Pandas Series for every origin node in the network,
+<dt><strong>agg</strong><span class="classifier"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html#pandas.Series" title="(in pandas v3.0.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas.Series</span></code></a></span></dt><dd><p>Returns a Pandas Series for every origin node in the network,
 with the index which is the same as the node_ids passed to the
 init method and the values are the aggregations for each source
 node in the network.</p>
@@ -273,18 +273,18 @@ node in the network.</p>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="pandarm.network.Network.bbox">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bbox</span></span><a class="headerlink" href="#pandarm.network.Network.bbox" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">bbox</span></span><a class="headerlink" href="#pandarm.network.Network.bbox" title="Link to this definition">¶</a></dt>
 <dd><p>The bounding box for nodes in this network [xmin, ymin, xmax, ymax]</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pandarm.network.Network.from_gdf">
-<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_gdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gdf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">network_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'walk'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">twoway</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_travel_times</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_speeds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pandarm/network.html#Network.from_gdf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandarm.network.Network.from_gdf" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">from_gdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gdf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">network_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'walk'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">twoway</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_travel_times</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_speeds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pandarm/network.html#Network.from_gdf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandarm.network.Network.from_gdf" title="Link to this definition">¶</a></dt>
 <dd><p>Create a pandana.Network object from a geodataframe (via OSMnx graph).</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
-<dt><strong>gdf</strong><span class="classifier"><a class="reference external" href="https://geopandas.org/en/latest/docs/reference/api/geopandas.GeoDataFrame.html#geopandas.GeoDataFrame" title="(in GeoPandas v1.1.2.dev57.dev+g26e38dd8e)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geopandas.GeoDataFrame</span></code></a></span></dt><dd><p>dataframe covering the study area of interest; Note the first step is to take
+<dt><strong>gdf</strong><span class="classifier"><a class="reference external" href="https://geopandas.org/en/latest/docs/reference/api/geopandas.GeoDataFrame.html#geopandas.GeoDataFrame" title="(in GeoPandas v1.1.2.dev63.dev+ga59a3c109)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geopandas.GeoDataFrame</span></code></a></span></dt><dd><p>dataframe covering the study area of interest; Note the first step is to take
 the unary union of this dataframe, which is expensive, so large dataframes may
 be time-consuming. The network will inherit the CRS from this dataframe</p>
 </dd>
@@ -329,7 +329,7 @@ the impedance is travel distance measured in meters</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pandarm.network.Network.from_hdf5">
-<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_hdf5</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pandarm/network.html#Network.from_hdf5"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandarm.network.Network.from_hdf5" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">from_hdf5</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pandarm/network.html#Network.from_hdf5"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandarm.network.Network.from_hdf5" title="Link to this definition">¶</a></dt>
 <dd><p>Load a previously saved Network from a Pandas HDF5 file.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -360,10 +360,10 @@ input x, y’s that were successfully mapped to <code class="docutils literal no
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
-<dt><strong>x_col</strong><span class="classifier"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html#pandas.Series" title="(in pandas v2.3.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas.Series</span></code></a> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a>)</span></dt><dd><p>A Pandas Series where values specify the x (e.g. longitude)
+<dt><strong>x_col</strong><span class="classifier"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html#pandas.Series" title="(in pandas v3.0.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas.Series</span></code></a> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a>)</span></dt><dd><p>A Pandas Series where values specify the x (e.g. longitude)
 location of dataset.</p>
 </dd>
-<dt><strong>y_col</strong><span class="classifier"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html#pandas.Series" title="(in pandas v2.3.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas.Series</span></code></a> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a>)</span></dt><dd><p>A Pandas Series where values specify the y (e.g. latitude)
+<dt><strong>y_col</strong><span class="classifier"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html#pandas.Series" title="(in pandas v3.0.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas.Series</span></code></a> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a>)</span></dt><dd><p>A Pandas Series where values specify the y (e.g. latitude)
 location of dataset.  <code class="docutils literal notranslate"><span class="pre">x_col</span></code> and <code class="docutils literal notranslate"><span class="pre">y_col</span></code> should use the same index.</p>
 </dd>
 <dt><strong>mapping_distance</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a>, optional</span></dt><dd><p>The maximum distance in Euclidean space that will be considered a match
@@ -375,7 +375,7 @@ If not specified, every x, y coordinate will be mapped to the nearest node.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl>
-<dt><strong>node_ids</strong><span class="classifier"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html#pandas.Series" title="(in pandas v2.3.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas.Series</span></code></a> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a>)</span></dt><dd></dd>
+<dt><strong>node_ids</strong><span class="classifier"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html#pandas.Series" title="(in pandas v3.0.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas.Series</span></code></a> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a>)</span></dt><dd></dd>
 </dl>
 </dd>
 </dl>
@@ -454,7 +454,7 @@ include them</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl>
-<dt><strong>d</strong><span class="classifier"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.3.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a></span></dt><dd><p>Like aggregate, this series has an index of all the node ids for
+<dt><strong>d</strong><span class="classifier"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v3.0.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a></span></dt><dd><p>Like aggregate, this series has an index of all the node ids for
 the network.  Unlike aggregate, this method returns a dataframe
 with the number of columns equal to the distances to the Nth
 closest POI.  For instance, if you ask for the 10 closest poi to
@@ -469,7 +469,7 @@ closest POI, and so on.</p>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="pandarm.network.Network.node_ids">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">node_ids</span></span><a class="headerlink" href="#pandarm.network.Network.node_ids" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">node_ids</span></span><a class="headerlink" href="#pandarm.network.Network.node_ids" title="Link to this definition">¶</a></dt>
 <dd><p>The node IDs which will be used as the index of many return series</p>
 </dd></dl>
 
@@ -497,7 +497,7 @@ passed in the constructor, which will be used.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl>
-<dt><strong>d</strong><span class="classifier"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.3.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a></span></dt><dd><p>Like nearest_pois, this is a dataframe containing the input node
+<dt><strong>d</strong><span class="classifier"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v3.0.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a></span></dt><dd><p>Like nearest_pois, this is a dataframe containing the input node
 index, the index of the nearby nodes within the search radius,
 and the distance (according to the requested impedance) from the
 source to the nearby node.</p>
@@ -516,7 +516,7 @@ passed to the plotting routine.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
-<dt><strong>data</strong><span class="classifier"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html#pandas.Series" title="(in pandas v2.3.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas.Series</span></code></a></span></dt><dd><p>Numeric data with the same length and index as the nodes
+<dt><strong>data</strong><span class="classifier"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html#pandas.Series" title="(in pandas v3.0.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas.Series</span></code></a></span></dt><dd><p>Numeric data with the same length and index as the nodes
 in the network.</p>
 </dd>
 <dt><strong>bbox</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a>, optional</span></dt><dd><p>(lat_min, lng_min, lat_max, lng_max)</p>
@@ -591,10 +591,10 @@ the network.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
-<dt><strong>node_ids</strong><span class="classifier"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html#pandas.Series" title="(in pandas v2.3.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas.Series</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a></span></dt><dd><p>A series of node_ids which are usually computed using
+<dt><strong>node_ids</strong><span class="classifier"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html#pandas.Series" title="(in pandas v3.0.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas.Series</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a></span></dt><dd><p>A series of node_ids which are usually computed using
 get_node_ids on this object.</p>
 </dd>
-<dt><strong>variable</strong><span class="classifier"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html#pandas.Series" title="(in pandas v2.3.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas.Series</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">numeric</span></code>, optional</span></dt><dd><p>A series which represents some variable defined in urban space.
+<dt><strong>variable</strong><span class="classifier"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html#pandas.Series" title="(in pandas v3.0.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas.Series</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">numeric</span></code>, optional</span></dt><dd><p>A series which represents some variable defined in urban space.
 It could be the location of buildings, or the income of all
 households - just about anything can be aggregated using the
 network queries provided here and this provides the api to set
@@ -644,9 +644,9 @@ find_all_nearest_pois()</p>
 <dt><strong>maxitems</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a></span></dt><dd><p>The maximum number of items that will later be requested
 in find_all_nearest_pois()</p>
 </dd>
-<dt><strong>x_col</strong><span class="classifier"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html#pandas.Series" title="(in pandas v2.3.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas.Series</span></code></a> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a>)</span></dt><dd><p>The x location (longitude) of POIs in this category</p>
+<dt><strong>x_col</strong><span class="classifier"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html#pandas.Series" title="(in pandas v3.0.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas.Series</span></code></a> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a>)</span></dt><dd><p>The x location (longitude) of POIs in this category</p>
 </dd>
-<dt><strong>y_col</strong><span class="classifier"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html#pandas.Series" title="(in pandas v2.3.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas.Series</span></code></a> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a>)</span></dt><dd><p>The y location (latitude) of POIs in this category</p>
+<dt><strong>y_col</strong><span class="classifier"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html#pandas.Series" title="(in pandas v3.0.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas.Series</span></code></a> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a>)</span></dt><dd><p>The y location (latitude) of POIs in this category</p>
 </dd>
 <dt><strong>mapping_distance</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a>, optional</span></dt><dd><p>The maximum distance that will be considered a match between the
 POIs and the nearest node in the network.  This will usually
@@ -825,7 +825,7 @@ by coordinates in the specified CRS</p>
     </p>
     <p>
         &copy; Copyright 2025, pandarm developers.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 9.1.0.<br/>
     </p>
   </div>
 </footer>

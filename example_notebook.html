@@ -5,17 +5,18 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>collecting (and projecting) networks from OSM &#8212; pandarm v0.0.5.dev5+g0a3a8d87b Manual</title>
+    <title>collecting (and projecting) networks from OSM &#8212; pandarm v0.0.5.dev7+g4efc2d818 Manual</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css?v=9afac83c" />
     <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css?v=2aa19091" />
-    <script src="_static/documentation_options.js?v=e3772e1e"></script>
-    <script src="_static/doctools.js?v=9bcbadda"></script>
-    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/documentation_options.js?v=eccc9a0d"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
 <meta charset='utf-8'>
@@ -40,7 +41,7 @@
         </button>
         <a class="navbar-brand" href="index.html">
           pandarm</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.0.5.dev5+g0a3a8d87b</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.0.5.dev7+g4efc2d818</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -223,7 +224,7 @@ dc = dc[dc.geoid.str.startswith(&quot;11&quot;)]
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/example_notebook_3_1.png" class="no-scaled-link" src="_images/example_notebook_3_1.png" style="width: 399px; height: 413px;" />
+<img alt="_images/example_notebook_3_1.png" class="no-scaled-link" height="413" src="_images/example_notebook_3_1.png" width="399" />
 </div>
 </div>
 <section id="collecting-(and-projecting)-networks-from-OSM">
@@ -282,7 +283,7 @@ Range graph removed 253890 edges of 501888
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/example_notebook_6_1.png" class="no-scaled-link" src="_images/example_notebook_6_1.png" style="width: 429px; height: 413px;" />
+<img alt="_images/example_notebook_6_1.png" class="no-scaled-link" height="413" src="_images/example_notebook_6_1.png" width="429" />
 </div>
 </div>
 <div class="nbinput docutils container">
@@ -420,7 +421,7 @@ Range graph removed 253890 edges of 501888
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/example_notebook_8_1.png" class="no-scaled-link" src="_images/example_notebook_8_1.png" style="width: 429px; height: 413px;" />
+<img alt="_images/example_notebook_8_1.png" class="no-scaled-link" height="413" src="_images/example_notebook_8_1.png" width="429" />
 </div>
 </div>
 <div class="nbinput docutils container">
@@ -494,7 +495,7 @@ Datum: World Geodetic System 1984 ensemble
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/example_notebook_11_1.png" class="no-scaled-link" src="_images/example_notebook_11_1.png" style="width: 425px; height: 428px;" />
+<img alt="_images/example_notebook_11_1.png" class="no-scaled-link" height="428" src="_images/example_notebook_11_1.png" width="425" />
 </div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -1161,7 +1162,7 @@ dcnet.nodes_df.join(nearest_rests[1]).rename(columns={1: &quot;dist&quot;}).plot
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/example_notebook_21_1.png" class="no-scaled-link" src="_images/example_notebook_21_1.png" style="width: 425px; height: 428px;" />
+<img alt="_images/example_notebook_21_1.png" class="no-scaled-link" height="428" src="_images/example_notebook_21_1.png" width="425" />
 </div>
 </div>
 <div class="nbinput docutils container">
@@ -1197,7 +1198,7 @@ dcnet.nodes_df.join(nearest_rests[5]).rename(columns={5: &quot;dist&quot;}).plot
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/example_notebook_22_2.png" class="no-scaled-link" src="_images/example_notebook_22_2.png" style="width: 425px; height: 428px;" />
+<img alt="_images/example_notebook_22_2.png" class="no-scaled-link" height="428" src="_images/example_notebook_22_2.png" width="425" />
 </div>
 </div>
 </section>
@@ -1317,7 +1318,7 @@ Length: 81541, dtype: float64
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/example_notebook_30_1.png" class="no-scaled-link" src="_images/example_notebook_30_1.png" style="width: 425px; height: 428px;" />
+<img alt="_images/example_notebook_30_1.png" class="no-scaled-link" height="428" src="_images/example_notebook_30_1.png" width="425" />
 </div>
 </div>
 <div class="nbinput docutils container">
@@ -1391,7 +1392,7 @@ dc.merge(agg.rename(&quot;access&quot;), left_on=&quot;nodes&quot;, right_index=
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/example_notebook_32_1.png" class="no-scaled-link" src="_images/example_notebook_32_1.png" style="width: 388px; height: 428px;" />
+<img alt="_images/example_notebook_32_1.png" class="no-scaled-link" height="428" src="_images/example_notebook_32_1.png" width="388" />
 </div>
 </div>
 <div class="nbinput docutils container">
@@ -4414,7 +4415,7 @@ irvine_net.edges_df[
     </p>
     <p>
         &copy; Copyright 2025, pandarm developers.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 9.1.0.<br/>
     </p>
   </div>
 </footer>
