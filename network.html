@@ -5,11 +5,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Network API &#8212; pandarm v0.0.5.dev10+g650bcfe07 Manual</title>
+    <title>Network API &#8212; pandarm v0.0.5.dev21+gd852eb7f6 Manual</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css?v=9afac83c" />
     <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
-    <script src="_static/documentation_options.js?v=6094656f"></script>
+    <script src="_static/documentation_options.js?v=03d4948c"></script>
     <script src="_static/doctools.js?v=fd6eb6e6"></script>
     <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -39,7 +39,7 @@
         </button>
         <a class="navbar-brand" href="index.html">
           pandarm</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.0.5.dev10+g650bcfe07</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.0.5.dev21+gd852eb7f6</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -280,7 +280,7 @@ node in the network.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pandarm.network.Network.from_gdf">
 <span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">from_gdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gdf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">network_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'walk'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">twoway</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_travel_times</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_speeds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pandarm/network.html#Network.from_gdf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandarm.network.Network.from_gdf" title="Link to this definition">¶</a></dt>
-<dd><p>Create a pandana.Network object from a geodataframe (via OSMnx graph).</p>
+<dd><p>Create a pandarm.Network object from a geodataframe (via OSMnx graph).</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
@@ -291,7 +291,7 @@ be time-consuming. The network will inherit the CRS from this dataframe</p>
 <dt><strong>network_type</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, {“all_private”, “all”, “bike”, “drive”, “drive_service”, “walk”}</span></dt><dd><p>the type of network to collect from OSM (passed to <cite>osmnx.graph_from_polygon</cite>)
 by default “walk”</p>
 </dd>
-<dt><strong>twoway</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.14)"><span class="xref std std-ref">bool</span></a>, optional</span></dt><dd><p>Whether to treat the pandana.Network as directed or undirected. For a directed network,
+<dt><strong>twoway</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.14)"><span class="xref std std-ref">bool</span></a>, optional</span></dt><dd><p>Whether to treat the pandarm.Network as directed or undirected. For a directed network,
 use <cite>twoway=False</cite> (which is the default). For an undirected network (e.g. a
 walk network) where travel can flow in both directions, the network is more
 efficient when twoway=True but forces the impedance to be equal in both
@@ -311,7 +311,7 @@ add_travel_times is True</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandana.Network</span></code></dt><dd><p>a pandana.Network object with node coordinates stored in the same system as the
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandarm.Network</span></code></dt><dd><p>a pandarm.Network object with node coordinates stored in the same system as the
 input geodataframe. If add_travel_times is True, the network impedance
 is travel time measured in seconds (assuming automobile travel speeds); else
 the impedance is travel distance measured in meters</p>
@@ -773,14 +773,14 @@ one is available.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pandarm.network.Network.to_crs">
 <span class="sig-name descname"><span class="pre">to_crs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_crs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_crs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pandarm/network.html#Network.to_crs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandarm.network.Network.to_crs" title="Link to this definition">¶</a></dt>
-<dd><p>Reproject a pandana.Network object into another coordinate system.</p>
+<dd><p>Reproject a pandarm.Network object into another coordinate system.</p>
 <p>Note this function does affect the weight/impedance of any network edges, but
 reprojects the x and y coordinates of the nodes (e.g. for precise snapping)
 between nodes and projected origin/destination data</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
-<dt><strong>network</strong><span class="classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandana.Network</span></code></span></dt><dd><p>an instantiated pandana Network object</p>
+<dt><strong>network</strong><span class="classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandarm.Network</span></code></span></dt><dd><p>an instantiated pandarm Network object</p>
 </dd>
 <dt><strong>input_crs</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a>, optional</span></dt><dd><p>the coordinate system used in the Network.node_df dataframe. Typically
 these data are collected in Lon/Lat, so the default 4326. If None, but
@@ -792,7 +792,7 @@ there is a geometry column present in the Network, input CRS is inferred</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandana.Network</span></code></dt><dd><p>an initialized pandana.Network with ‘x’ and y’ values represented
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandarm.Network</span></code></dt><dd><p>an initialized pandarm.Network with ‘x’ and y’ values represented
 by coordinates in the specified CRS</p>
 </dd>
 </dl>

@@ -4,11 +4,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>pandarm.network &#8212; pandarm v0.0.5.dev10+g650bcfe07 Manual</title>
+    <title>pandarm.network &#8212; pandarm v0.0.5.dev21+gd852eb7f6 Manual</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=9afac83c" />
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
-    <script src="../../_static/documentation_options.js?v=6094656f"></script>
+    <script src="../../_static/documentation_options.js?v=03d4948c"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -36,7 +36,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html">
           pandarm</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.0.5.dev10+g650bcfe07</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.0.5.dev21+gd852eb7f6</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -133,7 +133,8 @@
     <div class="body col-md-12 content" role="main">
       
   <h1>Source code for pandarm.network</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">importlib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -253,7 +254,7 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">from_gdf</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span> <span class="n">gdf</span><span class="p">,</span> <span class="n">network_type</span><span class="o">=</span><span class="s2">&quot;walk&quot;</span><span class="p">,</span> <span class="n">twoway</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">add_travel_times</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default_speeds</span><span class="o">=</span><span class="kc">None</span>
     <span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a pandana.Network object from a geodataframe (via OSMnx graph).</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a pandarm.Network object from a geodataframe (via OSMnx graph).</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -265,7 +266,7 @@
 <span class="sd">            the type of network to collect from OSM (passed to `osmnx.graph_from_polygon`)</span>
 <span class="sd">            by default &quot;walk&quot;</span>
 <span class="sd">        twoway : bool, optional</span>
-<span class="sd">            Whether to treat the pandana.Network as directed or undirected. For a directed network,</span>
+<span class="sd">            Whether to treat the pandarm.Network as directed or undirected. For a directed network,</span>
 <span class="sd">            use `twoway=False` (which is the default). For an undirected network (e.g. a</span>
 <span class="sd">            walk network) where travel can flow in both directions, the network is more</span>
 <span class="sd">            efficient when twoway=True but forces the impedance to be equal in both</span>
@@ -283,8 +284,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        pandana.Network</span>
-<span class="sd">            a pandana.Network object with node coordinates stored in the same system as the</span>
+<span class="sd">        pandarm.Network</span>
+<span class="sd">            a pandarm.Network object with node coordinates stored in the same system as the</span>
 <span class="sd">            input geodataframe. If add_travel_times is True, the network impedance</span>
 <span class="sd">            is travel time measured in seconds (assuming automobile travel speeds); else</span>
 <span class="sd">            the impedance is travel distance measured in meters</span>
@@ -300,7 +301,7 @@
 <div class="viewcode-block" id="Network.to_crs">
 <a class="viewcode-back" href="../../network.html#pandarm.network.Network.to_crs">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">to_crs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_crs</span><span class="p">,</span> <span class="n">input_crs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reproject a pandana.Network object into another coordinate system.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reproject a pandarm.Network object into another coordinate system.</span>
 
 <span class="sd">        Note this function does affect the weight/impedance of any network edges, but</span>
 <span class="sd">        reprojects the x and y coordinates of the nodes (e.g. for precise snapping)</span>
@@ -308,8 +309,8 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        network : pandana.Network</span>
-<span class="sd">            an instantiated pandana Network object</span>
+<span class="sd">        network : pandarm.Network</span>
+<span class="sd">            an instantiated pandarm Network object</span>
 <span class="sd">        input_crs : int, optional</span>
 <span class="sd">            the coordinate system used in the Network.node_df dataframe. Typically</span>
 <span class="sd">            these data are collected in Lon/Lat, so the default 4326. If None, but</span>
@@ -319,8 +320,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        pandana.Network</span>
-<span class="sd">            an initialized pandana.Network with &#39;x&#39; and y&#39; values represented</span>
+<span class="sd">        pandarm.Network</span>
+<span class="sd">            an initialized pandarm.Network with &#39;x&#39; and y&#39; values represented</span>
 <span class="sd">            by coordinates in the specified CRS</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">input_crs</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes_df</span><span class="p">,</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">):</span>
@@ -888,15 +889,10 @@
 <span class="sd">        ax : matplotlib.Axes</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="ne">ModuleNotFoundError</span>  <span class="c1"># Python 3.6+</span>
-        <span class="k">except</span> <span class="ne">NameError</span><span class="p">:</span>
-            <span class="ne">ModuleNotFoundError</span> <span class="o">=</span> <span class="ne">ImportError</span>
 
-        <span class="k">try</span><span class="p">:</span>
-            <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span>
+        <span class="k">if</span> <span class="n">importlib</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">find_spec</span><span class="p">(</span><span class="s2">&quot;matplotlib&quot;</span><span class="p">):</span>
             <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-        <span class="k">except</span> <span class="p">(</span><span class="ne">ModuleNotFoundError</span><span class="p">,</span> <span class="ne">RuntimeError</span><span class="p">):</span>
+        <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ModuleNotFoundError</span><span class="p">(</span><span class="s2">&quot;pandarm&#39;s network.plot() requires Matplotlib&quot;</span><span class="p">)</span>
 
         <span class="n">fig_kwargs</span> <span class="o">=</span> <span class="n">fig_kwargs</span> <span class="ow">or</span> <span class="p">{</span><span class="s2">&quot;figsize&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">)}</span>
@@ -920,7 +916,7 @@
         <span class="k">elif</span> <span class="n">plot_type</span> <span class="o">==</span> <span class="s2">&quot;hexbin&quot;</span><span class="p">:</span>
             <span class="n">plot</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hexbin</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="o">**</span><span class="n">plot_kwargs</span><span class="p">)</span>
 
-        <span class="n">colorbar</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">plot</span><span class="p">,</span> <span class="o">**</span><span class="n">cbar_kwargs</span><span class="p">)</span>
+        <span class="n">colorbar</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">plot</span><span class="p">,</span> <span class="o">**</span><span class="n">cbar_kwargs</span><span class="p">)</span>  <span class="c1"># noqa: F841 - never used</span>
 
         <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
