@@ -4,11 +4,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>pandarm.network &#8212; pandarm v0.0.5.dev26+gb8ae9bad9 Manual</title>
+    <title>pandarm.network &#8212; pandarm v0.0.5.dev34+gcdf3ba6ef Manual</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=9afac83c" />
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
-    <script src="../../_static/documentation_options.js?v=73de1603"></script>
+    <script src="../../_static/documentation_options.js?v=2603d105"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -36,7 +36,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html">
           pandarm</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.0.5.dev26+gb8ae9bad9</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.0.5.dev34+gcdf3ba6ef</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -720,7 +720,15 @@
 
 <div class="viewcode-block" id="Network.aggregate">
 <a class="viewcode-back" href="../../network.html#pandarm.network.Network.aggregate">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">aggregate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;sum&quot;</span><span class="p">,</span> <span class="n">decay</span><span class="o">=</span><span class="s2">&quot;linear&quot;</span><span class="p">,</span> <span class="n">imp_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;tmp&quot;</span><span class="p">):</span>  <span class="c1"># noqa: A002 - `type` builtin</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">aggregate</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">distance</span><span class="p">,</span>
+        <span class="n">func</span><span class="o">=</span><span class="s2">&quot;sum&quot;</span><span class="p">,</span>
+        <span class="n">decay</span><span class="o">=</span><span class="s2">&quot;linear&quot;</span><span class="p">,</span>
+        <span class="n">imp_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;tmp&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="c1"># noqa: A002 - `type` builtin -- marker for removal</span>
+    <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Aggregate information for every source node in the network - this is</span>
 <span class="sd">        really the main purpose of this library.  This allows you to touch</span>
@@ -736,7 +744,7 @@
 <span class="sd">            weight. This will usually be a distance unit in meters however</span>
 <span class="sd">            if you have customized the impedance this could be in other</span>
 <span class="sd">            units such as utility or time etc.</span>
-<span class="sd">        type : string, optional (default &#39;sum&#39;)</span>
+<span class="sd">        func : string, optional (default &#39;sum&#39;)</span>
 <span class="sd">            The type of aggregation: &#39;mean&#39; (with &#39;ave&#39;, &#39;avg&#39;, &#39;average&#39;</span>
 <span class="sd">            as aliases), &#39;std&#39; (or &#39;stddev&#39;), &#39;sum&#39;, &#39;count&#39;, &#39;min&#39;, &#39;max&#39;,</span>
 <span class="sd">            &#39;med&#39; (or &#39;median&#39;), &#39;25pct&#39;, or &#39;75pct&#39;. (Quantiles are</span>
@@ -775,25 +783,35 @@
 <span class="sd">            node in the network.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
+        <span class="c1"># &#39;type&#39; marker for removal -- remove after extended deprecation [2026-01]</span>
+        <span class="k">if</span> <span class="nb">type</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">type</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="s2">&quot;The &#39;type&#39; keyword is deprecated in favor of &#39;func&#39; &quot;</span>
+                <span class="s2">&quot;and it will be removed in the future.&quot;</span><span class="p">,</span>
+                <span class="ne">FutureWarning</span><span class="p">,</span>
+                <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">func</span> <span class="o">=</span> <span class="nb">type</span>
+
         <span class="n">imp_num</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_imp_name_to_num</span><span class="p">(</span><span class="n">imp_name</span><span class="p">)</span>
-        <span class="n">_type</span> <span class="o">=</span> <span class="nb">type</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="n">func</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
 
         <span class="c1"># Resolve aliases</span>
-        <span class="k">if</span> <span class="n">_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;ave&quot;</span><span class="p">,</span> <span class="s2">&quot;avg&quot;</span><span class="p">,</span> <span class="s2">&quot;average&quot;</span><span class="p">]:</span>
-            <span class="n">_type</span> <span class="o">=</span> <span class="s2">&quot;mean&quot;</span>
+        <span class="k">if</span> <span class="n">func</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;ave&quot;</span><span class="p">,</span> <span class="s2">&quot;avg&quot;</span><span class="p">,</span> <span class="s2">&quot;average&quot;</span><span class="p">]:</span>
+            <span class="n">func</span> <span class="o">=</span> <span class="s2">&quot;mean&quot;</span>
 
-        <span class="k">if</span> <span class="n">_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;stddev&quot;</span><span class="p">]:</span>
-            <span class="n">_type</span> <span class="o">=</span> <span class="s2">&quot;std&quot;</span>
+        <span class="k">if</span> <span class="n">func</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;stddev&quot;</span><span class="p">]:</span>
+            <span class="n">func</span> <span class="o">=</span> <span class="s2">&quot;std&quot;</span>
 
-        <span class="k">if</span> <span class="n">_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;med&quot;</span><span class="p">]:</span>
-            <span class="n">_type</span> <span class="o">=</span> <span class="s2">&quot;median&quot;</span>
+        <span class="k">if</span> <span class="n">func</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;med&quot;</span><span class="p">]:</span>
+            <span class="n">func</span> <span class="o">=</span> <span class="s2">&quot;median&quot;</span>
 
         <span class="k">assert</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">variable_names</span><span class="p">,</span> <span class="s2">&quot;A variable with that name has not yet been initialized&quot;</span>
 
         <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">get_all_aggregate_accessibility_variables</span><span class="p">(</span>
             <span class="n">distance</span><span class="p">,</span>
             <span class="n">name</span><span class="p">,</span>
-            <span class="n">_type</span><span class="p">,</span>
+            <span class="n">func</span><span class="p">,</span>
             <span class="n">decay</span><span class="p">,</span>
             <span class="n">imp_num</span><span class="p">,</span>
         <span class="p">)</span>
@@ -1113,7 +1131,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">node_ids</span><span class="o">.</span><span class="n">to_series</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;counter&quot;</span><span class="p">)</span>
 
         <span class="c1"># count nodes within impedance range</span>
-        <span class="n">agg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">impedance</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;count&quot;</span><span class="p">,</span> <span class="n">imp_name</span><span class="o">=</span><span class="n">imp_name</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;counter&quot;</span><span class="p">)</span>
+        <span class="n">agg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">impedance</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="s2">&quot;count&quot;</span><span class="p">,</span> <span class="n">imp_name</span><span class="o">=</span><span class="n">imp_name</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;counter&quot;</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">agg</span><span class="p">[</span><span class="n">agg</span> <span class="o">&lt;</span> <span class="n">count</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">)</span></div>
 </div>

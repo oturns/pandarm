@@ -73,7 +73,7 @@ variable using network queries.
   nodes.
 
   To perform an aggregation, pass a maximum distance to aggregate,
-  an aggregation type (sum, mean, stddev), and a decay (flat, linear,
+  an aggregation function (sum, mean, stddev), and a decay (flat, linear,
   exponential).  Decays can be applied to
   the variable so that items further away have less of an impact on the node
   for which the query is being performed.

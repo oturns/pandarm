@@ -179,11 +179,11 @@ and :py:meth:`pandarm.network.Network.set`
 Once the variables have been assigned to the network, the user can query the
 network repeatedly with different parameters. ::
 
-    s = net.aggregate(500, type="sum", decay="linear", name="square_footage")
-    t = net.aggregate(1000, type="sum", decay="linear", name="square_footage")
-    u = net.aggregate(2000, type="sum", decay="linear", name="square_footage")
-    v = net.aggregate(3000, type="sum", decay="linear", name="square_footage")
-    w = net.aggregate(3000, type="ave", decay="flat",
+    s = net.aggregate(500, func="sum", decay="linear", name="square_footage")
+    t = net.aggregate(1000, func="sum", decay="linear", name="square_footage")
+    u = net.aggregate(2000, func="sum", decay="linear", name="square_footage")
+    v = net.aggregate(3000, func="sum", decay="linear", name="square_footage")
+    w = net.aggregate(3000, func="ave", decay="flat",
                       name="residential_units")
 
 Here is a link to the docs: :py:meth:`pandarm.network.Network.aggregate`
