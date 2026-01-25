@@ -4,11 +4,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>pandarm.network &#8212; pandarm v0.0.5.dev23+g5d4fa7b9c Manual</title>
+    <title>pandarm.network &#8212; pandarm v0.0.5.dev26+gb8ae9bad9 Manual</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=9afac83c" />
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
-    <script src="../../_static/documentation_options.js?v=d53ec7b7"></script>
+    <script src="../../_static/documentation_options.js?v=73de1603"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -36,7 +36,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html">
           pandarm</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.0.5.dev23+g5d4fa7b9c</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.0.5.dev26+gb8ae9bad9</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -204,7 +204,11 @@
         <span class="n">crs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="k">if</span> <span class="n">crs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;No CRS was passed to geometry input; assuming geographic coordinates&quot;</span><span class="p">)</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="s2">&quot;No CRS was passed to geometry input; assuming geographic coordinates&quot;</span><span class="p">,</span>
+                <span class="ne">UserWarning</span><span class="p">,</span>
+                <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+            <span class="p">)</span>
             <span class="n">crs</span> <span class="o">=</span> <span class="mi">4326</span>
         <span class="n">nodes_df</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span>
             <span class="p">{</span><span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="n">node_x</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="n">node_y</span><span class="p">},</span>
@@ -467,9 +471,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">nodes_a</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nodes_b</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="s2">&quot;Origin and destination counts don&#39;t match: </span><span class="si">{}</span><span class="s2">, </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                    <span class="nb">len</span><span class="p">(</span><span class="n">nodes_a</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">nodes_b</span><span class="p">)</span>
-                <span class="p">)</span>
+                <span class="sa">f</span><span class="s2">&quot;Origin and destination counts don&#39;t match: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">nodes_a</span><span class="p">)</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">nodes_b</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
             <span class="p">)</span>
 
         <span class="c1"># map to internal node indexes</span>
@@ -516,16 +518,17 @@
 
         <span class="n">imp_num</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_imp_name_to_num</span><span class="p">(</span><span class="n">imp_name</span><span class="p">)</span>
 
-        <span class="nb">len</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">shortest_path_distance</span><span class="p">(</span><span class="n">node_a</span><span class="p">,</span> <span class="n">node_b</span><span class="p">,</span> <span class="n">imp_num</span><span class="p">)</span>
+        <span class="n">_len</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">shortest_path_distance</span><span class="p">(</span><span class="n">node_a</span><span class="p">,</span> <span class="n">node_b</span><span class="p">,</span> <span class="n">imp_num</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="nb">len</span> <span class="o">==</span> <span class="mf">4294967.295</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">_len</span> <span class="o">==</span> <span class="mf">4294967.295</span><span class="p">:</span>
             <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-                <span class="s2">&quot;Unsigned integer: shortest path distance is trying to be calculated between</span><span class="se">\</span>
-<span class="s2">                external </span><span class="si">%s</span><span class="s2"> and </span><span class="si">%s</span><span class="s2"> unconntected nodes&quot;</span>
-                <span class="o">%</span> <span class="p">(</span><span class="n">node_a</span><span class="p">,</span> <span class="n">node_b</span><span class="p">)</span>
+                <span class="s2">&quot;Unsigned integer: shortest path distance is trying to be calculated &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;between external </span><span class="si">{</span><span class="n">node_a</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="n">node_b</span><span class="si">}</span><span class="s2"> unconntected nodes&quot;</span><span class="p">,</span>
+                <span class="ne">UserWarning</span><span class="p">,</span>
+                <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
             <span class="p">)</span>
 
-        <span class="k">return</span> <span class="nb">len</span></div>
+        <span class="k">return</span> <span class="n">_len</span></div>
 
 
 <div class="viewcode-block" id="Network.shortest_path_lengths">
@@ -553,9 +556,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">nodes_a</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nodes_b</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="s2">&quot;Origin and destination counts don&#39;t match: </span><span class="si">{}</span><span class="s2">, </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                    <span class="nb">len</span><span class="p">(</span><span class="n">nodes_a</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">nodes_b</span><span class="p">)</span>
-                <span class="p">)</span>
+                <span class="sa">f</span><span class="s2">&quot;Origin and destination counts don&#39;t match: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">nodes_a</span><span class="p">)</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">nodes_b</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
             <span class="p">)</span>
 
         <span class="c1"># map to internal node indexes</span>
@@ -570,9 +571,10 @@
             <span class="n">unconnected_idx</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lens</span><span class="p">)</span> <span class="k">if</span> <span class="n">v</span> <span class="o">==</span> <span class="mf">4294967.295</span><span class="p">]</span>
             <span class="n">unconnected_nodes</span> <span class="o">=</span> <span class="p">[(</span><span class="n">nodes_a</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">nodes_b</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">unconnected_idx</span><span class="p">]</span>
             <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-                <span class="s2">&quot;Unsigned integer: shortest path distance is trying to be calculated </span><span class="se">\</span>
-<span class="s2">                between the following external unconnected nodes: </span><span class="si">%s</span><span class="s2">&quot;</span>
-                <span class="o">%</span> <span class="p">(</span><span class="n">unconnected_nodes</span><span class="p">)</span>
+                <span class="s2">&quot;Unsigned integer: shortest path distance is trying to be calculated &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;between the following external unconnected nodes: </span><span class="si">{</span><span class="n">unconnected_nodes</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="ne">UserWarning</span><span class="p">,</span>
+                <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
             <span class="p">)</span>
 
         <span class="k">return</span> <span class="n">lens</span></div>
@@ -624,7 +626,7 @@
         <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span><span class="o">=</span><span class="s2">&quot;any&quot;</span><span class="p">)</span>
         <span class="n">newl</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">length</span> <span class="o">-</span> <span class="n">newl</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Removed </span><span class="si">%d</span><span class="s2"> rows because they contain missing values&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">length</span> <span class="o">-</span> <span class="n">newl</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Removed </span><span class="si">{</span><span class="n">length</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">newl</span><span class="si">}</span><span class="s2"> rows because they contain missing values&quot;</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">variable_names</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
 
@@ -695,13 +697,13 @@
         <span class="n">clean_result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
             <span class="p">[</span>
                 <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;destination&quot;</span><span class="p">,</span> <span class="n">imp_name</span><span class="p">])</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">ix</span><span class="p">)</span>
-                <span class="k">for</span> <span class="n">r</span><span class="p">,</span> <span class="n">ix</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">raw_result</span><span class="p">,</span> <span class="n">nodes</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">r</span><span class="p">,</span> <span class="n">ix</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">raw_result</span><span class="p">,</span> <span class="n">nodes</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
             <span class="p">]</span>
         <span class="p">)[[</span><span class="s2">&quot;source&quot;</span><span class="p">,</span> <span class="s2">&quot;destination&quot;</span><span class="p">,</span> <span class="n">imp_name</span><span class="p">]]</span>
         <span class="k">return</span> <span class="p">(</span>
             <span class="n">clean_result</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;source&quot;</span><span class="p">,</span> <span class="s2">&quot;destination&quot;</span><span class="p">])</span>
             <span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-            <span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> &lt;= </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">imp_name</span><span class="p">,</span> <span class="n">radius</span><span class="p">))</span>
+            <span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">imp_name</span><span class="si">}</span><span class="s2"> &lt;= </span><span class="si">{</span><span class="n">radius</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="p">)</span></div>
 
 
@@ -718,7 +720,7 @@
 
 <div class="viewcode-block" id="Network.aggregate">
 <a class="viewcode-back" href="../../network.html#pandarm.network.Network.aggregate">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">aggregate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;sum&quot;</span><span class="p">,</span> <span class="n">decay</span><span class="o">=</span><span class="s2">&quot;linear&quot;</span><span class="p">,</span> <span class="n">imp_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;tmp&quot;</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">aggregate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;sum&quot;</span><span class="p">,</span> <span class="n">decay</span><span class="o">=</span><span class="s2">&quot;linear&quot;</span><span class="p">,</span> <span class="n">imp_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;tmp&quot;</span><span class="p">):</span>  <span class="c1"># noqa: A002 - `type` builtin</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Aggregate information for every source node in the network - this is</span>
 <span class="sd">        really the main purpose of this library.  This allows you to touch</span>
@@ -774,24 +776,24 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">imp_num</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_imp_name_to_num</span><span class="p">(</span><span class="n">imp_name</span><span class="p">)</span>
-        <span class="nb">type</span> <span class="o">=</span> <span class="nb">type</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="n">_type</span> <span class="o">=</span> <span class="nb">type</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
 
         <span class="c1"># Resolve aliases</span>
-        <span class="k">if</span> <span class="nb">type</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;ave&quot;</span><span class="p">,</span> <span class="s2">&quot;avg&quot;</span><span class="p">,</span> <span class="s2">&quot;average&quot;</span><span class="p">]:</span>
-            <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;mean&quot;</span>
+        <span class="k">if</span> <span class="n">_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;ave&quot;</span><span class="p">,</span> <span class="s2">&quot;avg&quot;</span><span class="p">,</span> <span class="s2">&quot;average&quot;</span><span class="p">]:</span>
+            <span class="n">_type</span> <span class="o">=</span> <span class="s2">&quot;mean&quot;</span>
 
-        <span class="k">if</span> <span class="nb">type</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;stddev&quot;</span><span class="p">]:</span>
-            <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;std&quot;</span>
+        <span class="k">if</span> <span class="n">_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;stddev&quot;</span><span class="p">]:</span>
+            <span class="n">_type</span> <span class="o">=</span> <span class="s2">&quot;std&quot;</span>
 
-        <span class="k">if</span> <span class="nb">type</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;med&quot;</span><span class="p">]:</span>
-            <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;median&quot;</span>
+        <span class="k">if</span> <span class="n">_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;med&quot;</span><span class="p">]:</span>
+            <span class="n">_type</span> <span class="o">=</span> <span class="s2">&quot;median&quot;</span>
 
         <span class="k">assert</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">variable_names</span><span class="p">,</span> <span class="s2">&quot;A variable with that name has not yet been initialized&quot;</span>
 
         <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">get_all_aggregate_accessibility_variables</span><span class="p">(</span>
             <span class="n">distance</span><span class="p">,</span>
             <span class="n">name</span><span class="p">,</span>
-            <span class="nb">type</span><span class="p">,</span>
+            <span class="n">_type</span><span class="p">,</span>
             <span class="n">decay</span><span class="p">,</span>
             <span class="n">imp_num</span><span class="p">,</span>
         <span class="p">)</span>
@@ -1059,7 +1061,7 @@
 
         <span class="k">if</span> <span class="n">include_poi_ids</span><span class="p">:</span>
             <span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">poi_ids</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">node_ids</span><span class="p">)</span>
-            <span class="n">df2</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;poi</span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_pois</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
+            <span class="n">df2</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;poi</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_pois</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
             <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df2</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
                 <span class="c1"># if this is still all working according to plan at this point</span>
                 <span class="c1"># the great magic trick is now to turn the integer position of</span>
