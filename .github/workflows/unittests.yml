@@ -76,7 +76,7 @@
            --cov=pandarm \
            --cov-append \
            --cov-report term-missing \
-           --cov-report xml \
+           --cov-report=xml:coverage.xml  \
            --cov-context=test
 
        - name: codecov
@@ -85,6 +85,7 @@
            token: ${{ secrets.CODECOV_TOKEN }}
            files: ./coverage.xml
            name: pandarm-codecov
+           verbose: true
 
        - name: Generate and publish the report
          if: |
