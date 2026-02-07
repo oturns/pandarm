@@ -7,7 +7,6 @@
 
 A pandas-centric interface to highly performant travel network analysis leveraging [contraction hierarchies](https://en.wikipedia.org/wiki/Contraction_hierarchies) provided by code from the Open Source Routing Machine (OSRM). Hence, the *pandas routing machine*, `pandarm`. This package is a friendly fork of the [pandana](https://github.com/UDST/pandana) library, originally written by Fletcher Foti and UrbanSim Inc. Despite fantastic work by the original authors, maintaining open-source software is a great deal of work and the pandana library is [no longer compatible](https://github.com/UDST/pandana/pull/196) with the current pydata stack (specifically as of numpy version 2.0). This fork reinstates compatibility and brings along a few new modern touches and enhancements. Pull requests are very welcome. 
 
-
 ## Features
 
 Main features of the package include 
@@ -29,7 +28,6 @@ See more in the [example notebook](examples/example_notebook.ipynb)
 ### Isochrones
 
 ![Destinations Within 2km of UCI Langson Library](docs/img/langson_iso.png)
-
 
 ## Installation
 
@@ -64,11 +62,11 @@ Apart from bringing compatibility with numpy>=2 and the rest of the pydata stack
 
 The original pandana package from which this fork was derived was created by [Fletcher Foti](https://github.com/fscottfoti), with subsequent contributions from [Matt Davis](https://github.com/jiffyclub), [Federico Fernandez](https://github.com/federicofernandez), [Sam Maurer](https://github.com/smmaurer), and others. The package relies on contraction hierarchy code from [Dennis Luxen](https://github.com/DennisOSRM) and his [OSRM project](https://github.com/DennisOSRM/Project-OSRM).
 
-
 ## Academic literature
 
-A [paper on Pandana](http://onlinepubs.trb.org/onlinepubs/conferences/2012/4thITM/Papers-A/0117-000062.pdf) was presented at the Transportation Research Board Annual Conference in 2012. Please cite this paper when referring to the methods implemented by this library.
+A [paper on Pandana](http://onlinepubs.trb.org/onlinepubs/conferences/2012/4thITM/Papers-A/0117-000062.pdf) was presented at the Transportation Research Board Annual Conference in 2012. Please cite this paper when referring to the methods implemented by this library:
 
+* **Foti, F., Waddell, P., & Luxen, D.** (2012). *A Generalized Computational Framework for Accessibility: From the Pedestrian to the Metropolitan Scale*. Transportation Research Board Annual Conference, 1–14. https://onlinepubs.trb.org/onlinepubs/conferences/2012/4thITM/Papers-A/0117-000062.pdf
 
 ## Related packages
 
