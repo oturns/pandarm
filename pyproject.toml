@@ -43,6 +43,7 @@ dev = [
     "pre-commit",
     "pytest",
     "pytest-cov",
+    "pytest-cpp",
 ]
 docs = [
     "myst-parser",
