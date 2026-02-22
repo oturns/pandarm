@@ -19,6 +19,7 @@ was presented at the Transportation Research Board Annual Conference in 2012. Pl
 
 * **Foti, F., Waddell, P., & Luxen, D.** (2012). `A Generalized Computational Framework for Accessibility: From the Pedestrian to the Metropolitan Scale`. Transportation Research Board Annual Conference, 1–14. https://onlinepubs.trb.org/onlinepubs/conferences/2012/4thITM/Papers-A/0117-000062.pdf
 
+If you would like to cite this package, you can do so using the `Zenodo DOI <https://doi.org/10.5281/zenodo.18728076>`_. If you do so, we ask that you also please cite the original paper/implementation listed above.
 
 Contents
 --------
