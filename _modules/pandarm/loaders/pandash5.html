@@ -4,11 +4,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>pandarm.loaders.pandash5 &#8212; pandarm v0.0.6.dev2+g208e68ba7 Manual</title>
+    <title>pandarm.loaders.pandash5 &#8212; pandarm v0.0.6.dev5+g5468f8d1a Manual</title>
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css?v=9afac83c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
-    <script src="../../../_static/documentation_options.js?v=e7b54a50"></script>
+    <script src="../../../_static/documentation_options.js?v=765c7dd0"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -36,7 +36,7 @@
         </button>
         <a class="navbar-brand" href="../../../index.html">
           pandarm</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.0.6.dev2+g208e68ba7</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.0.6.dev5+g5468f8d1a</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -224,7 +224,7 @@
     <span class="k">with</span> <span class="n">pd</span><span class="o">.</span><span class="n">HDFStore</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">store</span><span class="p">:</span>
         <span class="n">nodes</span> <span class="o">=</span> <span class="n">store</span><span class="p">[</span><span class="s2">&quot;nodes&quot;</span><span class="p">]</span>
         <span class="n">edges</span> <span class="o">=</span> <span class="n">store</span><span class="p">[</span><span class="s2">&quot;edges&quot;</span><span class="p">]</span>
-        <span class="n">crs</span> <span class="o">=</span> <span class="n">store</span><span class="p">[</span><span class="s2">&quot;crs&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="s2">&quot;crs&quot;</span> <span class="ow">in</span> <span class="n">store</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">else</span> <span class="kc">None</span>  <span class="c1"># noqa: SIM118 (this is not a dict)</span>
+        <span class="n">crs</span> <span class="o">=</span> <span class="n">store</span><span class="p">[</span><span class="s2">&quot;crs&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">store</span><span class="p">,</span> <span class="s2">&quot;crs&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="s2">&quot;edges_geom_type&quot;</span> <span class="ow">in</span> <span class="n">store</span><span class="p">:</span>
             <span class="n">geometry</span> <span class="o">=</span> <span class="n">shapely</span><span class="o">.</span><span class="n">from_ragged_array</span><span class="p">(</span>
                 <span class="n">shapely</span><span class="o">.</span><span class="n">GeometryType</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">store</span><span class="p">[</span><span class="s2">&quot;edges_geom_type&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">())),</span>
