@@ -4,11 +4,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>pandarm.network &#8212; pandarm v0.0.6.dev16+gbcc77a69a Manual</title>
+    <title>pandarm.network &#8212; pandarm v0.0.6.dev21+g5f54faf3c Manual</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=9afac83c" />
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
-    <script src="../../_static/documentation_options.js?v=8bf41c5e"></script>
+    <script src="../../_static/documentation_options.js?v=7ec1e09d"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -36,7 +36,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html">
           pandarm</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.0.6.dev16+gbcc77a69a</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.0.6.dev21+g5f54faf3c</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -806,6 +806,7 @@
         <span class="n">decay</span><span class="o">=</span><span class="s2">&quot;linear&quot;</span><span class="p">,</span>
         <span class="n">imp_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">name</span><span class="o">=</span><span class="s2">&quot;tmp&quot;</span><span class="p">,</span>
+        <span class="n">exp_constant</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="nb">type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="c1"># noqa: A002 - `type` builtin -- marker for removal</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -835,7 +836,6 @@
 
 <span class="sd">            *Additional notes:* see ``aggregateAccessibilityVariable`` in</span>
 <span class="sd">            accessibility.cpp to read through the code that applies decays.</span>
-<span class="sd">            The exponential decay function is exp(-1*distance/radius)*var.</span>
 <span class="sd">            The decay setting only operates on &#39;sum&#39; and &#39;mean&#39; aggregations.</span>
 <span class="sd">            If you apply decay to a &#39;mean&#39;, the result will NOT be a weighted</span>
 <span class="sd">            average; it will be the mean of the post-decay values. (So for a</span>
@@ -852,6 +852,10 @@
 <span class="sd">            and named by a call to ``set``.  If not specified, the default</span>
 <span class="sd">            variable name will be used so that the most recent call to set</span>
 <span class="sd">            without giving a name will be the variable used.</span>
+<span class="sd">        exp_constant : float, optional</span>
+<span class="sd">            This provides the option of setting maximum distance (radius) and</span>
+<span class="sd">            exponential decay constant separately. If this constant is not provided,</span>
+<span class="sd">            it defaults to 1/radius (the behaviour in previous versions of Pandana).</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -888,6 +892,12 @@
         <span class="k">assert</span> <span class="p">(</span>
             <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">variable_names</span>
         <span class="p">),</span> <span class="s2">&quot;A variable with that name has not yet been initialized&quot;</span>
+ 
+        <span class="k">if</span> <span class="n">decay</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;exponential&quot;</span><span class="p">,</span> <span class="s2">&quot;exp&quot;</span><span class="p">]:</span>
+            <span class="n">decay</span> <span class="o">=</span> <span class="s2">&quot;exp&quot;</span>
+            <span class="k">if</span> <span class="n">exp_constant</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No exponential parameter provided. Exponential parameter will be 1/radius.&quot;</span><span class="p">)</span>
+                <span class="n">exp_constant</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">distance</span>
 
         <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">get_all_aggregate_accessibility_variables</span><span class="p">(</span>
             <span class="n">distance</span><span class="p">,</span>
@@ -895,6 +905,7 @@
             <span class="n">func</span><span class="p">,</span>
             <span class="n">decay</span><span class="p">,</span>
             <span class="n">imp_num</span><span class="p">,</span>
+            <span class="n">exp_constant</span> <span class="k">if</span> <span class="n">decay</span> <span class="o">==</span> <span class="s2">&quot;exp&quot;</span> <span class="k">else</span> <span class="mf">0.0</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">node_ids</span><span class="p">)</span></div>

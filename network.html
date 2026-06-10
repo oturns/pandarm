@@ -5,11 +5,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Network API &#8212; pandarm v0.0.6.dev16+gbcc77a69a Manual</title>
+    <title>Network API &#8212; pandarm v0.0.6.dev21+g5f54faf3c Manual</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css?v=9afac83c" />
     <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
-    <script src="_static/documentation_options.js?v=8bf41c5e"></script>
+    <script src="_static/documentation_options.js?v=7ec1e09d"></script>
     <script src="_static/doctools.js?v=fd6eb6e6"></script>
     <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -39,7 +39,7 @@
         </button>
         <a class="navbar-brand" href="index.html">
           pandarm</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.0.6.dev16+gbcc77a69a</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.0.6.dev21+g5f54faf3c</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -217,7 +217,7 @@ geographic (i.e. WGS84, EPSG:4326)</p>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="pandarm.network.Network.aggregate">
-<span class="sig-name descname"><span class="pre">aggregate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'sum'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decay</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'linear'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">imp_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'tmp'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pandarm/network.html#Network.aggregate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandarm.network.Network.aggregate" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">aggregate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'sum'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decay</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'linear'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">imp_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'tmp'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exp_constant</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pandarm/network.html#Network.aggregate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandarm.network.Network.aggregate" title="Link to this definition">¶</a></dt>
 <dd><p>Aggregate information for every source node in the network - this is
 really the main purpose of this library.  This allows you to touch
 the data specified by calling set and perform some aggregation on it
@@ -242,7 +242,6 @@ away count less in the aggregation: ‘linear’, ‘exponential’, or
 ‘flat’ (no decay).</p>
 <p><em>Additional notes:</em> see <code class="docutils literal notranslate"><span class="pre">aggregateAccessibilityVariable</span></code> in
 accessibility.cpp to read through the code that applies decays.
-The exponential decay function is exp(-1*distance/radius)*var.
 The decay setting only operates on ‘sum’ and ‘mean’ aggregations.
 If you apply decay to a ‘mean’, the result will NOT be a weighted
 average; it will be the mean of the post-decay values. (So for a
@@ -258,6 +257,10 @@ passed in the constructor, which will be used.</p>
 and named by a call to <code class="docutils literal notranslate"><span class="pre">set</span></code>.  If not specified, the default
 variable name will be used so that the most recent call to set
 without giving a name will be the variable used.</p>
+</dd>
+<dt><strong>exp_constant</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a>, optional</span></dt><dd><p>This provides the option of setting maximum distance (radius) and
+exponential decay constant separately. If this constant is not provided,
+it defaults to 1/radius (the behaviour in previous versions of Pandana).</p>
 </dd>
 </dl>
 </dd>
