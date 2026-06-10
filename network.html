@@ -5,11 +5,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Network API &#8212; pandarm v0.0.6.dev21+g5f54faf3c Manual</title>
+    <title>Network API &#8212; pandarm v0.0.6.dev25+g05eec7a6b Manual</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css?v=9afac83c" />
     <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
-    <script src="_static/documentation_options.js?v=7ec1e09d"></script>
+    <script src="_static/documentation_options.js?v=1654b161"></script>
     <script src="_static/doctools.js?v=fd6eb6e6"></script>
     <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -39,7 +39,7 @@
         </button>
         <a class="navbar-brand" href="index.html">
           pandarm</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.0.6.dev21+g5f54faf3c</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.0.6.dev25+g05eec7a6b</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -116,6 +116,7 @@
 <li><a class="reference internal" href="#pandarm.network.Network.from_gdf"><code class="docutils literal notranslate"><span class="pre">Network.from_gdf()</span></code></a></li>
 <li><a class="reference internal" href="#pandarm.network.Network.from_hdf5"><code class="docutils literal notranslate"><span class="pre">Network.from_hdf5()</span></code></a></li>
 <li><a class="reference internal" href="#pandarm.network.Network.get_node_ids"><code class="docutils literal notranslate"><span class="pre">Network.get_node_ids()</span></code></a></li>
+<li><a class="reference internal" href="#pandarm.network.Network.k_nearest_nodes"><code class="docutils literal notranslate"><span class="pre">Network.k_nearest_nodes()</span></code></a></li>
 <li><a class="reference internal" href="#pandarm.network.Network.low_connectivity_nodes"><code class="docutils literal notranslate"><span class="pre">Network.low_connectivity_nodes()</span></code></a></li>
 <li><a class="reference internal" href="#pandarm.network.Network.nearest_pois"><code class="docutils literal notranslate"><span class="pre">Network.nearest_pois()</span></code></a></li>
 <li><a class="reference internal" href="#pandarm.network.Network.node_ids"><code class="docutils literal notranslate"><span class="pre">Network.node_ids</span></code></a></li>
@@ -381,6 +382,43 @@ If not specified, every x, y coordinate will be mapped to the nearest node.</p>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl>
 <dt><strong>node_ids</strong><span class="classifier"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html#pandas.Series" title="(in pandas v3.0.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas.Series</span></code></a> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a>)</span></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pandarm.network.Network.k_nearest_nodes">
+<span class="sig-name descname"><span class="pre">k_nearest_nodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">imp_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pandarm/network.html#Network.k_nearest_nodes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandarm.network.Network.k_nearest_nodes" title="Link to this definition">¶</a></dt>
+<dd><p>For each source node, return the <em>k</em> closest nodes in the network,
+searching up to <em>max_radius</em>.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>nodes</strong><span class="classifier">list-like of <code class="xref py py-obj docutils literal notranslate"><span class="pre">ints</span></code></span></dt><dd><p>Source node IDs.</p>
+</dd>
+<dt><strong>k</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a></span></dt><dd><p>Number of nearest nodes to return per source node.</p>
+</dd>
+<dt><strong>max_radius</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>Maximum travel distance to search within. Results are limited to
+nodes reachable within this distance. This will usually be a
+distance unit in meters however if you have customized the
+impedance (using the <code class="docutils literal notranslate"><span class="pre">imp_name</span></code> option) this could be in other
+units such as utility or time. Radius 0 is treated as infinity.</p>
+</dd>
+<dt><strong>imp_name</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, optional</span></dt><dd><p>The impedance name to use for the query on this network.
+Must be one of the impedance names passed in the constructor of
+this object. If not specified, there must be only one impedance
+passed in the constructor, which will be used.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl>
+<dt><strong>d</strong><span class="classifier"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v3.0.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a></span></dt><dd><p>A dataframe with columns <code class="docutils literal notranslate"><span class="pre">source</span></code>, <code class="docutils literal notranslate"><span class="pre">destination</span></code>, and the
+impedance name.  Each row represents one of the <em>k</em> nearest
+reachable nodes for the corresponding source, sorted by ascending
+distance within each source group.</p>
+</dd>
 </dl>
 </dd>
 </dl>

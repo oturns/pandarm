@@ -4,11 +4,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>pandarm.network &#8212; pandarm v0.0.6.dev21+g5f54faf3c Manual</title>
+    <title>pandarm.network &#8212; pandarm v0.0.6.dev25+g05eec7a6b Manual</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=9afac83c" />
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
-    <script src="../../_static/documentation_options.js?v=7ec1e09d"></script>
+    <script src="../../_static/documentation_options.js?v=1654b161"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -36,7 +36,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html">
           pandarm</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.0.6.dev21+g5f54faf3c</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.0.6.dev25+g05eec7a6b</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -782,6 +782,53 @@
             <span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
             <span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">imp_name</span><span class="si">}</span><span class="s2"> &lt;= </span><span class="si">{</span><span class="n">radius</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Network.k_nearest_nodes">
+<a class="viewcode-back" href="../../network.html#pandarm.network.Network.k_nearest_nodes">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">k_nearest_nodes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nodes</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">max_radius</span><span class="p">,</span> <span class="n">imp_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        For each source node, return the *k* closest nodes in the network,</span>
+<span class="sd">        searching up to *max_radius*.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        nodes : list-like of ints</span>
+<span class="sd">            Source node IDs.</span>
+<span class="sd">        k : int</span>
+<span class="sd">            Number of nearest nodes to return per source node.</span>
+<span class="sd">        max_radius : float</span>
+<span class="sd">            Maximum travel distance to search within. Results are limited to</span>
+<span class="sd">            nodes reachable within this distance. This will usually be a</span>
+<span class="sd">            distance unit in meters however if you have customized the</span>
+<span class="sd">            impedance (using the ``imp_name`` option) this could be in other</span>
+<span class="sd">            units such as utility or time. Radius 0 is treated as infinity.</span>
+<span class="sd">        imp_name : string, optional</span>
+<span class="sd">            The impedance name to use for the query on this network.</span>
+<span class="sd">            Must be one of the impedance names passed in the constructor of</span>
+<span class="sd">            this object. If not specified, there must be only one impedance</span>
+<span class="sd">            passed in the constructor, which will be used.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        d : pandas.DataFrame</span>
+<span class="sd">            A dataframe with columns ``source``, ``destination``, and the</span>
+<span class="sd">            impedance name.  Each row represents one of the *k* nearest</span>
+<span class="sd">            reachable nodes for the corresponding source, sorted by ascending</span>
+<span class="sd">            distance within each source group.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">imp_num</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_imp_name_to_num</span><span class="p">(</span><span class="n">imp_name</span><span class="p">)</span>
+        <span class="n">imp_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">impedance_names</span><span class="p">[</span><span class="n">imp_num</span><span class="p">]</span>
+        <span class="n">ext_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_idx</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span>
+
+        <span class="n">dists</span><span class="p">,</span> <span class="n">ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">k_nearest_nodes</span><span class="p">(</span><span class="n">nodes</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">max_radius</span><span class="p">,</span> <span class="n">ext_ids</span><span class="p">,</span> <span class="n">imp_num</span><span class="p">)</span>
+        <span class="c1"># dists and ids are both (len(nodes), k) arrays</span>
+        <span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">src</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">nodes</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">ids</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                    <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">src</span><span class="p">,</span> <span class="n">ids</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">],</span> <span class="n">dists</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]))</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;source&quot;</span><span class="p">,</span> <span class="s2">&quot;destination&quot;</span><span class="p">,</span> <span class="n">imp_name</span><span class="p">])</span></div>
 
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_imp_name_to_num</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">imp_name</span><span class="p">):</span>
