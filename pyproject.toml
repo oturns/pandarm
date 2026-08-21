@@ -1,9 +1,29 @@
 [build-system]
-# Requirements for building the compiled package
-build-backend = "setuptools.build_meta"
-requires = ["wheel", "setuptools >=40.8", "setuptools_scm[toml]>=6.2", "cython >=3", "numpy >=2.0"]
+# scikit-build-core drives the CMake build; nanobind provides the C++ binding
+# headers; setuptools_scm is retained for VCS-based versioning via the
+# scikit_build_core.metadata.setuptools_scm dynamic-metadata provider.
+build-backend = "scikit_build_core.build"
+requires = [
+    "scikit-build-core>=0.10",
+    "setuptools_scm[toml]>=8",
+    "nanobind>=2.0",
+    "numpy>=2.0",
+]
+
+[tool.scikit-build]
+minimum-version = "0.10"
+cmake.build-type = "Release"
+# Ship the setuptools-scm generated _version.py in the wheel
+sdist.include = ["pandarm/_version.py"]
+# Tell CMake where to find the package (pandarm/ sits at repo root)
+wheel.packages = ["pandarm"]
+
+# setuptools_scm writes version to pandarm/_version.py
+[[tool.dynamic-metadata]]
+provider = "scikit_build_core.metadata.setuptools_scm"
 
 [tool.setuptools_scm]
+write_to = "pandarm/_version.py"
 
 [project]
 name = "pandarm"
@@ -20,8 +40,8 @@ dependencies = [
 ]
 classifiers = [
     "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: GNU Affero General Public License v3"
 ]
+license = "AGPL-3.0-only"
 license-files = ["LICENSE"]
 requires-python = ">=3.10"
 
@@ -30,9 +50,6 @@ Home = "https://github.com/oturns/pandarm/"
 Repository = "https://github.com/oturns/pandarm"
 
 
-[tool.setuptools.packages.find]
-include = ["pandarm", "pandarm.*", "src*"]
-exclude = ["*.tests", "*.tests.*", "tests.*", "tests"]
 
 [project.optional-dependencies]
 plus = [

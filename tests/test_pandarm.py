@@ -83,6 +83,7 @@ class TestAggVaraiblesAccuracy:
         self.distance = 100000
         ssize = 50
 
+        np.random.seed(42)
         self.r = random_data(ssize)
         self.r_sorted = self.r.sort_values()
 
@@ -187,6 +188,7 @@ def test_non_integer_nodeids(request):
 
     # test accuracy compared to Pandas functions
     ssize = 50
+    np.random.seed(42)
     r = random_data(ssize)
     connected_nodes = get_connected_nodes(net)
     random_nodes = random_connected_nodes(net, ssize)
@@ -200,6 +202,7 @@ def test_agg_variables(sample_osm):
     net = sample_osm
 
     ssize = 50
+    np.random.seed(42)
     net.set(random_node_ids(sample_osm, ssize), variable=random_data(ssize))
 
     for _type in net.aggregations:
@@ -231,6 +234,7 @@ def test_non_float_node_values(sample_osm):
     net = sample_osm
 
     ssize = 50
+    np.random.seed(42)
     net.set(
         random_node_ids(sample_osm, ssize),
         variable=(random_data(ssize) * 100).astype(np.int64),
@@ -290,6 +294,7 @@ def test_exp_constant_ignored_for_non_exponential_decay(sample_osm):
 
 
 def test_missing_nodeid(sample_osm):
+    np.random.seed(42)
     node_ids = random_node_ids(sample_osm, 50)
     # non-existing value
     node_ids.iloc[0] = -1
@@ -321,6 +326,7 @@ def test_named_variable(sample_osm):
     net = sample_osm
 
     ssize = 50
+    np.random.seed(42)
     net.set(random_node_ids(sample_osm, ssize), variable=random_data(ssize), name="foo")
 
     net.aggregate(500, func="sum", decay="linear", name="foo")
@@ -341,6 +347,7 @@ def test_plot(sample_osm):
 
 
 def test_shortest_path(sample_osm):
+    np.random.seed(42)
     for _ in range(10):
         ids = random_connected_nodes(sample_osm, 2)
         path = sample_osm.shortest_path(ids[0], ids[1])
@@ -350,6 +357,7 @@ def test_shortest_path(sample_osm):
 
 
 def test_shortest_paths(sample_osm):
+    np.random.seed(42)
     nodes = random_connected_nodes(sample_osm, 100)
     vec_paths = sample_osm.shortest_paths(nodes[0:50], nodes[50:100])
 
@@ -366,6 +374,7 @@ def test_shortest_paths(sample_osm):
 
 
 def test_shortest_path_length(sample_osm):
+    np.random.seed(42)
     for _ in range(10):
         ids = random_connected_nodes(sample_osm, 2)
         _len = sample_osm.shortest_path_length(ids[0], ids[1])
@@ -373,6 +382,7 @@ def test_shortest_path_length(sample_osm):
 
 
 def test_shortest_path_lengths(sample_osm):
+    np.random.seed(42)
     nodes = random_connected_nodes(sample_osm, 100)
     lens = sample_osm.shortest_path_lengths(nodes[0:50], nodes[50:100])
     for _len in lens:
@@ -388,6 +398,7 @@ def test_shortest_path_lengths(sample_osm):
 
 def test_pois_a(sample_osm):
     net = sample_osm
+    np.random.seed(42)
     x, y = random_x_y(sample_osm, 100)
     x.index = ["lab{i}" for i in range(len(x))]
     y.index = x.index
@@ -461,6 +472,7 @@ def test_sorted_pois(sample_osm):
     net = sample_osm
 
     ssize = 1000
+    np.random.seed(42)
     x, y = random_x_y(sample_osm, ssize)
 
     # set two categories
@@ -529,6 +541,10 @@ def test_nodes_in_range(sample_osm):
     assert (all_distances <= 1).sum() == len(test1.query(f"source == {focus_id}"))
     assert (all_distances <= 5).sum() == len(test5.query(f"source == {focus_id}"))
     assert (all_distances <= 11).sum() == len(test11.query(f"source == {focus_id}"))
+
+    # restore the fixture's precompute state (precompute(ssize) above
+    # overwrote the precompute(2000) set by the sample_osm fixture)
+    net.precompute(2000)
 
 
 def test_k_nearest_nodes(sample_osm):

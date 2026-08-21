@@ -29,6 +29,7 @@ or see http://www.gnu.org/licenses/agpl.txt.
 #include "../DataStructures/Percent.h"
 #include "../DataStructures/BinaryHeap.h"
 #include <ctime>
+#include <random>
 #include <vector>
 #include <queue>
 #include <set>
@@ -233,7 +234,7 @@ public:
 #pragma omp parallel for schedule ( guided )
         for ( int x = 0; x < ( int ) numberOfNodes; ++x )
             remainingNodes[x].first = x;
-        std::random_shuffle( remainingNodes.begin(), remainingNodes.end() );
+        std::shuffle( remainingNodes.begin(), remainingNodes.end(), std::mt19937(42) );
         for ( int x = 0; x < ( int ) numberOfNodes; ++x )
             nodeData[remainingNodes[x].first].bias = x;
 

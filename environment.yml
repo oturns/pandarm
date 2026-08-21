@@ -4,6 +4,11 @@ channels:
 dependencies:
   - python
   - cxx-compiler  # platform-appropriate compiler w/ OpenMP
+  - cmake
+  - ninja
+  - nanobind
+  - scikit-build-core
+  - setuptools_scm
   - geopandas >=1.1
   - numpy >=2
   - pandas >=2

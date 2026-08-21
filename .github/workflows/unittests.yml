@@ -65,7 +65,7 @@
          run: 'python -c "import geopandas; geopandas.show_versions();"'
 
        - name: install package
-         run: 'pip install -e . --no-deps'
+         run: 'pip install -e . --no-build-isolation --no-deps'
 
        - name: run tests
          run: |
