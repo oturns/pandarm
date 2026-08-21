@@ -5,12 +5,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>collecting (and projecting) networks from OSM &#8212; pandarm v0.0.6.dev25+g05eec7a6b Manual</title>
+    <title>collecting (and projecting) networks from OSM &#8212; pandarm v0.0.7.dev5+gbb920a023 Manual</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css?v=9afac83c" />
     <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css?v=2aa19091" />
-    <script src="_static/documentation_options.js?v=1654b161"></script>
+    <script src="_static/documentation_options.js?v=348bc218"></script>
     <script src="_static/doctools.js?v=fd6eb6e6"></script>
     <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -40,7 +40,7 @@
         </button>
         <a class="navbar-brand" href="index.html">
           pandarm</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.0.6.dev25+g05eec7a6b</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.0.7.dev5+gbb920a023</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -158,7 +158,7 @@ import pandarm as pdna
 import geopandas as gpd
 
 %load_ext watermark
-%watermark -a &#39;eli knaap&#39;  -d -u -iv
+%watermark -a 'eli knaap'  -d -u -iv
 </pre></div>
 </div>
 </div>
@@ -198,7 +198,7 @@ geosnap  : 0.15.4.dev0+g08b0d60a8.d20251109
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>dc = datasets.tracts_2020()
-dc = dc[dc.geoid.str.startswith(&quot;11&quot;)]
+dc = dc[dc.geoid.str.startswith("11")]
 </pre></div>
 </div>
 </div>
@@ -509,7 +509,7 @@ Datum: World Geodetic System 1984 ensemble
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>rest = ox.features_from_polygon(dc.union_all(), tags={&quot;amenity&quot;: &quot;restaurant&quot;})
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>rest = ox.features_from_polygon(dc.union_all(), tags={"amenity": "restaurant"})
 </pre></div>
 </div>
 </div>
@@ -774,7 +774,7 @@ Datum: World Geodetic System 1984 ensemble
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># the query returns mixed geometries; downcast polygons to points
-rest[&quot;geometry&quot;] = rest.geometry.centroid
+rest["geometry"] = rest.geometry.centroid
 </pre></div>
 </div>
 </div>
@@ -784,7 +784,7 @@ rest[&quot;geometry&quot;] = rest.geometry.centroid
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># attach restaurants to their nearest intersection
 dcnet.set_pois(
-    &quot;restaurants&quot;,
+    "restaurants",
     maxdist=2000,
     maxitems=20,
     x_col=rest.geometry.x.values,
@@ -798,7 +798,7 @@ dcnet.set_pois(
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># dataframe of distance from each node to 20 nearest restaurants up to 2km
-nearest_rests = dcnet.nearest_pois(2000, &quot;restaurants&quot;, num_pois=20)
+nearest_rests = dcnet.nearest_pois(2000, "restaurants", num_pois=20)
 </pre></div>
 </div>
 </div>
@@ -1142,8 +1142,8 @@ nearest_rests = dcnet.nearest_pois(2000, &quot;restaurants&quot;, num_pois=20)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># join to intersection geometries and visualize distance to nearest restaurant
-dcnet.nodes_df.join(nearest_rests[1]).rename(columns={1: &quot;dist&quot;}).plot(
-    &quot;dist&quot;, scheme=&quot;quantiles&quot;, k=8, alpha=0.05
+dcnet.nodes_df.join(nearest_rests[1]).rename(columns={1: "dist"}).plot(
+    "dist", scheme="quantiles", k=8, alpha=0.05
 )
 </pre></div>
 </div>
@@ -1169,8 +1169,8 @@ dcnet.nodes_df.join(nearest_rests[1]).rename(columns={1: &quot;dist&quot;}).plot
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># distance to *5th nearest* restaurant, up to 2km
-dcnet.nodes_df.join(nearest_rests[5]).rename(columns={5: &quot;dist&quot;}).plot(
-    &quot;dist&quot;, scheme=&quot;quantiles&quot;, k=8, alpha=0.05
+dcnet.nodes_df.join(nearest_rests[5]).rename(columns={5: "dist"}).plot(
+    "dist", scheme="quantiles", k=8, alpha=0.05
 )
 </pre></div>
 </div>
@@ -1208,7 +1208,7 @@ dcnet.nodes_df.join(nearest_rests[5]).rename(columns={5: &quot;dist&quot;}).plot
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># create variable to aggregate. Since these are just binary locations set everything to 1
-rest[&quot;count&quot;] = 1
+rest["count"] = 1
 </pre></div>
 </div>
 </div>
@@ -1255,7 +1255,7 @@ Name: node_id, Length: 1084, dtype: int64
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># set the restaurants onto the network to be aggregated
 
-dcnet.set(rest_nodes, rest[&quot;count&quot;].values, name=&quot;restaurants&quot;)
+dcnet.set(rest_nodes, rest["count"].values, name="restaurants")
 </pre></div>
 </div>
 </div>
@@ -1263,7 +1263,7 @@ dcnet.set(rest_nodes, rest[&quot;count&quot;].values, name=&quot;restaurants&quo
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>agg = dcnet.aggregate(2000, name=&quot;restaurants&quot;)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>agg = dcnet.aggregate(2000, name="restaurants")
 </pre></div>
 </div>
 </div>
@@ -1300,7 +1300,7 @@ Length: 81541, dtype: float64
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>dcnet.nodes_df.join(agg.rename(&quot;access&quot;)).plot(&quot;access&quot;, scheme=&quot;quantiles&quot;, k=8, alpha=0.05)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>dcnet.nodes_df.join(agg.rename("access")).plot("access", scheme="quantiles", k=8, alpha=0.05)
 </pre></div>
 </div>
 </div>
@@ -1330,8 +1330,8 @@ from mapclassify.util import get_color_array
 
 dc_nodes = dcnet.nodes_df.copy().assign(access=agg)
 dc_nodes = dc_nodes.to_crs(dc.estimate_utm_crs())
-dc_nodes[&quot;geometry&quot;] = dc_nodes[&quot;geometry&quot;].buffer(20)
-colors = get_color_array(dc_nodes.access, scheme=&quot;fisher_jenks&quot;, k=8, cmap=&#39;inferno&#39;)
+dc_nodes["geometry"] = dc_nodes["geometry"].buffer(20)
+colors = get_color_array(dc_nodes.access, scheme="fisher_jenks", k=8, cmap='inferno')
 viz(
     dcnet.nodes_df.copy().assign(access=agg),
     scatterplot_kwargs=(
@@ -1341,7 +1341,7 @@ viz(
             opacity=0.7,
         )
     ),
-    map_kwargs={&#39;basemap_style&#39;:basemap.CartoBasemap.Positron, }
+    map_kwargs={'basemap_style':basemap.CartoBasemap.Positron, }
 )
 </pre></div>
 </div>
@@ -1369,10 +1369,10 @@ Lonboard is only able to render data in EPSG:4326 projection.
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># visualize on tracts instead
 dc = dc.to_crs(dc.estimate_utm_crs())  # make sure CRS matches network!
-dc[&quot;nodes&quot;] = dcnet.get_node_ids(dc.centroid.x, dc.centroid.y)
-dc.merge(agg.rename(&quot;access&quot;), left_on=&quot;nodes&quot;, right_index=True).plot(
-    &quot;access&quot;,
-    scheme=&quot;quantiles&quot;,
+dc["nodes"] = dcnet.get_node_ids(dc.centroid.x, dc.centroid.y)
+dc.merge(agg.rename("access"), left_on="nodes", right_index=True).plot(
+    "access",
+    scheme="quantiles",
     k=8,
 )
 </pre></div>
@@ -1398,13 +1398,13 @@ dc.merge(agg.rename(&quot;access&quot;), left_on=&quot;nodes&quot;, right_index=
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>dc.merge(agg.rename(&quot;access&quot;), left_on=&quot;nodes&quot;, right_index=True).explore(
-    &quot;access&quot;,
-    scheme=&quot;quantiles&quot;,
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>dc.merge(agg.rename("access"), left_on="nodes", right_index=True).explore(
+    "access",
+    scheme="quantiles",
     k=8,
     alpha=0.5,
-    tiles=&quot;cartodb positron&quot;,
-    style_kwds={&quot;weight&quot;: 0.5},
+    tiles="cartodb positron",
+    style_kwds={"weight": 0.5},
 )
 </pre></div>
 </div>
@@ -1721,7 +1721,7 @@ dc.merge(agg.rename(&quot;access&quot;), left_on=&quot;nodes&quot;, right_index=
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>irvine = ox.geocode_to_gdf(&quot;irvine, ca&quot;)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>irvine = ox.geocode_to_gdf("irvine, ca")
 </pre></div>
 </div>
 </div>
@@ -1974,7 +1974,7 @@ dc.merge(agg.rename(&quot;access&quot;), left_on=&quot;nodes&quot;, right_index=
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>libraries = ox.features_from_polygon(irvine.union_all(), tags={&quot;amenity&quot;: &quot;library&quot;})
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>libraries = ox.features_from_polygon(irvine.union_all(), tags={"amenity": "library"})
 </pre></div>
 </div>
 </div>
@@ -2239,8 +2239,8 @@ dc.merge(agg.rename(&quot;access&quot;), left_on=&quot;nodes&quot;, right_index=
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>libraries[&quot;geometry&quot;] = libraries.geometry.centroid
-libraries.explore(color=&#39;red&#39;, style_kwds={&#39;radius&#39;:10})
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>libraries["geometry"] = libraries.geometry.centroid
+libraries.explore(color='red', style_kwds={'radius':10})
 </pre></div>
 </div>
 </div>
@@ -2495,7 +2495,7 @@ libraries.explore(color=&#39;red&#39;, style_kwds={&#39;radius&#39;:10})
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sse = gpd.tools.geocode(&quot;UC Irvine school of social ecology&quot;)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sse = gpd.tools.geocode("UC Irvine school of social ecology")
 </pre></div>
 </div>
 </div>
@@ -2503,7 +2503,7 @@ libraries.explore(color=&#39;red&#39;, style_kwds={&#39;radius&#39;:10})
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sse.explore(color=&#39;red&#39;, style_kwds={&#39;radius&#39;:20})
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sse.explore(color='red', style_kwds={'radius':20})
 </pre></div>
 </div>
 </div>
@@ -2962,10 +2962,10 @@ library_iso
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>m = irvine_net.nodes_df[
     irvine_net.nodes_df.index.isin(
-        library_iso.query(f&quot;source=={library_nodes[3]}&quot;).destination.values
+        library_iso.query(f"source=={library_nodes[3]}").destination.values
     )
-].explore(tiles=&quot;cartodb positron&quot;)
-irvine_net.nodes_df.loc[[library_nodes[3]]].explore(m=m, color=&quot;red&quot;, style_kwds={&quot;radius&quot;: 10})
+].explore(tiles="cartodb positron")
+irvine_net.nodes_df.loc[[library_nodes[3]]].explore(m=m, color="red", style_kwds={"radius": 10})
 </pre></div>
 </div>
 </div>
@@ -3380,8 +3380,8 @@ array([11329030680,  8972594986,  8972595007,  8972595008, 11329030701,
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># reconstruct the path using geometries from edge_df
 irvine_net.edges_df[
-    (irvine_net.edges_df[&quot;from&quot;].isin(single_path)) &amp; (irvine_net.edges_df[&quot;to&quot;].isin(single_path))
-].explore(style_kwds={&quot;weight&quot;: 5})
+    (irvine_net.edges_df["from"].isin(single_path)) &amp; (irvine_net.edges_df["to"].isin(single_path))
+].explore(style_kwds={"weight": 5})
 </pre></div>
 </div>
 </div>
@@ -3628,7 +3628,7 @@ irvine_net.edges_df[
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>single_path_line = irvine_net.edges_df[
-    (irvine_net.edges_df[&quot;from&quot;].isin(single_path)) &amp; (irvine_net.edges_df[&quot;to&quot;].isin(single_path))
+    (irvine_net.edges_df["from"].isin(single_path)) &amp; (irvine_net.edges_df["to"].isin(single_path))
 ]
 </pre></div>
 </div>
@@ -3637,7 +3637,7 @@ irvine_net.edges_df[
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>single_path_line = single_path_line.groupby([&quot;from&quot;, &quot;to&quot;])[[&quot;length&quot;]].min().reset_index()
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>single_path_line = single_path_line.groupby(["from", "to"])[["length"]].min().reset_index()
 </pre></div>
 </div>
 </div>
@@ -3753,7 +3753,7 @@ irvine_net.edges_df[
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[53]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>idxer = single_path_line.set_index([&#39;from&#39;, &#39;to&#39;, &#39;length&#39;]).index
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>idxer = single_path_line.set_index(['from', 'to', 'length']).index
 </pre></div>
 </div>
 </div>
@@ -3762,8 +3762,8 @@ irvine_net.edges_df[
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>irvine_net.edges_df[
-    irvine_net.edges_df.set_index([&quot;from&quot;, &quot;to&quot;, &quot;length&quot;]).index.isin(idxer)
-].explore(style_kwds={&quot;weight&quot;: 5})
+    irvine_net.edges_df.set_index(["from", "to", "length"]).index.isin(idxer)
+].explore(style_kwds={"weight": 5})
 </pre></div>
 </div>
 </div>
@@ -4142,8 +4142,8 @@ paths
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># shortest path from SSE to last library
 irvine_net.edges_df[
-    (irvine_net.edges_df[&quot;from&quot;].isin(paths[-1])) &amp; (irvine_net.edges_df[&quot;to&quot;].isin(paths[-1]))
-].explore(style_kwds={&quot;weight&quot;: 5})
+    (irvine_net.edges_df["from"].isin(paths[-1])) &amp; (irvine_net.edges_df["to"].isin(paths[-1]))
+].explore(style_kwds={"weight": 5})
 </pre></div>
 </div>
 </div>

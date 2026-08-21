@@ -4,11 +4,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>pandarm.utils &#8212; pandarm v0.0.6.dev25+g05eec7a6b Manual</title>
+    <title>pandarm.utils &#8212; pandarm v0.0.7.dev5+gbb920a023 Manual</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=9afac83c" />
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
-    <script src="../../_static/documentation_options.js?v=1654b161"></script>
+    <script src="../../_static/documentation_options.js?v=348bc218"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -36,7 +36,7 @@
         </button>
         <a class="navbar-brand" href="../../index.html">
           pandarm</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.0.6.dev25+g05eec7a6b</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.0.7.dev5+gbb920a023</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -139,7 +139,7 @@
 <div class="viewcode-block" id="reindex">
 <a class="viewcode-back" href="../../utilities.html#pandarm.utils.reindex">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">reindex</span><span class="p">(</span><span class="n">series1</span><span class="p">,</span> <span class="n">series2</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Reindex the first series by the second series.</span>
 
 <span class="sd">    Parameters</span>
@@ -152,23 +152,23 @@
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    df.right : pandas.DataFrame</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="c1"># this function is identical to the reindex function found in UrbanSim in</span>
     <span class="c1"># urbansim/utils/misc.py</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
-        <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;left&quot;</span><span class="p">:</span> <span class="n">series2</span><span class="p">}),</span>
-        <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;right&quot;</span><span class="p">:</span> <span class="n">series1</span><span class="p">}),</span>
-        <span class="n">left_on</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span>
+        <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"left"</span><span class="p">:</span> <span class="n">series2</span><span class="p">}),</span>
+        <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"right"</span><span class="p">:</span> <span class="n">series1</span><span class="p">}),</span>
+        <span class="n">left_on</span><span class="o">=</span><span class="s2">"left"</span><span class="p">,</span>
         <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-        <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span>
+        <span class="n">how</span><span class="o">=</span><span class="s2">"left"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">right</span></div>
 
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">adjacency_matrix</span><span class="p">(</span><span class="n">edges_df</span><span class="p">):</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">edges_df</span><span class="p">[</span><span class="s2">&quot;from&quot;</span><span class="p">],</span> <span class="n">edges_df</span><span class="p">[</span><span class="s2">&quot;to&quot;</span><span class="p">])</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">edges_df</span><span class="p">[</span><span class="s2">"from"</span><span class="p">],</span> <span class="n">edges_df</span><span class="p">[</span><span class="s2">"to"</span><span class="p">])</span>
     <span class="n">idx</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">idx</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">idx</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
