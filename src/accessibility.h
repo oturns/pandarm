@@ -45,7 +45,8 @@ class Accessibility {
         string aggtyp,
         string decay,
         int64_t graphno = 0,
-        float exp_constant = 0);
+        float exp_constant = 0,
+        float dim_constant = 0);
 
     // get nodes with a range for a specific list of source nodes
     vector<vector<pair<int64_t, float>>> Range(vector<int64_t> srcnodes, float radius,
@@ -124,7 +125,8 @@ class Accessibility {
         string aggtyp,
         string gravity_func,
         int64_t graphno = 0,
-        float exp_constant = 0);
+        float exp_constant = 0,
+        float dim_constant = 0);
 
     double
     quantileAccessibilityVariable(
@@ -132,6 +134,16 @@ class Accessibility {
         accessibility_vars_t &vars,
         float quantile,
         float radius);
+
+    // distance-weighted sum with exponential diminishing returns on cumulative var
+    double
+    decayAccessibilityVariable(
+        DistanceVec &distances,
+        accessibility_vars_t &vars,
+        string decay,
+        float radius,
+        float exp_constant,
+        float dim_constant);
 };
 }  // namespace accessibility
 }  // namespace MTC
