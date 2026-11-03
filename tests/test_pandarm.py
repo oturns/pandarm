@@ -384,7 +384,7 @@ def test_dim_returns_accuracy(sample_osm):
         distance, func="dim_returns", decay="linear", dim_constant=dim_constant
     )
 
-    # recompute by hand: sort reachable items nearest-first, weight each by its
+    # recompute step by step: sort reachable items nearest-first, weight each by its
     # increment of 1 - exp(-k * cumulative value), then apply linear decay
     for src in sources:
         dists = np.array(net.shortest_path_lengths([src] * ssize, node_ids.values))
