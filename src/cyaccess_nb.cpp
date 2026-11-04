@@ -267,12 +267,12 @@ NB_MODULE(cyaccess, m) {
             "get_all_aggregate_accessibility_variables",
             [](Accessibility& self, double radius,
                nb::object category_obj, nb::object aggtyp_obj, nb::object decay_obj,
-               int64_t impno, double exp_constant) {
+               int64_t impno, double exp_constant, double dim_constant) {
                 std::string category = py_to_string(category_obj);
                 std::string aggtyp = py_to_string(aggtyp_obj);
                 std::string decay = py_to_string(decay_obj);
                 auto ret = self.getAllAggregateAccessibilityVariables(
-                    radius, category, aggtyp, decay, impno, exp_constant);
+                    radius, category, aggtyp, decay, impno, exp_constant, dim_constant);
                 return vec_to_array_1d_dbl(ret);
             },
             nb::arg("radius"),
@@ -280,7 +280,8 @@ NB_MODULE(cyaccess, m) {
             nb::arg("aggtyp"),
             nb::arg("decay"),
             nb::arg("impno") = 0,
-            nb::arg("exp_constant") = 0.0
+            nb::arg("exp_constant") = 0.0,
+            nb::arg("dim_constant") = 0.0
         )
         .def(
             "shortest_path",

@@ -673,6 +673,7 @@ class Network:
         imp_name=None,
         name="tmp",
         exp_constant=None,
+        dim_constant=None,
         type=None,  # noqa: A002 - `type` builtin -- marker for removal
     ):
         """
@@ -693,8 +694,18 @@ class Network:
         func : string, optional (default 'sum')
             The type of aggregation: 'mean' (with 'ave', 'avg', 'average'
             as aliases), 'std' (or 'stddev'), 'sum', 'count', 'min', 'max',
-            'med' (or 'median'), '25pct', or '75pct'. (Quantiles are
-            computed by sorting so may be slower than the others.)
+            'med' (or 'median'), 'dim_returns', '25pct', or '75pct'. (Quantiles and
+            dim_returns require ordering so may be slower than the others.)
+            The diminishing returns aggregation ('dim_returns') applies a function
+            to the variable values based on their order in the sorted list of
+            reachable destinations, with the first destination receiving
+            the most weight and the furthest destination receiving the least
+            weight, according to a negative exponential function. For a positive
+            dim_constant and non-negative values, results never exceed 1. If
+            dim_constant is set to 0, all destinations
+            within radius receive equal weight and the result is equivalent to the
+            'sum' aggregation. As dim_constant increases, more weight is placed
+            on the closest destinations and less weight on the further destinations.
         decay : string, optional (default 'linear')
             The type of decay to apply, which makes things that are further
             away count less in the aggregation: 'linear', 'exponential', or
@@ -702,11 +713,13 @@ class Network:
 
             *Additional notes:* see ``aggregateAccessibilityVariable`` in
             accessibility.cpp to read through the code that applies decays.
-            The decay setting only operates on 'sum' and 'mean' aggregations.
+            The decay setting only operates on 'sum', 'mean' and 'dim_returns'
+            aggregations.
             If you apply decay to a 'mean', the result will NOT be a weighted
             average; it will be the mean of the post-decay values. (So for a
             'mean' aggregation, you need to explicitly set decay to 'flat'
             unless you want that.)
+            The 'dim_returns' option, on the other hand, operates prior to distance decay.
 
         imp_name : string, optional
             The impedance name to use for the aggregation on this network.
@@ -722,6 +735,12 @@ class Network:
             This provides the option of setting maximum distance (radius) and
             exponential decay constant separately. If this constant is not provided,
             it defaults to 1/radius (the behaviour in previous versions of Pandana).
+        dim_constant : float, optional
+            This provides the option of setting the diminishing returns parameter for the
+            'dim_returns' aggregation. Higher parameters assign more weight to the closest
+            destinations. Lower parameters assign more equal weight across all destinations,
+            with more reachable destinations required to reach the same score.
+            Defaults to 0 (no diminishing returns).
 
         Returns
         -------
@@ -755,6 +774,9 @@ class Network:
         if func in ["med"]:
             func = "median"
 
+        if func in ["dim"]:
+            func = "dim_returns"
+
         assert (
             name in self.variable_names
         ), "A variable with that name has not yet been initialized"
@@ -765,6 +787,11 @@ class Network:
                 print("No exponential parameter provided. Exponential parameter will be 1/radius.")
                 exp_constant = 1/distance
 
+        if func == "dim_returns" and dim_constant is None:
+            print("No diminishing returns parameter provided. Diminishing returns "
+                  "parameter will be set to 0. Results will be the same as using 'sum'.")
+            dim_constant = 0
+
         res = self.net.get_all_aggregate_accessibility_variables(
             distance,
             name,
@@ -772,6 +799,7 @@ class Network:
             decay,
             imp_num,
             exp_constant if decay == "exp" else 0.0,
+            dim_constant if func == "dim_returns" else 0.0,
         )
 
         return pd.Series(res, index=self.node_ids)

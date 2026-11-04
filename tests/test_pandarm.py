@@ -293,6 +293,112 @@ def test_exp_constant_ignored_for_non_exponential_decay(sample_osm):
     assert_allclose(linear_a.values, linear_b.values)
 
 
+def test_dim_returns_available(sample_osm):
+    assert "dim_returns" in sample_osm.aggregations
+
+
+def test_dim_returns_alias_dim(sample_osm):
+    net = sample_osm
+
+    ssize = 75
+    np.random.seed(4)
+    net.set(random_connected_nodes(sample_osm, ssize), variable=random_data(ssize))
+
+    distance = 2000
+    alias = net.aggregate(distance, func="dim", decay="linear", dim_constant=0.25)
+    canonical = net.aggregate(distance, func="dim_returns", decay="linear", dim_constant=0.25)
+
+    assert_allclose(alias.values, canonical.values)
+
+
+def test_dim_par_changes_dim_returns(sample_osm):
+    net = sample_osm
+
+    ssize = 75
+    np.random.seed(6)
+    net.set(random_connected_nodes(sample_osm, ssize), variable=random_data(ssize))
+
+    distance = 2000
+    low_dim = net.aggregate(distance, func="dim_returns", decay="linear", dim_constant=0.05)
+    high_dim = net.aggregate(distance, func="dim_returns", decay="linear", dim_constant=1.0)
+
+    assert not np.allclose(low_dim.values, high_dim.values)
+
+
+def test_dim_par_ignored_for_non_dim_returns(sample_osm):
+    net = sample_osm
+
+    ssize = 75
+    np.random.seed(7)
+    net.set(random_connected_nodes(sample_osm, ssize), variable=random_data(ssize))
+
+    distance = 2000
+    sum_a = net.aggregate(distance, func="sum", decay="linear", dim_constant=0.05)
+    sum_b = net.aggregate(distance, func="sum", decay="linear", dim_constant=1.0)
+
+    assert_allclose(sum_a.values, sum_b.values)
+
+
+def test_dim_constant_zero_equals_sum(sample_osm):
+    net = sample_osm
+
+    ssize = 75
+    np.random.seed(9)
+    net.set(random_connected_nodes(sample_osm, ssize), variable=random_data(ssize))
+
+    distance = 2000
+    for decay in ["linear", "exp", "flat"]:
+        dim_returns = net.aggregate(distance, func="dim_returns", decay=decay, dim_constant=0)
+        summed = net.aggregate(distance, func="sum", decay=decay)
+
+        assert_allclose(dim_returns.values, summed.values, rtol=1e-5)
+
+
+def test_dim_returns_bounded(sample_osm):
+    net = sample_osm
+
+    ssize = 75
+    np.random.seed(10)
+    net.set(random_connected_nodes(sample_osm, ssize), variable=random_data(ssize))
+
+    dim_returns = net.aggregate(2000, func="dim_returns", decay="flat", dim_constant=0.25)
+
+    assert np.all(dim_returns.values >= 0)
+    assert np.all(dim_returns.values <= 1 + 1e-9)
+
+
+def test_dim_returns_accuracy(sample_osm):
+    net = sample_osm
+    # pick sources before set(), since get_connected_nodes overwrites the variable
+    sources = get_connected_nodes(net)[:5]
+
+    ssize = 75
+    np.random.seed(8)
+    node_ids = random_connected_nodes(sample_osm, ssize)
+    values = random_data(ssize)
+    net.set(node_ids, variable=values)
+
+    distance = 2000
+    dim_constant = 0.25
+    result = net.aggregate(
+        distance, func="dim_returns", decay="linear", dim_constant=dim_constant
+    )
+
+    # recompute step by step: sort reachable items nearest-first, weight each by its
+    # increment of 1 - exp(-k * cumulative value), then apply linear decay
+    for src in sources:
+        dists = np.array(net.shortest_path_lengths([src] * ssize, node_ids.values))
+        reachable = dists <= distance
+        order = np.argsort(dists[reachable], kind="stable")
+        d = dists[reachable][order]
+        v = values.values[reachable][order]
+
+        cum = np.cumsum(v)
+        increments = np.diff(1 - np.exp(-dim_constant * cum), prepend=0.0)
+        expected = np.sum(increments * (1 - d / distance))
+
+        assert_allclose(result.loc[src], expected, rtol=1e-4)
+
 def test_missing_nodeid(sample_osm):
     np.random.seed(42)
     node_ids = random_node_ids(sample_osm, 50)

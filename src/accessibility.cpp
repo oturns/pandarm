@@ -30,6 +30,7 @@ Accessibility::Accessibility(
     this->aggregations.reserve(9);
     this->aggregations.push_back("sum");
     this->aggregations.push_back("mean");
+    this->aggregations.push_back("dim_returns");
     this->aggregations.push_back("min");
     this->aggregations.push_back("25pct");
     this->aggregations.push_back("median");
@@ -337,7 +338,8 @@ Accessibility::getAllAggregateAccessibilityVariables(
     string aggtyp,
     string decay,
     int64_t graphno,
-    float exp_constant) {
+    float exp_constant,
+    float dim_constant) {
     if (accessibilityVars.find(category) == accessibilityVars.end() ||
         std::find(aggregations.begin(), aggregations.end(), aggtyp)
             == aggregations.end() ||
@@ -359,7 +361,8 @@ Accessibility::getAllAggregateAccessibilityVariables(
             aggtyp,
             decay,
             graphno,
-            exp_constant);
+            exp_constant,
+            dim_constant);
     }
     }
     return scores;
@@ -413,6 +416,79 @@ Accessibility::quantileAccessibilityVariable(
 
 
 double
+Accessibility::decayAccessibilityVariable(
+    DistanceVec &distances,
+    accessibility_vars_t &vars,
+    string decay,
+    float radius,
+    float exp_constant,
+    float dim_constant) {
+
+    std::function<double(const double &, const float &, const float &)> sum_function;
+
+    if (decay == "exp")
+        sum_function = [](const double &distance, const float &radius, const float &exp_constant)
+                        { return exp(-exp_constant * distance); };
+    if (decay == "linear")
+        sum_function = [](const double &distance, const float &radius, const float &exp_constant)
+                        { return (1.0 - distance / radius); };
+    if (decay == "flat")
+        sum_function = [](const double &distance, const float &radius, const float &exp_constant)
+                        { return 1.0; };
+
+    // the var weighting is applied through the diminishing returns term
+    // below, so the impedance functions above deliberately omit var
+
+    // Build one list of reachable items and process them nearest-first.
+    vector<std::pair<double, float>> dist_vals;
+    for (int64_t i = 0 ; i < distances.size() ; i++) {
+        int64_t nodeid = distances[i].first;
+        double distance = distances[i].second;
+
+        if (distance > radius) continue;
+
+        for (int64_t j = 0 ; j < vars[nodeid].size() ; j++) {
+            dist_vals.push_back(std::make_pair(distance, vars[nodeid][j]));
+        }
+    }
+
+    // nothing reachable - same result as a 'sum' with no items
+    if (dist_vals.size() == 0) return 0;
+
+    std::sort(
+        dist_vals.begin(),
+        dist_vals.end(),
+        [](const std::pair<double, float> &a, const std::pair<double, float> &b)
+        {
+            return a.first < b.first;
+        });
+
+    double running_sum = 0.0;
+    double out = 0.0;
+
+    for (int64_t i = 0 ; i < dist_vals.size() ; i++) {
+        double distance = dist_vals[i].first;
+        float var = dist_vals[i].second;
+        double prev_sum = running_sum;
+        running_sum += var;
+
+        // with a zero constant there are no diminishing returns, so each
+        // item contributes its full value (equivalent to 'sum')
+        double dim = var;
+        if (dim_constant != 0)
+            dim = (1 - exp(-dim_constant * running_sum)) -
+                  (1 - exp(-dim_constant * prev_sum));
+        double impedance = sum_function(distance, radius, exp_constant);
+
+        // Diminishing returns applied to the cumulative amount already accrued.
+        out += dim * impedance;
+    }
+
+    return out;
+}
+
+
+double
 Accessibility::aggregateAccessibilityVariable(
     int64_t srcnode,
     float radius,
@@ -420,7 +496,8 @@ Accessibility::aggregateAccessibilityVariable(
     string aggtyp,
     string decay,
     int64_t gno,
-    float exp_constant) {
+    float exp_constant,
+    float dim_constant) {
     // I don't know if this is the best way to do this but I
     // I don't want to copy memory in the precompute case - sometimes
     // I need a reference and sometimes not
@@ -453,6 +530,11 @@ Accessibility::aggregateAccessibilityVariable(
     } else if (aggtyp == "max") {
         return this->quantileAccessibilityVariable(
             distances, vars, 1.0, radius);
+    }
+
+    if (aggtyp == "dim_returns") {
+        return this->decayAccessibilityVariable(
+            distances, vars, decay, radius, exp_constant, dim_constant);
     }
 
     if (aggtyp == "std") decay = "flat";
